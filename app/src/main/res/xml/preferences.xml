@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="@string/settings" >
+
+    <PreferenceCategory android:key="login_cat" android:title="@string/bazaar_login" >
+        <Preference
+                android:key="set_server_login"
+                android:summary="@string/set_new_login_sum"
+                android:title="@string/logout" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="@string/auto_backup" >
+        <CheckBoxPreference
+                android:key="automatic_install"
+                android:summary="@string/auto_backup_sum"
+                android:title="@string/auto_backup" />
+        <PreferenceScreen
+                android:key="icon_download_permissions"
+                android:summary="@string/allowed_connections"
+                android:title="@string/backup_uploads_permissions" >
+            <CheckBoxPreference
+                    android:key="prefer_wifi"
+                    android:defaultValue="true"
+                    android:title="@string/backup_wifi" />
+            <CheckBoxPreference
+                    android:key="prefer_mobile_data"
+                    android:defaultValue="true"
+                    android:title="@string/backup_mobile_data" />
+            <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="prefer_ethernet"
+                    android:title="@string/backup_ethernet" />
+            <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="prefer_wimax"
+                    android:title="@string/backup_wimax" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

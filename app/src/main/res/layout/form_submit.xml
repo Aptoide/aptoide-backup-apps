@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="vertical" >
+
+            <LinearLayout
+                android:id="@+id/list_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/form_name_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/form_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/form_rating_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_rating"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/form_rating"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/rating_array"
+                    android:prompt="@string/app_rating"
+                    android:textSize="8pt" />
+
+                <TextView
+                    android:id="@+id/form_category_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_category"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/form_category"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/category_array"
+                    android:prompt="@string/app_category"
+                    android:textSize="8pt" />
+
+                <TextView
+                    android:id="@+id/form_desc_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_description"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/form_desc"
+                    android:inputType="text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/app_description" />
+
+                <TextView
+                    android:id="@+id/form_phone_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/form_phone"
+                    android:inputType="phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number" />
+
+                <TextView
+                    android:id="@+id/form_e_mail_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/e_mail"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/form_e_mail"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/e_mail" />
+
+                <TextView
+                    android:id="@+id/form_url_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/website_url"
+                    android:textColor="#424542"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/form_url"
+                    android:inputType="textUri"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/website_url" />
+            </LinearLayout>
+        </ScrollView>
+
+
+
+
+</RelativeLayout><!--
+ * Aptoide Uploader		uploads android apps to yout Bazaar repository
+ * Copyright (C) 20011  Duarte Silveira
+ * duarte.silveira@caixamagica.pt
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->

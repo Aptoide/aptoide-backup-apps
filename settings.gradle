@@ -1,0 +1,8 @@
+include ':app',
+        ':ViewPagerIndicator',
+        ':actionbarsherlock',
+        ':MultiChoiceAdapter'
+
+project(':ViewPagerIndicator').projectDir = new File('ViewPagerIndicator-2.4.1')
+project(':actionbarsherlock').projectDir = new File('actionbarsherlock-4.4.0')
+project(':MultiChoiceAdapter').projectDir = new File('MultiChoiceAdapter-2.2.5')

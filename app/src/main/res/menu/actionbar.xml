@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/menu_settings"
+            android:showAsAction="never"
+            android:title="@string/settings"/>
+    <item
+            android:id="@+id/menu_manager"
+            android:showAsAction="never"
+            android:title="@string/manager"/>
+
+    <item android:id="@+id/sort"
+          android:showAsAction="ifRoom"
+          android:title="@string/sort">
+        <menu android:id="@+id/submenugroup">
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/name"
+                      android:title="@string/by_name"/>
+                <item android:id="@+id/size"
+                      android:title="@string/by_size"/>
+                <item android:id="@+id/date"
+                      android:title="@string/by_date"/>
+                <item android:id="@+id/status"
+                      android:title="@string/by_state"/>
+            </group>
+
+            <item android:id="@+id/system"
+                  android:checkable="true"
+                  android:title="@string/show_system_apps"/>
+        </menu>
+    </item>
+
+</menu>

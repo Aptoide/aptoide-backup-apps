@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="false"
+            android:layout_gravity="center_horizontal">
+
+    <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/loginFormMinWidth"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+           >
+
+        <EditText
+                android:id="@+id/box_username"
+                style="@style/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/loginTextEntryLeft"
+                android:hint="@string/login_email_prompt"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:background="@drawable/edittext_shadow"/>
+
+        <EditText
+                android:id="@+id/box_password"
+                style="@style/loginButtonWithBottomSpace"
+                android:hint="@string/login_password_prompt"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:background="@drawable/edittext_shadow"/>
+
+        <Button
+                android:id="@+id/button_loggin"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login"/>
+
+        <com.facebook.widget.LoginButton
+                android:id="@+id/fb_loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"/>
+
+        <com.google.android.gms.common.SignInButton
+                android:id="@+id/g_sign_in_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/common_signin_button_text_long"/>
+
+        <Button
+                android:id="@+id/button_new_to_aptoide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/loginTextBottom"
+                android:layout_marginLeft="@dimen/loginTextLeft"
+                android:layout_marginRight="@dimen/loginTextRight"
+                android:layout_marginTop="@dimen/linkButtonButtomMarginTop"
+                android:background="@null"
+                android:text="@string/new_to_aptoide"
+                android:textColor="@color/link_button"
+                android:textSize="@dimen/linkButtonTextSize"
+                android:textStyle="bold"/>
+
+        <Button
+                android:id="@+id/button_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/loginTextBottom"
+                android:layout_marginLeft="@dimen/loginTextLeft"
+                android:layout_marginRight="@dimen/loginTextRight"
+                android:text="@string/forgot_passwd"
+                android:background="@null"
+                android:textColor="@color/link_button"
+                android:textSize="@dimen/linkButtonTextSize"
+                android:textStyle="bold"/>
+    </LinearLayout>
+
+</ScrollView>
