@@ -13,13 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockFragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import pt.aptoide.backupapps.model.NewAccount;
-import pt.aptoide.backupapps.util.Algorithms;
-import pt.aptoide.backupapps.util.Constants;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +30,10 @@ import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import pt.aptoide.backupapps.model.NewAccount;
+import pt.aptoide.backupapps.util.Algorithms;
+import pt.aptoide.backupapps.util.Constants;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rmateus
@@ -40,7 +43,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class FragmentCreateAccount extends SherlockFragment {
 
-
+    NewAccount account;
     private Button signup;
     private View button;
 
@@ -48,7 +51,54 @@ public class FragmentCreateAccount extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.form_signup,null);    //To change body of overridden methods use File | Settings | File Templates.
     }
-    NewAccount account;
+
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final EditText email = (EditText) view.findViewById(R.id.username);
+        final EditText password = (EditText) view.findViewById(R.id.password);
+        final EditText repository = (EditText) view.findViewById(R.id.repository);
+        final RadioButton privateButton = (RadioButton) view.findViewById(R.id.private_store);
+        signup = (Button) view.findViewById(R.id.signup);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setEnabled(false);
+                button = v;
+                if (email.getText().toString().length() == 0 ||
+                        password.getText().toString().length() == 0 ||
+                        repository.getText().toString().length() == 0) {
+                    Toast.makeText(getSherlockActivity(), getString(R.string.fill_all_forms), Toast.LENGTH_LONG).show();
+                    v.setEnabled(true);
+                } else if (!has1number1letter(password.getText().toString())) {
+                    Toast.makeText(getSherlockActivity(), getString(R.string.password_validation_text), Toast.LENGTH_LONG).show();
+                    v.setEnabled(true);
+                } else {
+
+                    String emailString = email.getText().toString();
+                    String passwordString = password.getText().toString();
+                    String repositoryString = repository.getText().toString();
+                    boolean isPrivate = privateButton.isChecked();
+                    account = new NewAccount(emailString, passwordString, repositoryString, isPrivate);
+                    new CreateAccount().execute(account);
+                }
+            }
+        });
+
+        view.findViewById(R.id.button_new_to_aptoide).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", "Fragments list onClick " + getFragmentManager().getFragments());
+                Fragment loginFragment = new FragmentLogin();
+                getFragmentManager().beginTransaction().replace(R.id.frag_container_A, loginFragment, "loginFragment").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+            }
+        });
+
+
+
+    }
 
     private boolean has1number1letter(String pass) {
         boolean hasLetter = false;
@@ -70,72 +120,10 @@ public class FragmentCreateAccount extends SherlockFragment {
 
         return hasNumber&&hasLetter;
     }
-    @Override
-    public void onViewCreated(final View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-        final EditText email = (EditText) view.findViewById(R.id.username);
-        final EditText password = (EditText) view.findViewById(R.id.password);
-        final EditText repository = (EditText) view.findViewById(R.id.repository);
-        final RadioButton privateButton = (RadioButton) view.findViewById(R.id.private_store);
-        signup = (Button) view.findViewById(R.id.signup);
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setEnabled(false);
-                button = v;
-                if(email.getText().toString().length()==0||
-                        password.getText().toString().length()==0||
-                        repository.getText().toString().length()==0){
-                    Toast.makeText(getSherlockActivity(), getString(R.string.fill_all_forms), Toast.LENGTH_LONG).show();
-                    v.setEnabled(true);
-                }else if(!has1number1letter(password.getText().toString())) {
-                    Toast.makeText(getSherlockActivity(), getString(R.string.password_validation_text), Toast.LENGTH_LONG).show();
-                    v.setEnabled(true);
-                } else{
-
-                    String emailString = email.getText().toString();
-                    String passwordString = password.getText().toString();
-                    String repositoryString = repository.getText().toString();
-                    boolean isPrivate = privateButton.isChecked();
-                    account = new NewAccount(emailString, passwordString, repositoryString, isPrivate);
-                    new CreateAccount().execute(account);
-
-                }
-
-            }
-        });
-
-        view.findViewById(R.id.button_new_to_aptoide).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("TAG", "Fragments list onClick " + getFragmentManager().getFragments());
-                Fragment loginFragment = new FragmentLogin();
-                getFragmentManager().beginTransaction().replace(R.id.frag_container_A, loginFragment, "loginFragment").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-            }
-        });
-
-
-
-    }
 
     public class CreateAccount extends AsyncTask<NewAccount, Void, JSONObject>{
 
         ProgressDialog pd;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            pd= new ProgressDialog(getSherlockActivity());
-            pd.setMessage(getString(R.string.please_wait));
-            pd.show();
-            pd.setCancelable(false);
-
-        }
-
         String url = Constants.URI_LOGIN_CREATE_WS;
 
         @Override
@@ -143,22 +131,20 @@ public class FragmentCreateAccount extends SherlockFragment {
 
             NewAccount account = params[0];
             String data;
-            try{
+            try {
 
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 String password_sha1 = Algorithms.computeSHA1sum(account.getPassword());
-                String hmac = Algorithms.computeHmacSha1(account.getEmail() + password_sha1 + account.getStoreName() + (account.isPrivate()?"true":""), "bazaar_hmac");
+                String hmac = Algorithms.computeHmacSha1(account.getEmail() + password_sha1 + account.getStoreName() + (account.isPrivate() ? "true" : ""), "bazaar_hmac");
                 connection.setConnectTimeout(10000);
                 connection.setReadTimeout(10000);
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
 
-
-
                 data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(account.getEmail(), "UTF-8");
                 data += "&" + URLEncoder.encode("passhash", "UTF-8") + "=" + URLEncoder.encode(password_sha1, "UTF-8");
                 data += "&" + URLEncoder.encode("repo", "UTF-8") + "=" + URLEncoder.encode(account.getStoreName(), "UTF-8");
-                if(account.isPrivate()){
+                if (account.isPrivate()) {
                     data += "&" + URLEncoder.encode("privacy", "UTF-8") + "=" + URLEncoder.encode("true", "UTF-8");
                 }
                 data += "&" + URLEncoder.encode("hmac", "UTF-8") + "=" + URLEncoder.encode(hmac, "UTF-8");
@@ -175,8 +161,7 @@ public class FragmentCreateAccount extends SherlockFragment {
                 wr.close();
                 br.close();
                 return new JSONObject(sb.toString());
-
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -184,10 +169,21 @@ public class FragmentCreateAccount extends SherlockFragment {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            pd = new ProgressDialog(getSherlockActivity());
+            pd.setMessage(getString(R.string.please_wait));
+            pd.show();
+            pd.setCancelable(false);
+
         }
 
         @Override
@@ -214,41 +210,12 @@ public class FragmentCreateAccount extends SherlockFragment {
                         button.setEnabled(true);
                         JSONArray array = jsonObject.getJSONArray("errors");
                         EnumServerLoginCreateStatus status = EnumServerLoginCreateStatus.BAD_LOGIN;
+                        String error = "";
 
                         for(int i = 0; i!= array.length(); i++){
-
-                            String error = array.getString(i);
-                            if(error.equals("Missing email parameter")
-                                    || error.equals("Missing passhash parameter")
-                                    || error.equals("Missing hmac parameter")
-                                    || error.equals("Missing name parameter")
-                                    || error.equals("Missing user-agent")){
-                                status = EnumServerLoginCreateStatus.MISSING_PARAMETER;
-                            }else if(error.equals("Invalid email format")
-                                    || error.equals("Invalid passhash format")){
-                                status = EnumServerLoginCreateStatus.BAD_LOGIN;
-                            }else if(error.equals("Invalid hmac format")
-                                    || error.equals("HMAC Authentication failure")){
-                                status = EnumServerLoginCreateStatus.BAD_HMAC;
-                            }else if(error.equals("The email provided already exists in the system")){
-                                status = EnumServerLoginCreateStatus.USERNAME_ALREADY_REGISTERED;
-                            }else if(error.equals("The email provided does not exist in the system yet")){
-                                status = EnumServerLoginCreateStatus.UNKNOWN_USERNAME;
-                            }else if(error.equals("User authentication failed")){
-                                status = EnumServerLoginCreateStatus.BAD_LOGIN;
-                            }else if(error.equals("That store name is invalid, you can only use letters, numbers or dashes.")
-                                    || error.equals("That store name must be at least 3 characters long.")){
-                                status = EnumServerLoginCreateStatus.BAD_REPO_NAME;
-                            }else if(error.equals("You have to enter the username and password of the store.")){
-                                status = EnumServerLoginCreateStatus.REPO_REQUIRES_AUTHENTICATION;
-                            }else if(error.equals("That store name is already taken, you need to choose another one.")){
-                                status = EnumServerLoginCreateStatus.REPO_ALREADY_EXISTS;
-                            }else if(error.equals("The store could not be created. Please try again.")){
-                                status = EnumServerLoginCreateStatus.SERVER_ERROR;
-                            }
-
+                            error = array.getString(i);
                         }
-                        Toast.makeText(getSherlockActivity(), status.toString(getSherlockActivity()) , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getSherlockActivity(), error, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getSherlockActivity(), R.string.failed_server_connection, Toast.LENGTH_SHORT).show();
