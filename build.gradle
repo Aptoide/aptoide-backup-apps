@@ -15,5 +15,11 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
     }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
 }
