@@ -651,15 +651,12 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
         AsyncTask task = new AsyncTask() {
 
-            private static final String serverId = "316068701674.apps.googleusercontent.com";
-
             @Override
             protected Object doInBackground(Object... params) {
                 String token = null;
 
                 try {
-                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:server:client_id:" + serverId + ":api_scope:" + Scopes.PLUS_LOGIN);
-
+                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:https://www.googleapis.com/auth/plus.login");
                 } catch (GooglePlayServicesAvailabilityException e) {
                     Dialog alert = GooglePlayServicesUtil.getErrorDialog(e.getConnectionStatusCode(), MainActivity.this, REQUEST_CODE_RESOLVE_ERR);
                 } catch (UserRecoverableAuthException e) {
