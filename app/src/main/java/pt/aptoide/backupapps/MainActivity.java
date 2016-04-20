@@ -450,7 +450,6 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                     .Builder(this, this, this)
                     .addApi(Plus.API, options)
                     .addScope(Plus.SCOPE_PLUS_LOGIN)
-                    .addScope(Plus.SCOPE_PLUS_PROFILE)
                     .build();
             mConnectionProgressDialog = new ProgressDialog(this);
             mConnectionProgressDialog.setMessage("Signing in...");
@@ -651,12 +650,15 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
         AsyncTask task = new AsyncTask() {
 
+            private static final String serverId = "316068701674.apps.googleusercontent.com";
+
             @Override
             protected Object doInBackground(Object... params) {
                 String token = null;
 
                 try {
-                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:https://www.googleapis.com/auth/plus.login");
+                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:server:client_id:" + serverId + ":api_scope:" + Scopes.PLUS_LOGIN);
+
                 } catch (GooglePlayServicesAvailabilityException e) {
                     Dialog alert = GooglePlayServicesUtil.getErrorDialog(e.getConnectionStatusCode(), MainActivity.this, REQUEST_CODE_RESOLVE_ERR);
                 } catch (UserRecoverableAuthException e) {
