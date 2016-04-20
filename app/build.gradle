@@ -46,7 +46,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 14
         versionCode 20102
-        versionName "2.1.2.0"
+        versionName "2.1.2.1"
 
         def localyticsKey = localProperties.LOCALYTICS_RELEASE_KEY
         def localyticsKeyExists = localyticsKey != null
