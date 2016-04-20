@@ -38,10 +38,10 @@ import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
-import com.google.android.gms.plus.PlusClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.squareup.otto.Subscribe;
 import com.viewpagerindicator.IconPagerAdapter;
 import com.viewpagerindicator.TabPageIndicator;
@@ -62,7 +62,7 @@ import pt.aptoide.backupapps.model.InstalledApk;
 import pt.aptoide.backupapps.model.Server;
 import pt.aptoide.backupapps.util.Constants;
 
-public class MainActivity extends BaseSherlockFragmentActivity implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class MainActivity extends BaseSherlockFragmentActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static EnumSortBy currentSort;
     private static ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -70,7 +70,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     SharedPreferences sPref;
     private boolean showSystemApps = false;
     private UiLifecycleHelper uiLifecycleHelper;
-    private PlusClient mPlusClient;
+    private GoogleApiClient googleApiClient;
     private ConnectionResult mConnectionResult;
     private ProgressDialog mConnectionProgressDialog;
     private int REQUEST_CODE_RESOLVE_ERR = 9000;
@@ -442,7 +442,16 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
             uiLifecycleHelper = new UiLifecycleHelper(this, callback);
             uiLifecycleHelper.onCreate(savedInstanceState);
 
-            mPlusClient = new PlusClient.Builder(this, this, this).setActions("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity").build();
+            final Plus.PlusOptions options = new Plus.PlusOptions.Builder()
+                    .addActivityTypes("http://schemas.google.com/AddActivity",
+                            "http://schemas.google.com/BuyActivity")
+                    .build();
+            googleApiClient = new GoogleApiClient
+                    .Builder(this, this, this)
+                    .addApi(Plus.API, options)
+                    .addScope(Plus.SCOPE_PLUS_LOGIN)
+                    .addScope(Plus.SCOPE_PLUS_PROFILE)
+                    .build();
             mConnectionProgressDialog = new ProgressDialog(this);
             mConnectionProgressDialog.setMessage("Signing in...");
         }
@@ -457,12 +466,12 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
             if (requestCode == REQUEST_CODE_RESOLVE_ERR && resultCode == Activity.RESULT_OK) {
                 mConnectionResult = null;
-                mPlusClient.connect();
+                googleApiClient.connect();
             }
 
 
             if(requestCode == 95 && resultCode == Activity.RESULT_OK) {
-                mPlusClient.connect();
+                googleApiClient.connect();
             }
         }
     }
@@ -649,7 +658,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 String token = null;
 
                 try {
-                    token = GoogleAuthUtil.getToken(MainActivity.this, mPlusClient.getAccountName(), "oauth2:server:client_id:" + serverId + ":api_scope:" + Scopes.PLUS_LOGIN);
+                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:server:client_id:" + serverId + ":api_scope:" + Scopes.PLUS_LOGIN);
 
                 } catch (GooglePlayServicesAvailabilityException e) {
                     Dialog alert = GooglePlayServicesUtil.getErrorDialog(e.getConnectionStatusCode(), MainActivity.this, REQUEST_CODE_RESOLVE_ERR);
@@ -667,15 +676,16 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
             @Override
             protected void onPostExecute(Object token) {
                 super.onPostExecute(token);
-                if(token != null && mPlusClient.getCurrentPerson() != null) {
-                    Log.d("TOKEN ", "token: " + token.toString() + " user: " + mPlusClient.getAccountName());
 
-                    Login login = new Login(mPlusClient.getAccountName(), token.toString(),"google", mPlusClient.getCurrentPerson().getDisplayName());
+                if(token != null && Plus.PeopleApi.getCurrentPerson(googleApiClient) != null) {
+                    Log.d("TOKEN ", "token: " + token.toString() + " user: " + Plus.AccountApi.getAccountName(googleApiClient));
+
+                    Login login = new Login(Plus.AccountApi.getAccountName(googleApiClient), token.toString(),"google", Plus.PeopleApi.getCurrentPerson(googleApiClient).getDisplayName());
                     new CheckUserCredentials(MainActivity.this).execute(login);
 
-                    mPlusClient.clearDefaultAccount();
-                    mPlusClient.disconnect();
-                    mPlusClient.connect();
+                    Plus.AccountApi.clearDefaultAccount(googleApiClient);
+                    googleApiClient.disconnect();
+                    googleApiClient.connect();
                 }
             }
         };
@@ -686,8 +696,8 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     }
 
     @Override
-    public void onDisconnected() {
-        Log.d("AptoideBackupApps-GoogleLogin", "Disconnected!");
+    public void onConnectionSuspended(int i) {
+        Log.d("AptoideBackupApps-GoogleLogin", "Suspended!");
     }
 
     @Override
@@ -700,7 +710,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 try {
                     connectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
                 } catch (IntentSender.SendIntentException e) {
-                    mPlusClient.connect();
+                    googleApiClient.connect();
                 }
             }
 
@@ -711,9 +721,9 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
         int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if (val == ConnectionResult.SUCCESS) {
 
-            if(!mPlusClient.isConnected()) {
+            if(!googleApiClient.isConnected()) {
                 if (mConnectionResult == null) {
-                    mPlusClient.connect();
+                    googleApiClient.connect();
                     mConnectionProgressDialog.show();
                 } else {
                     try {
@@ -721,7 +731,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                     } catch (IntentSender.SendIntentException e) {
                         // Try connecting again.
                         mConnectionResult = null;
-                        mPlusClient.connect();
+                        googleApiClient.connect();
                     }
                 }
             }
