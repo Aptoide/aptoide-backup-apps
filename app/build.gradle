@@ -20,7 +20,7 @@ if (fabricConfigured) {
 }
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 14
     buildToolsVersion "23.0.3"
 
     def BOOLEAN = "boolean"

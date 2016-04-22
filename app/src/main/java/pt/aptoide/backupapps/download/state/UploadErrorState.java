@@ -22,7 +22,7 @@ public class UploadErrorState extends StatusState {
 	 */
 	public UploadErrorState(DownloadInfo downloadInfo, ArrayList<EnumUploadFailReason> errorMessage) {
 		super(downloadInfo);
-		mErrorMessage = new ArrayListNotNull<>(errorMessage);
+		mErrorMessage = new ArrayListNotNull<EnumUploadFailReason>(errorMessage);
 		if (mErrorMessage.size() == 0) {
 			mErrorMessage.add(EnumUploadFailReason.UNKONWN);
 		}

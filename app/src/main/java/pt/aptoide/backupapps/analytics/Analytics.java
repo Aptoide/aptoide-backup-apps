@@ -6,6 +6,7 @@ import android.util.Log;
 import com.localytics.android.Localytics;
 
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import pt.aptoide.backupapps.BuildConfig;
 import pt.aptoide.backupapps.Logger;
@@ -37,7 +38,7 @@ public class Analytics {
 		try {
 			if (!ACTIVATE) return;
 
-			HashMap stringObjectHashMap = new HashMap<>();
+			HashMap<String, String> stringObjectHashMap = new HashMap<String, String>();
 
 			stringObjectHashMap.put(key, attr);
 
