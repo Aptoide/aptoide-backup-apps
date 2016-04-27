@@ -71,9 +71,8 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     private boolean showSystemApps = false;
     private UiLifecycleHelper uiLifecycleHelper;
     private GoogleApiClient googleApiClient;
-    private ConnectionResult mConnectionResult;
     private ProgressDialog mConnectionProgressDialog;
-    private int REQUEST_CODE_RESOLVE_ERR = 9000;
+    private int RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE = 9000;
     private MainService service;
     private ArrayList<InstalledApk> installedApks = new ArrayList<InstalledApk>();
     private ServiceConnection conn = new ServiceConnection() {
@@ -84,14 +83,14 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
             final SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-            if(sPref.contains(Constants.LOGIN_USER_LOGIN)){
+            if (sPref.contains(Constants.LOGIN_USER_LOGIN)) {
 
                 BusProvider.getInstance().post(new ShowBackedUpApps());
                 parseServer();
 
             } else {
 
-                if(AccountManager.get(MainActivity.this).getAccountsByType("cm.aptoide.pt").length!=0) {
+                if (AccountManager.get(MainActivity.this).getAccountsByType("cm.aptoide.pt").length != 0) {
 
                     Log.d("TAG", "User logged in from account manager");
                     String token = null;
@@ -100,7 +99,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                     String passHash = null;
                     String loginName = null;
                     String loginType = null;
-                    try{
+                    try {
 
 
                         account = AccountManager.get(MainActivity.this).getAccountsByType("cm.aptoide.pt")[0];
@@ -136,11 +135,11 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                         c3.close();
                         c4.close();
                         c5.close();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                         BusProvider.getInstance().post(new ShowLoginScreen());
                     }
-                    if( passHash != null && passHash.length() > 0  && loginType != null) {
+                    if (passHash != null && passHash.length() > 0 && loginType != null) {
 
 //                        sPref.edit().putString(Constants.LOGIN_USER_LOGIN, account.name)
 //                                .putString(Constants.LOGIN_USER_TOKEN, token)
@@ -152,19 +151,19 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 //                        Database.getInstance().removeAllData();
 //                        Database.getInstance().insertServer("http://" + repo + Constants.DOMAIN_APTOIDE_STORE, account.name, "");
 //
-                        Toast.makeText(MainActivity.this, getString(R.string.logged_in_from_aptoide) + " " +account.name + "!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.logged_in_from_aptoide) + " " + account.name + "!", Toast.LENGTH_SHORT).show();
 //
                         BusProvider.getInstance().post(new ShowLoginScreen());
 //                        parseServer();
 
                         Login login;
 
-                        if(loginType.equals("aptoide")){
+                        if (loginType.equals("aptoide")) {
                             login = new Login(account.name, passHash, false);
-                        }else if(loginType.equals("facebook")){
+                        } else if (loginType.equals("facebook")) {
                             login = new Login(account.name, passHash, loginType);
                             login.setLoginMode(Login.LoginMode.FACEBOOK_OAUTH);
-                        }else {
+                        } else {
                             login = new Login(account.name, passHash, loginType, loginName);
                             login.setLoginMode(Login.LoginMode.GOOGLE_OAUTH);
                         }
@@ -172,11 +171,11 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                         login.setFromUpdate(true);
                         login.setFromAccountManager(true);
                         new CheckUserCredentials(MainActivity.this).execute(login);
-                    }else{
+                    } else {
                         BusProvider.getInstance().post(new ShowLoginScreen());
                     }
 
-                }else{
+                } else {
                     BusProvider.getInstance().post(new ShowLoginScreen());
                 }
 
@@ -370,7 +369,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     @Override
     public void onPause() {
         super.onPause();
-        if(Build.VERSION.SDK_INT >= 8) {
+        if (Build.VERSION.SDK_INT >= 8) {
             uiLifecycleHelper.onPause();
         }
 
@@ -460,23 +459,19 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(Build.VERSION.SDK_INT >= 8) {
+        if (Build.VERSION.SDK_INT >= 8) {
             uiLifecycleHelper.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == REQUEST_CODE_RESOLVE_ERR && resultCode == Activity.RESULT_OK) {
-                mConnectionResult = null;
-                googleApiClient.connect();
-            }
-
-
-            if(requestCode == 95 && resultCode == Activity.RESULT_OK) {
-                googleApiClient.connect();
+            if (requestCode == RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE) {
+                if (resultCode == Activity.RESULT_OK) {
+                    connectPlusClient();
+                }
             }
         }
     }
 
     @Subscribe
-    public void onPackageChangedEvent(PackagesChangedEvent event){
+    public void onPackageChangedEvent(PackagesChangedEvent event) {
 
         if (MainActivity.this.service != null) {
             new Thread(new Runnable() {
@@ -499,7 +494,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
         database.setBackedUpApks(installedApks);
 
-        switch (sort){
+        switch (sort) {
             case NAME:
                 comparator = new Comparator<InstalledApk>() {
                     private final Collator sCollator = Collator.getInstance();
@@ -518,11 +513,11 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
                         long difference = rhs.getDate() - lhs.getDate();
 
-                        if(difference>0){
+                        if (difference > 0) {
                             return 1;
-                        }else if (difference == 0){
+                        } else if (difference == 0) {
                             return 0;
-                        } else{
+                        } else {
                             return -1;
                         }
 
@@ -545,12 +540,11 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                     public int compare(InstalledApk lhs, InstalledApk rhs) {
 
 
-
-                        if(lhs.isBackedUp() && !rhs.isBackedUp()){
+                        if (lhs.isBackedUp() && !rhs.isBackedUp()) {
                             return 1;
-                        }else if(!lhs.isBackedUp() && rhs.isBackedUp()){
+                        } else if (!lhs.isBackedUp() && rhs.isBackedUp()) {
                             return -1;
-                        }else {
+                        } else {
                             return 0;
                         }
                     }
@@ -587,7 +581,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_manager:
                 startActivity(new Intent(this, Manager.class));
                 break;
@@ -619,7 +613,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 break;
             case R.id.system:
 
-                if(item.isChecked())
+                if (item.isChecked())
                     item.setChecked(false);
                 else
                     item.setChecked(true);
@@ -628,7 +622,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 BusProvider.getInstance().post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
                 break;
             case R.id.status:
-                if(item.isChecked())
+                if (item.isChecked())
                     item.setChecked(false);
                 else
                     item.setChecked(true);
@@ -646,23 +640,21 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
     @Override
     public void onConnected(Bundle bundle) {
-        Log.d("AptoideBackupApps-GoogleLogin", "Connected!");
+        Log.d("AptoideBackupApps", "Connected!");
 
         AsyncTask task = new AsyncTask() {
-
-            private static final String serverId = "316068701674.apps.googleusercontent.com";
 
             @Override
             protected Object doInBackground(Object... params) {
                 String token = null;
 
                 try {
-                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:server:client_id:" + serverId + ":api_scope:" + Scopes.PLUS_LOGIN);
+                    token = GoogleAuthUtil.getToken(MainActivity.this, Plus.AccountApi.getAccountName(googleApiClient), "oauth2:server:client_id:" + BuildConfig.GOOGLE_OAUTH_SERVER_ID + ":api_scope:" + Scopes.PLUS_LOGIN);
 
                 } catch (GooglePlayServicesAvailabilityException e) {
-                    Dialog alert = GooglePlayServicesUtil.getErrorDialog(e.getConnectionStatusCode(), MainActivity.this, REQUEST_CODE_RESOLVE_ERR);
+                    Dialog alert = GooglePlayServicesUtil.getErrorDialog(e.getConnectionStatusCode(), MainActivity.this, RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE);
                 } catch (UserRecoverableAuthException e) {
-                    startActivityForResult(e.getIntent(), 95);
+                    startActivityForResult(e.getIntent(), RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE);
                 } catch (IOException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 } catch (GoogleAuthException e) {
@@ -676,66 +668,50 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
             protected void onPostExecute(Object token) {
                 super.onPostExecute(token);
 
-                if(token != null && Plus.PeopleApi.getCurrentPerson(googleApiClient) != null) {
-                    Log.d("TOKEN ", "token: " + token.toString() + " user: " + Plus.AccountApi.getAccountName(googleApiClient));
-
-                    Login login = new Login(Plus.AccountApi.getAccountName(googleApiClient), token.toString(),"google", Plus.PeopleApi.getCurrentPerson(googleApiClient).getDisplayName());
+                if (token != null && Plus.PeopleApi.getCurrentPerson(googleApiClient) != null) {
+                    Login login = new Login(Plus.AccountApi.getAccountName(googleApiClient), token.toString(), "google", Plus.PeopleApi.getCurrentPerson(googleApiClient).getDisplayName());
                     new CheckUserCredentials(MainActivity.this).execute(login);
 
                     Plus.AccountApi.clearDefaultAccount(googleApiClient);
                     googleApiClient.disconnect();
                     googleApiClient.connect();
+                } else {
+                    googleApiClient.disconnect();
                 }
             }
         };
         task.execute((Void) null);
-
         mConnectionProgressDialog.dismiss();
-
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.d("AptoideBackupApps-GoogleLogin", "Suspended!");
+        Log.d("AptoideBackupApps", "Suspended!");
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d("AptoideBackupApps-GoogleLogin", "Connection Failed!");
+        Log.d("AptoideBackupApps", "Connection Failed!");
 
         if (mConnectionProgressDialog.isShowing()) {
             mConnectionProgressDialog.dismiss();
             if (connectionResult.hasResolution()) {
                 try {
-                    connectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
+                    connectionResult.startResolutionForResult(this, RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE);
                 } catch (IntentSender.SendIntentException e) {
-                    googleApiClient.connect();
+                    connectPlusClient();
                 }
+            } else {
+                Toast.makeText(this, getString(R.string.google_not_available), Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 
     public void connectPlusClient() {
-        int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (val == ConnectionResult.SUCCESS) {
-
-            if(!googleApiClient.isConnected()) {
-                if (mConnectionResult == null) {
-                    googleApiClient.connect();
-                    mConnectionProgressDialog.show();
-                } else {
-                    try {
-                        mConnectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
-                    } catch (IntentSender.SendIntentException e) {
-                        // Try connecting again.
-                        mConnectionResult = null;
-                        googleApiClient.connect();
-                    }
-                }
-            }
-        } else {
-            Toast.makeText(this, getString(R.string.google_not_available), Toast.LENGTH_SHORT).show();
+        if (!googleApiClient.isConnected()
+                && !googleApiClient.isConnecting()) {
+            mConnectionProgressDialog.show();
+            googleApiClient.connect();
         }
     }
 
@@ -755,7 +731,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
             CONTENT = new String[]{activity.getString(R.string.left_tab), activity.getString(R.string.right_tab)};
         }
 
-        public void addFragment(Fragment fragment){
+        public void addFragment(Fragment fragment) {
             mTabs.add(fragment);
             notifyDataSetChanged();
         }
@@ -777,10 +753,9 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 
         @Override
         public Fragment getItem(int position) {
-            return Fragment.instantiate(mContext, ((Object)mTabs.get(position)).getClass().getName());
+            return Fragment.instantiate(mContext, ((Object) mTabs.get(position)).getClass().getName());
         }
     }
-
 
 
 }

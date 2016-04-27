@@ -43,6 +43,9 @@ android {
         buildConfigField BOOLEAN, FACEBOOK_CONFIGURED, facebookAppIdExists.toString()
         facebookAppId = facebookAppIdExists ? facebookAppId.toString() : "0"
         resValue "string", "facebook_app_id", "\"" + facebookAppId + "\""
+
+        // OAuth server id for Google Plus Sign In
+        buildConfigField "String", "GOOGLE_OAUTH_SERVER_ID", localProperties.GOOGLE_OAUTH_SERVER_ID
     }
 
     signingConfigs { release }
