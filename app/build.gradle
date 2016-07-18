@@ -20,7 +20,7 @@ if (fabricConfigured) {
 }
 
 android {
-    compileSdkVersion 14
+    compileSdkVersion 15
     buildToolsVersion "23.0.3"
 
     def BOOLEAN = "boolean"
@@ -29,7 +29,7 @@ android {
     defaultConfig {
         applicationId "pt.aptoide.backupapps"
         minSdkVersion 9
-        targetSdkVersion 14
+        targetSdkVersion 15
         versionCode 20102
         versionName "2.1.2.2"
 
