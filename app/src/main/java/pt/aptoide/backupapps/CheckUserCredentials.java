@@ -19,19 +19,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import pt.aptoide.backupapps.database.Database;
-import pt.aptoide.backupapps.download.event.BusProvider;
-import pt.aptoide.backupapps.util.Constants;
-import pt.aptoide.backupapps.util.NetworkUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.regex.Pattern;
+
+import pt.aptoide.backupapps.database.Database;
+import pt.aptoide.backupapps.download.event.BusProvider;
+import pt.aptoide.backupapps.util.Constants;
+import pt.aptoide.backupapps.util.NetworkUtils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -69,27 +72,27 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         LoginResponse response = new LoginResponse();
         login = params[0];
 
-        JSONObject loginJson =null;
+        JSONObject loginJson = null;
 
         try {
             loginJson = NetworkUtils.post(Constants.URI_LOGIN_WS, formatPostData(login));
 
-            if(loginJson.has("status")){
+            if (loginJson.has("status")) {
 
                 String status = loginJson.getString("status");
 
-                if("OK".equals(status)){
+                if ("OK".equals(status)) {
 
-                    if(!loginJson.isNull("repo")){
+                    if (!loginJson.isNull("repo")) {
                         response.setToken(loginJson.getString("token"));
                         response.setStoreAvatar(loginJson.getString("avatar"));
                         response.setDefaultStore(loginJson.getString("repo"));
                         response.setFromSignup(login.isFromSignUp());
-                    }else{
+                    } else {
                         response.setError(EnumServerLoginStatus.NO_DEFAULT_REPO);
                     }
-                }else{
-                    if(loginJson.has("errors")){
+                } else {
+                    if (loginJson.has("errors")) {
                         try {
                             Log.d("BackupApps", loginJson.toString(4));
                         } catch (JSONException e1) {
@@ -97,22 +100,22 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                         }
                         JSONArray array = loginJson.getJSONArray("errors");
                         EnumServerLoginStatus statusEnum = EnumServerLoginStatus.REPO_SERVICE_UNAVAILABLE;
-                        for(int i = 0; i!=array.length(); i++){
+                        for (int i = 0; i != array.length(); i++) {
                             String error = array.getJSONObject(i).getString("code");
 
-                            if(error.equals("MARG-201")){
+                            if (error.equals("MARG-201")) {
                                 //Missing authentication parameter(s): user and/or passhash
                                 statusEnum = EnumServerLoginStatus.BAD_LOGIN;
-                            }else if(error.equals("AUTH-1")){
+                            } else if (error.equals("AUTH-1")) {
                                 //Missing authentication parameter(s): user and/or passhash
                                 statusEnum = EnumServerLoginStatus.BAD_LOGIN;
-                            }else if(error.equals("REPO-1")){
+                            } else if (error.equals("REPO-1")) {
                                 //The provided store does not exist.
                                 statusEnum = EnumServerLoginStatus.REPO_SERVICE_UNAVAILABLE;
-                            }else if(error.equals("REPO-3")){
+                            } else if (error.equals("REPO-3")) {
                                 //The provided store does not belong to this user.
                                 statusEnum = EnumServerLoginStatus.REPO_NOT_FROM_DEVELOPPER;
-                            } else if(error.equals("WOP-3")){
+                            } else if (error.equals("WOP-3")) {
                                 //A store already exists with the same name. Please give another name for your store.
                                 statusEnum = EnumServerLoginStatus.REPO_NAME_ALREADY_EXISTS;
                             }
@@ -129,10 +132,11 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
 
             response.setError(EnumServerLoginStatus.LOGIN_SERVICE_UNAVAILABLE);
             try {
-                if (loginJson!=null)Log.d("BackupApps", loginJson.toString(4));
+                if (loginJson != null) Log.d("BackupApps", loginJson.toString(4));
             } catch (JSONException e1) {
                 e1.printStackTrace();
-            }            return response;
+            }
+            return response;
         } catch (JSONException e) {
 
             response.setError(EnumServerLoginStatus.LOGIN_SERVICE_UNAVAILABLE);
@@ -150,46 +154,46 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
     }
 
     private String formatPostData(Login login) {
-        Login.LoginMode loginMode= login.getLoginMode();
+        Login.LoginMode loginMode = login.getLoginMode();
         String requestData = null;
 
         try {
 
-            if(loginMode == Login.LoginMode.REGULAR) {
+            if (loginMode == Login.LoginMode.REGULAR) {
                 requestData = URLEncoder.encode("user", "UTF-8") + "=" + URLEncoder.encode(login.getUsername(), "UTF-8");
                 requestData += "&" + URLEncoder.encode("passhash", "UTF-8") + "=" + URLEncoder.encode(login.getPasswordSha1(), "UTF-8");
 
-                if(login.getRepo()!=null){
+                if (login.getRepo() != null) {
                     login.setFromSignUp(true);
                     requestData += "&" + URLEncoder.encode("createRepo", "UTF-8") + "=" + URLEncoder.encode(Integer.toString(1), "UTF-8");
                     requestData += "&" + URLEncoder.encode("repo", "UTF-8") + "=" + URLEncoder.encode(login.getRepo(), "UTF-8");
-                    if(login.isRepoPrivate()) {
+                    if (login.isRepoPrivate()) {
                         requestData += "&" + URLEncoder.encode("privacy", "UTF-8") + "=" + URLEncoder.encode("true", "UTF-8");
                         requestData += "&" + URLEncoder.encode("privacy_user", "UTF-8") + "=" + URLEncoder.encode(login.getPrivateRepoUsername(), "UTF-8");
                         requestData += "&" + URLEncoder.encode("privacy_pass", "UTF-8") + "=" + URLEncoder.encode(login.getPrivateRepoPassword(), "UTF-8");
                     }
                 }
 
-            } else if(loginMode == Login.LoginMode.FACEBOOK_OAUTH || loginMode == Login.LoginMode.GOOGLE_OAUTH) {
-                if(login.getRepo() == null) {
+            } else if (loginMode == Login.LoginMode.FACEBOOK_OAUTH || loginMode == Login.LoginMode.GOOGLE_OAUTH) {
+                if (login.getRepo() == null) {
                     requestData = URLEncoder.encode("user", "UTF-8") + "=" + URLEncoder.encode(login.getUsername(), "UTF-8");
                     requestData += "&" + URLEncoder.encode("authMode", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthMode(), "UTF-8");
                     requestData += "&" + URLEncoder.encode("oauthToken", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthAccessToken(), "UTF-8");
-                    if(loginMode == Login.LoginMode.GOOGLE_OAUTH) {
+                    if (loginMode == Login.LoginMode.GOOGLE_OAUTH) {
                         requestData += "&" + URLEncoder.encode("oauthUserName", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthUsername(), "UTF-8");
                     }
                 } else {
                     login.setFromSignUp(true);
                     requestData = URLEncoder.encode("user", "UTF-8") + "=" + URLEncoder.encode(login.getUsername(), "UTF-8");
                     requestData += "&" + URLEncoder.encode("repo", "UTF-8") + "=" + URLEncoder.encode(login.getRepo(), "UTF-8");
-                    if(login.isRepoPrivate()) {
+                    if (login.isRepoPrivate()) {
                         requestData += "&" + URLEncoder.encode("privacy", "UTF-8") + "=" + URLEncoder.encode("true", "UTF-8");
                         requestData += "&" + URLEncoder.encode("privacy_user", "UTF-8") + "=" + URLEncoder.encode(login.getPrivateRepoUsername(), "UTF-8");
                         requestData += "&" + URLEncoder.encode("privacy_pass", "UTF-8") + "=" + URLEncoder.encode(login.getPrivateRepoPassword(), "UTF-8");
                     }
                     requestData += "&" + URLEncoder.encode("authMode", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthMode(), "UTF-8");
                     requestData += "&" + URLEncoder.encode("oauthToken", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthAccessToken(), "UTF-8");
-                    if(loginMode == Login.LoginMode.GOOGLE_OAUTH) {
+                    if (loginMode == Login.LoginMode.GOOGLE_OAUTH) {
                         requestData += "&" + URLEncoder.encode("oauthUserName", "UTF-8") + "=" + URLEncoder.encode(login.getoAuthUsername(), "UTF-8");
                     }
                     requestData += "&" + URLEncoder.encode("oauthCreateRepo", "UTF-8") + "=" + URLEncoder.encode(Integer.toString(1), "UTF-8");
@@ -202,7 +206,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         }
 
         Log.d("MYLOG", "Post data: " + requestData);
-        return  requestData;
+        return requestData;
     }
 
     @Override
@@ -210,10 +214,10 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         super.onPostExecute(response);
         pd.dismiss();
 
-        switch (response.getError()){
+        switch (response.getError()) {
 
             case SUCCESS:
-                if(login.isUpdate()){
+                if (login.isUpdate()) {
                     previousSPref.edit().remove("SERVER_USERNAME").remove("SERVER_PASSHASH").commit();
                 }
 
@@ -225,14 +229,14 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                         .putBoolean(Constants.LOGIN_FROM_SIGNUP, response.isFromSignup())
                         .commit();
 
-                if(login.isRepoPrivate()) {
+                if (login.isRepoPrivate()) {
                     sPref.edit().putBoolean(Constants.LOGIN_USER_REPO_PRIVACY, login.isRepoPrivate())
                             .putString(Constants.LOGIN_USER_PRIVATE_REPO_USERNAME, login.getPrivateRepoUsername())
                             .putString(Constants.LOGIN_USER_PRIVATE_REPO_PASSWORD, login.getPrivateRepoPassword())
                             .commit();
                 }
 
-                if(login.isFromAccountManager()){
+                if (login.isFromAccountManager()) {
                     sPref.edit().putBoolean(Constants.LOGGED_FROM_ACCOUNT_MANAGER, true).commit();
                 }
 
@@ -283,43 +287,43 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             builder.setTitle(R.string.repo_creation_title)
                     .setView(view)
                     .setPositiveButton(R.string.create_repo, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (repository.getText() != null) {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (repository.getText() != null) {
 
-                                boolean isRepoPrivate = privateButton.isChecked();
+                                        boolean isRepoPrivate = privateButton.isChecked();
 
-                                login.setRepo(repository.getText().toString(), isRepoPrivate);
+                                        login.setRepo(repository.getText().toString(), isRepoPrivate);
 
-                                if (isRepoPrivate) {
-                                    login.setPrivateRepoUsername(repoUsername.getText().toString().trim());
-                                    login.setPrivateRepoPassword(repoPassword.getText().toString().trim());
-                                }
-
-                                if(login.getRepo() != null && login.getRepo().length() != 0) {
-                                    if(isRepoPrivate) {
-                                        if(login.getPrivateRepoUsername() == null || login.getPrivateRepoUsername().length() == 0) {
-                                            Toast.makeText(getActivity(), getString(R.string.store_username_undefined), Toast.LENGTH_SHORT).show();
-                                            showRepoCreatorDialog();
-                                        } else if(login.getPrivateRepoPassword() == null || login.getPrivateRepoPassword().length() == 0) {
-                                            Toast.makeText(getActivity(), getString(R.string.store_password_undefined), Toast.LENGTH_SHORT).show();
-                                            showRepoCreatorDialog();
-                                        } else {
-                                            new CheckUserCredentials(activity).execute(login);
+                                        if (isRepoPrivate) {
+                                            login.setPrivateRepoUsername(repoUsername.getText().toString().trim());
+                                            login.setPrivateRepoPassword(repoPassword.getText().toString().trim());
                                         }
-                                    } else {
-                                        new CheckUserCredentials(activity).execute(login);
+
+                                        if (login.getRepo() != null && login.getRepo().length() != 0) {
+                                            if (isRepoPrivate) {
+                                                if (login.getPrivateRepoUsername() == null || login.getPrivateRepoUsername().length() == 0) {
+                                                    Toast.makeText(getActivity(), getString(R.string.store_username_undefined), Toast.LENGTH_SHORT).show();
+                                                    showRepoCreatorDialog();
+                                                } else if (login.getPrivateRepoPassword() == null || login.getPrivateRepoPassword().length() == 0) {
+                                                    Toast.makeText(getActivity(), getString(R.string.store_password_undefined), Toast.LENGTH_SHORT).show();
+                                                    showRepoCreatorDialog();
+                                                } else {
+                                                    new CheckUserCredentials(activity).execute(login);
+                                                }
+                                            } else {
+                                                new CheckUserCredentials(activity).execute(login);
+                                            }
+                                        } else {
+                                            Toast.makeText(getActivity(), getString(R.string.store_without_name), Toast.LENGTH_SHORT).show();
+                                            showRepoCreatorDialog();
+                                        }
+
                                     }
-                                } else {
-                                    Toast.makeText(getActivity(), getString(R.string.store_without_name), Toast.LENGTH_SHORT).show();
-                                    showRepoCreatorDialog();
+
+                                    logoutOnDismiss = false;
                                 }
-
                             }
-
-                            logoutOnDismiss = false;
-                        }
-                    }
                     )
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
@@ -334,7 +338,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             privateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(privateButton.isChecked()) {
+                    if (privateButton.isChecked()) {
                         repoPassword.setVisibility(View.VISIBLE);
                         repoUsername.setVisibility(View.VISIBLE);
                     }
@@ -344,7 +348,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             publicButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(publicButton.isChecked()) {
+                    if (publicButton.isChecked()) {
                         repoPassword.setVisibility(View.GONE);
                         repoUsername.setVisibility(View.GONE);
                     }
@@ -366,7 +370,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                 }
             };
 
-            repository.setFilters(new InputFilter[] {filter});
+            repository.setFilters(new InputFilter[]{filter});
 
             return builder.create();
         }
@@ -374,7 +378,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         @Override
         public void onDismiss(DialogInterface dialog) {
             super.onDismiss(dialog);
-            if(logoutOnDismiss) {
+            if (logoutOnDismiss) {
                 BusProvider.getInstance().post(new LogoutEvent());
             }
         }
@@ -382,20 +386,19 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
 
     public void showRepoCreatorDialog() {
         DialogFragment dialog = new RepoCreatorDialog();
-        dialog.show( activity.getSupportFragmentManager(), "RepoCreatorDialog");
+        dialog.show(activity.getSupportFragmentManager(), "RepoCreatorDialog");
     }
 
 
-public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
+    public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
 
-    @Override
-    protected Void doInBackground(LoginResponse... params) {
+        @Override
+        protected Void doInBackground(LoginResponse... params) {
 
 
-
-        LoginResponse response = params[0];
-        Database.getInstance().setLoggedIn(true);
-        Database.getInstance().removeAllData();
+            LoginResponse response = params[0];
+            Database.getInstance().setLoggedIn(true);
+            Database.getInstance().removeAllData();
 
         /*if(sPref.getBoolean(Constants.LOGIN_USER_REPO_PRIVACY, false)) {
             Database.getInstance().insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
@@ -403,24 +406,24 @@ public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
                     sPref.getString(Constants.LOGIN_USER_PRIVATE_REPO_PASSWORD, "") );
         } else {*/
 
-        String serverUsername = null;
-        String serverPassword = null;
+            String serverUsername = null;
+            String serverPassword = null;
 
-        if(login.getLoginMode() == Login.LoginMode.REGULAR) {
-            serverUsername = sPref.getString(Constants.LOGIN_USER_LOGIN, "");
-            serverPassword = sPref.getString(Constants.LOGIN_USER_PASSWORD, "");
+            if (login.getLoginMode() == Login.LoginMode.REGULAR) {
+                serverUsername = sPref.getString(Constants.LOGIN_USER_LOGIN, "");
+                serverPassword = sPref.getString(Constants.LOGIN_USER_PASSWORD, "");
+            }
+
+            Database.getInstance().insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
+                    serverUsername, serverPassword);
+
+            return null;
         }
 
-        Database.getInstance().insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
-            serverUsername, serverPassword);
-
-        return null;
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            BusProvider.getInstance().post(new LoginEvent());
+            super.onPostExecute(aVoid);
+        }
     }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        BusProvider.getInstance().post(new LoginEvent());
-        super.onPostExecute(aVoid);
-    }
-}
 }

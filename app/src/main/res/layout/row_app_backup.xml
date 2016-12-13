@@ -1,111 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.manuelpeinado.multichoiceadapter.CheckableRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                              android:id="@+id/app_hashid"
-                                                              android:layout_width="fill_parent"
-                                                              android:layout_height="wrap_content"
-                                                              android:orientation="horizontal">
-    <LinearLayout android:id="@+id/app_hashid"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <ImageView
-                android:id="@+id/app_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp">
+            android:id="@+id/app_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp">
 
         </ImageView>
 
         <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/version_prefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/app_name"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/version"
+                android:textColor="#000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/version_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/version_prefix"
+                android:layout_below="@id/app_name"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/version_prefix"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/version_prefix"
+                android:layout_below="@id/app_name"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@+id/size"
+                android:layout_toRightOf="@+id/version_name"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#B3B3B3"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/status"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/version_prefix"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#CC6600"
+                android:textSize="12sp" />
 
             <TextView
-                    android:id="@+id/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000"/>
-
-            <TextView
-                    android:id="@+id/version_prefix"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/app_name"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="@string/version"
-                    android:textColor="#000"
-                    android:textSize="12sp"/>
-
-            <TextView
-                    android:id="@+id/version_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/version_prefix"
-                    android:layout_below="@id/app_name"
-                    android:layout_marginLeft="2dp"
-                    android:layout_toRightOf="@+id/version_prefix"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textSize="12sp"/>
-
-            <TextView
-                    android:id="@+id/timestamp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/version_prefix"
-                    android:layout_below="@id/app_name"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toLeftOf="@+id/size"
-                    android:layout_toRightOf="@+id/version_name"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="#B3B3B3"
-                    android:textSize="12sp"/>
-
-            <TextView
-                    android:id="@+id/status"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/version_prefix"
-                    android:layout_centerHorizontal="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="#CC6600"
-                    android:textSize="12sp"/>
-
-            <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/timestamp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="#4F4F4F"
-                    android:textSize="12sp"/>
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/timestamp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#4F4F4F"
+                android:textSize="12sp" />
 
         </RelativeLayout>
-        <CheckBox android:id="@android:id/checkbox" android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center_vertical" android:focusable="false"/>
+
+        <CheckBox
+            android:id="@android:id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:focusable="false" />
     </LinearLayout>
 
 

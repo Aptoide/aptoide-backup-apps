@@ -18,7 +18,6 @@ public class Analytics {
 
 	// Constantes globais a todos os eventos.
 	public static final String ACTION = "Action";
-	private static final boolean ACTIVATE = BuildConfig.LOCALYTICS_CONFIGURED;
 	private static final int ALL = Integer.MAX_VALUE;
 	private static final int LOCALYTICS = 1 << 0;
 
@@ -36,8 +35,6 @@ public class Analytics {
 	private static void track(String event, String key, String attr, int flags) {
 
 		try {
-			if (!ACTIVATE) return;
-
 			HashMap<String, String> stringObjectHashMap = new HashMap<String, String>();
 
 			stringObjectHashMap.put(key, attr);
@@ -52,8 +49,6 @@ public class Analytics {
 
 	private static void track(String event, HashMap map, int flags) {
 		try {
-			if (!ACTIVATE) return;
-
 			if (checkAcceptability(flags, LOCALYTICS)) Localytics.tagEvent(event, map);
 
 			Logger.d("Analytics", "Event: " + event + ", Map: " + map);
@@ -65,8 +60,6 @@ public class Analytics {
 	private static void track(String event, int flags) {
 
 		try {
-			if (!ACTIVATE) return;
-
 			if (checkAcceptability(flags, LOCALYTICS)) Localytics.tagEvent(event);
 
 			Logger.d("Analytics", "Event: " + event);
@@ -81,8 +74,6 @@ public class Analytics {
 
 			public static void onCreate(Context applicationContext) {
 
-				if (!ACTIVATE) return;
-
 				// Integrate Localytics
 				Localytics.integrate(applicationContext);
 			}
@@ -90,19 +81,7 @@ public class Analytics {
 
 		public static class Activity {
 
-			public static void onCreate(android.app.Activity activity) {
-
-				if (!ACTIVATE) return;
-			}
-
-			public static void onDestroy(android.app.Activity activity) {
-
-				if (!ACTIVATE) return;
-			}
-
 			public static void onResume(android.app.Activity activity) {
-
-				if (!ACTIVATE) return;
 
 				// Localytics
 				Localytics.openSession();
@@ -113,21 +92,9 @@ public class Analytics {
 
 			public static void onPause(android.app.Activity activity) {
 
-				if (!ACTIVATE) return;
-
 				// Localytics
 				Localytics.closeSession();
 				Localytics.upload();
-			}
-
-			public static void onStart(android.app.Activity activity) {
-
-				if (!ACTIVATE) return;
-			}
-
-			public static void onStop(android.app.Activity activity) {
-
-				if (!ACTIVATE) return;
 			}
 		}
 	}
