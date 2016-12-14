@@ -511,4 +511,5 @@
     <string name="password_validation_text">Password must be at least 8 caracters and should have at least one letter
         and one number or special caracter (!@#$%*)
     </string>
+    <string name="facebook_error">You should provide your email in order to login.</string>
 </resources>

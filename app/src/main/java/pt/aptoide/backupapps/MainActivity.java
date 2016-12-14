@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -213,8 +214,23 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 Request meRequest = Request.newMeRequest(session, new Request.GraphUserCallback() {
                     @Override
                     public void onCompleted(GraphUser user, Response response) {
-                        Login login = new Login(user.getProperty("email").toString(), session.getAccessToken(), "facebook");
-                        new CheckUserCredentials(MainActivity.this).execute(login);
+
+                        String username = user.getProperty("email") == null ? "" : user.getProperty("email").toString();
+
+                        if (TextUtils.isEmpty(username)) {
+
+                            session.close();
+
+                            MainActivity.this.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(MainActivity.this, R.string.facebook_error, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } else {
+                            Login login = new Login(username, session.getAccessToken(), "facebook");
+                            new CheckUserCredentials(MainActivity.this).execute(login);
+                        }
                         session.closeAndClearTokenInformation();
                     }
                 });
@@ -594,7 +610,6 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                 currentSort = EnumSortBy.DATE;
                 BusProvider.getInstance().post(new BackedUpRefreshEvent(currentSort));
                 BusProvider.getInstance().post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-
                 break;
             case R.id.name:
                 if (item.isChecked()) item.setChecked(false);
