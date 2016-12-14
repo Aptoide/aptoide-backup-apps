@@ -1,6 +1,8 @@
 package pt.aptoide.backupapps;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -26,26 +28,38 @@ public class Settings extends BaseSherlockPreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        if(Build.VERSION.SDK_INT>=11){
+        if (Build.VERSION.SDK_INT >= 11) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        PackageInfo pInfo = null;
+        String version = "";
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = "v" + pInfo.versionName + " (" + pInfo.versionCode + ")";
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ((Preference) findPreference("version_id")).setTitle(version);
 
         if (sPref.contains(Constants.LOGIN_USER_LOGIN)) {
             Preference preference = new Preference(this);
             preference.setOrder(-1);
             preference.setSelectable(false);
             preference.setTitle("Logged as: " + sPref.getString(Constants.LOGIN_USER_LOGIN, ""));
-            ((PreferenceCategory)findPreference("login_cat")).addPreference(preference);
+            ((PreferenceCategory) findPreference("login_cat")).addPreference(preference);
 
-                    findPreference("set_server_login").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference preference) {
-                            new Logout(Settings.this).execute();
-                            return false;
-                        }
-                    });
+            findPreference("set_server_login").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    new Logout(Settings.this).execute();
+                    return false;
+                }
+            });
         } else {
             findPreference("set_server_login").setTitle("Login");
             findPreference("set_server_login").setSummary("Login into your account or create a new one.");
@@ -63,7 +77,7 @@ public class Settings extends BaseSherlockPreferenceActivity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.abs__home:
                 finish();
