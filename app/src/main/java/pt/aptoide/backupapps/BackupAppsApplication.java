@@ -132,7 +132,7 @@ public class BackupAppsApplication extends Application {
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Aptoide Backup Apps");
         Parcelable iconResource;
-        iconResource = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
+        iconResource = Intent.ShortcutIconResource.fromContext(context, R.mipmap.backup);
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconResource);
         intent.putExtra("duplicate", false);
         intent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
@@ -151,7 +151,7 @@ public class BackupAppsApplication extends Application {
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Aptoide Backup Apps");
         Parcelable iconResource;
-        iconResource = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
+        iconResource = Intent.ShortcutIconResource.fromContext(context, R.mipmap.backup);
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconResource);
         intent.putExtra("duplicate", false);
         intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
@@ -170,7 +170,7 @@ public class BackupAppsApplication extends Application {
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Aptoide Backup Apps");
         Parcelable iconResource;
-        iconResource = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
+        iconResource = Intent.ShortcutIconResource.fromContext(context, R.mipmap.backup);
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconResource);
         intent.putExtra("duplicate", false);
         intent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");

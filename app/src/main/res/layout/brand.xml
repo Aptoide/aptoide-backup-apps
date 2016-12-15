@@ -2,13 +2,15 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView android:src="@drawable/ic_launcher" android:layout_centerHorizontal="true"
-               android:layout_height="wrap_content"
-               android:paddingTop="50dp"
-               android:layout_width="wrap_content"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="50dp"
+        android:src="@mipmap/backup" />
 
 
 </RelativeLayout>

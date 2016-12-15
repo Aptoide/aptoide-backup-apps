@@ -132,7 +132,7 @@ public class DownloadManager {
                     .setContentTitle(BackupAppsApplication.getContext().getString(R.string.app_name))
                     .setContentText(mOngoingList.size() + " " + BackupAppsApplication.getContext().getString(R.string.on_going))
                     .setSmallIcon(notification_icon)
-                    .setLargeIcon(BitmapFactory.decodeResource(BackupAppsApplication.getContext().getResources(), R.drawable.ic_launcher))
+                    .setLargeIcon(BitmapFactory.decodeResource(BackupAppsApplication.getContext().getResources(), R.mipmap.backup))
                     .setContentIntent(pIntent)
                     .setOngoing(true)
                     .build();
