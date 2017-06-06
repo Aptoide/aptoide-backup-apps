@@ -36,7 +36,7 @@ public class Settings extends BaseSherlockPreferenceActivity {
             Preference preference = new Preference(this);
             preference.setOrder(-1);
             preference.setSelectable(false);
-            preference.setTitle("Logged as: " + sPref.getString(Constants.LOGIN_USER_LOGIN, ""));
+            preference.setTitle(getString(R.string.settings_logged_text) + sPref.getString(Constants.LOGIN_USER_LOGIN, ""));
             ((PreferenceCategory)findPreference("login_cat")).addPreference(preference);
 
                     findPreference("set_server_login").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -47,8 +47,8 @@ public class Settings extends BaseSherlockPreferenceActivity {
                         }
                     });
         } else {
-            findPreference("set_server_login").setTitle("Login");
-            findPreference("set_server_login").setSummary("Login into your account or create a new one.");
+            findPreference("set_server_login").setTitle(R.string.settings_login_text);
+            findPreference("set_server_login").setSummary(R.string.settings_login_description_text);
             findPreference("set_server_login").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {

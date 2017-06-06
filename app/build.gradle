@@ -44,7 +44,7 @@ android {
     defaultConfig {
         applicationId "pt.aptoide.backupapps"
         minSdkVersion 9
-        targetSdkVersion 14
+        targetSdkVersion 21
         versionCode 20102
         versionName "2.1.2.1"
 
