@@ -10,24 +10,22 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:hint="@string/store"
+            android:hint="@string/signup_title_store"
             android:padding="5dp"
             android:singleLine="true"
             android:textSize="18sp" />
 
     <TextView
-            android:id="@+id/store_privacy"
-            android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="@string/store_privacy"
+            android:text="@string/signup_title_store_privacy"
             android:textSize="15sp" />
 
     <RadioGroup
-            android:id="@+id/groupshow"
-            android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
@@ -40,7 +38,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="@string/public_key"/>
+                android:text="@string/store_creation_button_public_key"/>
 
         <RadioButton
                 android:id="@+id/private_store"
@@ -49,7 +47,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:checked="false"
-                android:text="@string/private_key"/>
+                android:text="@string/store_creation_button_private_key"/>
     </RadioGroup>
 
     <EditText
@@ -58,7 +56,7 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:hint="@string/store_username"
+            android:hint="@string/store_creation_short_store_username"
             android:padding="5dp"
             android:singleLine="true"
             android:textSize="18sp"
@@ -71,7 +69,7 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:hint="@string/store_password"
+            android:hint="@string/store_creation_short_store_password"
             android:padding="5dp"
             android:singleLine="true"
             android:textSize="18sp"

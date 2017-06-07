@@ -46,17 +46,17 @@ public enum EnumDownloadFailReason {
 	public String toString(Context context) {
 		switch (this) {
 			case TIMEOUT:
-				return context.getString(R.string.timeout);
+				return context.getString(R.string.download_failed_short_timeou);
 			case IP_BLACKLISTED:
-				return context.getString(R.string.ip_blacklisted);
+				return context.getString(R.string.download_failed_short_blacklisted_ip);
 			case CONNECTION_ERROR:
-				return context.getString(R.string.connection_error);
+				return context.getString(R.string.download_failed_short_connection_error);
 			case NOT_FOUND:
-				return context.getString(R.string.apk_not_found);
+				return context.getString(R.string.download_failed_short_apk_not_found);
 			case MD5_CHECK_FAILED:
-				return context.getString(R.string.invalid_apk);
+				return context.getString(R.string.upload_fail_short_invalid_apk);
 			default:
-				return context.getString(R.string.server_error);
+				return context.getString(R.string.server_connection_short_server_error);
 		}
 	}
 }

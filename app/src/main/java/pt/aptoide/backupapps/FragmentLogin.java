@@ -1,53 +1,27 @@
 package pt.aptoide.backupapps;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.*;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.facebook.*;
-import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
-import com.google.android.gms.auth.GoogleAuthException;
-import com.google.android.gms.auth.GoogleAuthUtil;
-import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
-import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.*;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import pt.aptoide.backupapps.database.Database;
-import pt.aptoide.backupapps.download.event.BusProvider;
-import pt.aptoide.backupapps.util.Constants;
-import pt.aptoide.backupapps.util.NetworkUtils;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -100,12 +74,12 @@ public class FragmentLogin extends SherlockFragment {
             public void onClick(View v) {
 
                 if(username.getText().length()==0){
-                    Toast.makeText(getSherlockActivity(), R.string.bad_login , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getSherlockActivity(), R.string.login_short_bad_login, Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if(password.getText().length()==0){
-                    Toast.makeText(getSherlockActivity(), R.string.bad_login , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getSherlockActivity(), R.string.login_short_bad_login, Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -152,7 +126,7 @@ public class FragmentLogin extends SherlockFragment {
                             main_activity.connectPlusClient();
                         }
                     } else {
-                        Toast.makeText(getSherlockActivity(), getString(R.string.google_not_available), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getSherlockActivity(), getString(R.string.google_login_message_play_services_not_available), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

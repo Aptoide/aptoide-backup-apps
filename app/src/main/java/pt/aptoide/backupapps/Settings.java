@@ -1,6 +1,7 @@
 package pt.aptoide.backupapps;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -58,6 +59,11 @@ public class Settings extends BaseSherlockPreferenceActivity {
                 }
             });
         }
+      try {
+        findPreference("version_name").setSummary(String.format(getString(R.string.settings_versioname_text), getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+      } catch (PackageManager.NameNotFoundException e) {
+        e.printStackTrace();
+      }
     }
 
     @Override

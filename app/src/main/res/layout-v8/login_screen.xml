@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/loginTextEntryLeft"
-                android:hint="@string/login_email_prompt"
+                android:hint="@string/login_short_email_prompt"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:padding="5dp"
@@ -29,7 +29,7 @@
         <EditText
                 android:id="@+id/box_password"
                 style="@style/loginButtonWithBottomSpace"
-                android:hint="@string/login_password_prompt"
+                android:hint="@string/login_short_password_prompt"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:inputType="textPassword"
                 android:padding="5dp"
@@ -40,7 +40,7 @@
                 style="@style/button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/login"/>
+                android:text="@string/login_screen_title_login"/>
 
         <com.facebook.widget.LoginButton
                 android:id="@+id/fb_loginButton"
@@ -64,7 +64,7 @@
                 android:layout_marginRight="@dimen/loginTextRight"
                 android:layout_marginTop="@dimen/linkButtonButtomMarginTop"
                 android:background="@null"
-                android:text="@string/new_to_aptoide"
+                android:text="@string/login_screen_button_new_to_aptoide"
                 android:textColor="@color/link_button"
                 android:textSize="@dimen/linkButtonTextSize"
                 android:textStyle="bold"/>
@@ -77,7 +77,7 @@
                 android:layout_marginBottom="@dimen/loginTextBottom"
                 android:layout_marginLeft="@dimen/loginTextLeft"
                 android:layout_marginRight="@dimen/loginTextRight"
-                android:text="@string/forgot_passwd"
+                android:text="@string/login_short_forgot_password"
                 android:background="@null"
                 android:textColor="@color/link_button"
                 android:textSize="@dimen/linkButtonTextSize"

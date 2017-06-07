@@ -1,517 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aptoide Backup Apps</string>
-    <string name="login_email_prompt">Email</string>
-    <string name="login_password_prompt">Password</string>
-    <string name="login_to_dropbox">Log in</string>
-    <string name="login_to_dropbox_sign_in">Sign in to Dropbox</string>
-    <string name="login_to_dropbox_button">Sign in</string>
-    <string name="login_to_dropbox_switch">Already have an account? Sign in</string>
-    <string name="email_domain_suggestion">Did you mean &lt;i>&lt;u>%1$s@&lt;b>%2$s&lt;/b>&lt;/u>?&lt;/i></string>
-    <string name="trouble_logging_in">Having trouble signing in?</string>
-    <string name="new_to_aptoide">New to Aptoide?</string>
-    <string name="public_key">Public</string>
-    <string name="private_key">Private</string>
-    <string name="finished_install">%s has been installed.</string>
-    <string name="installing">%s is installing...</string>
-    <string name="timeout">network connection timeout</string>
-    <string name="ip_blacklisted">Blacklisted IP</string>
-    <string name="connection_error">no network connection</string>
-    <string name="apk_not_found">Apk not found</string>
+  <string name="app_name">Aptoide Backup Apps</string>
+  <string name="login_short_email_prompt">Email</string>
+  <string name="login_short_password_prompt">Password</string>
+  <string name="login_button_to_dropbox_switch">Already have an account? Sign in</string>
+  <string name="login_screen_button_new_to_aptoide">New to Aptoide?</string>
+  <string name="store_creation_button_public_key">Public</string>
+  <string name="store_creation_button_private_key">Private</string>
+  <string name="notification_message_installed">%s has been installed.</string>
+  <string name="download_failed_short_blacklisted_ip">Blacklisted IP</string>
+  <string name="download_failed_short_connection_error">no network connection</string>
+  <string name="download_failed_short_apk_not_found">Apk not found</string>
+  <string name="notification_message_installing">%s is installing...</string>
+  <string name="download_failed_short_timeou">network connection timeout</string>
 
 
-    <string name="first_run">First run</string>
-    <string name="first_run_intro">Aptoide Apps Backup uses a free "www.aptoide.com" store to save your apps.\nThis
-        store can be public or private.\n\nDo you want to setup your store now?\n
-    </string>
-    <string name="before_restoring">Before restoring</string>
-    <string name="before_restoring_alert">Before restoring an Application, you need to configure your "www.aptoide.com"
-        store from where the application will be retrieved.\n\nDo you want to setup your store now?\n
-    </string>
-    <string name="later">Later</string>
-    <string name="setup_now">Setup Now</string>
+  <string name="aptoide_login_title">Aptoide login</string>
+  <string name="short_please_wait">Please wait</string>
+  <string name="logout_short">Logout from your account</string>
+  <string name="store_login_username">Username</string>
+  <string name="store_login_password">Password</string>
 
-    <string name="self_update">Self update</string>
-    <string name="update_available">Update available</string>
-    <string name="update_confirm">There is a new version of aptoide apps backup available,\ndo you wish to update?
-    </string>
-    <string name="self_updating">Please wait while processing update download&#8230;</string>
+  <string name="app_message_description">Your Android application backup manager.\n</string>
+  <string name="version">Version</string>
 
-    <string name="default_store">Use my default store</string>
-    <string name="bazaar_login">Aptoide login</string>
-    <string name="logging_in">Logging in</string>
-    <string name="please_wait">Please wait</string>
-    <string name="clear_login">Clear login</string>
-    <string name="clear_login_sum">Unset your current login</string>
-    <string name="set_new_login">New login</string>
-    <string name="set_new_login_sum">Logout from your account</string>
-    <string name="username">Username</string>
-    <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="no_username">No Username</string>
-    <string name="no_password">No Password</string>
-    <string name="login_required">Login required</string>
+  <string name="title_settings">Settings</string>
+  <string name="backup_uploads_permissions">Backup upload Permissions</string>
+  <string name="settings_title_allowed_connections">Allowed connections</string>
+  <string name="settings_title_auto_backup">Automatic Backup</string>
+  <string name="settings_backup_short_on_new_install">On new apps install</string>
 
-    <string name="about">About</string>
-    <string name="description">Your Android application backup manager.\n</string>
-    <string name="version">Version</string>
+  <string name="action_bar_sort_title_show_system_apps">Show system applications</string>
 
-    <string name="restoring_app">Restoring application: %s</string>
-    <string name="downloading_app">Downloading application: %s</string>
+  <string name="action_bar_button_backup">Backup</string>
+  <string name="action_bar_button_restore_app">Restore</string>
 
-    <string name="settings">Settings</string>
-    <string name="backup_uploads_permissions">Backup upload Permissions</string>
-    <string name="allowed_connections">Allowed connections</string>
-    <string name="auto_backup">Automatic Backup</string>
-    <string name="auto_backup_sum">On new apps install</string>
-    <string name="never">Never</string>
+  <string name="backed_up_short_no_apps">No apps to display. Start backing up!</string>
 
-    <string name="cache">Cache</string>
-    <string name="clear_cache">Clear cache</string>
-    <string name="clear_cache_description">Warning: removing cached apks will affect ongoing restores. Don\'t do this if
-        you have ongoing restores!
-    </string>
+  <string name="action_bar_button_uninstall">Uninstall</string>
 
-    <string name="display_options">Display Options</string>
-    <string name="sort_applications_by">Sort applications by:</string>
-    <string name="freshness">Most Recent</string>
-    <string name="alphabetic">Alphabetically</string>
-    <string name="size">Size</string>
-    <string name="stars">Rating</string>
-    <string name="downloads">Downloads</string>
-    <string name="show_system_apps">Show system applications</string>
-
-    <string name="backup">Backup</string>
-    <string name="restore">Restore</string>
-
-    <string name="available">Available</string>
-    <string name="installed">Installed</string>
-    <string name="system">System</string>
-    <!-- this string name has to be misspelled because protected is a reserved word -->
-    <string name="protectd">Protected</string>
-    <string name="too_big">Too big</string>
-    <string name="backed_up">Backed up</string>
-
-    <string name="no_apps">No apps to display. Start backing up!</string>
-    <string name="loading_apps">Loading apps&#8230;</string>
-
-    <string name="uninstall">Uninstall</string>
-
-    <string name="login">Login</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="new_account">New Account</string>
-    <string name="registration">Aptoide Registration</string>
-    <string name="store_privacy">Store Privacy</string>
-    <string name="publc">Public</string>
-    <string name="privt">Private</string>
-    <string name="accept_terms">By signing up you are agreeing to the Aptoide Terms of Service and Aptoide Content
+  <string name="login_screen_title_login">Login</string>
+  <string name="signup_button_new_account">New Account</string>
+  <string name="signup_title_store_privacy">Store Privacy</string>
+  <string name="signup_message_accept_terms">By signing up you are agreeing to the Aptoide Terms of Service and Aptoide Content
         Policy for Developers
     </string>
 
-    <string name="social_networks">Social networks</string>
-    <string name="social_network_intro">Your feedback is important. You can find us on Facebook and/or follow us on
-        Twitter.
+  <string name="backed_up_apps_message_no_network_connection">No network connection.</string>
+
+
+  <string name="submit_app_title_app_category">App category</string>
+  <string name="submit_app_category_short_comics">Comics</string>
+  <string name="submit_app_category_short_communication">Communication</string>
+  <string name="submit_app_category_short_entertainment">Entertainment</string>
+  <string name="submit_app_category_short_finance">Finance</string>
+  <string name="submit_app_category_short_health">Health</string>
+  <string name="submit_app_category_short_lifestyle">Lifestyle</string>
+  <string name="submit_app_category_short_multimedia">Multimedia</string>
+  <string name="submit_app_category_short_news_weather">News &amp; Weather</string>
+  <string name="submit_app_category_short_productivity">Productivity</string>
+  <string name="submit_app_category_short_reference">Reference</string>
+  <string name="submit_app_category_short_shopping">Shopping</string>
+  <string name="submit_app_category_short_social">Social</string>
+  <string name="submit_app_category_short_sports">Sports</string>
+  <string name="submit_app_category_short_themes">Themes</string>
+  <string name="submit_app_category_short_tools">Tools</string>
+  <string name="submit_app_category_short_travel">Travel</string>
+  <string name="submit_app_category_short_demo">Demo</string>
+  <string name="submit_app_category_short_software_libraries">Software Libraries</string>
+  <string name="submit_app_category_short_arcade_action_games">Arcade &amp; Action (Games)</string>
+  <string name="submit_app_category_short_brain_puzzle_games">Brain &amp; Puzzle (Games)</string>
+  <string name="submit_app_category_short_cards_casino_games">Cards &amp; Casino (Games)</string>
+  <string name="submit_app_category_short_casual_games">Casual (Games)</string>
+
+  <string name="submit_app_title_app_rating">App rating</string>
+  <string name="submit_app_short_all">All</string>
+  <string name="submit_app_short_pre_teen">Pre-Teen (minimal age: 10)</string>
+  <string name="submit_app_short_teen">Teen (minimal age: 16)</string>
+  <string name="submit_app_short_mature">Mature (minimal age: 18)</string>
+
+  <string name="submit_app_title_app_description">App description</string>
+  <string name="submit_app_title_phone_number">Phone number</string>
+  <string name="submit_app_title_e_mail">E-mail</string>
+  <string name="submit_app_title_website_url">Website url</string>
+
+  <string name="login_message_service_unavailable">Login service currently unavailable, please retry!</string>
+  <string name="repo_message_service_unavailable">Store service currently unavailable</string>
+  <string name="repo_message_not_associated_with_user">This store is not associated with this user, please correct it!
     </string>
-    <string name="find_us_on_facebook">Find us on Facebook</string>
-    <string name="follow_twitter">Follow us on Twitter</string>
-    <string name="loading_facebook">Loading Facebook&#8230;</string>
-    <string name="loading_twitter">Loading Twitter&#8230;</string>
+  <string name="login_message_check_login">Please check your username and password!</string>
 
-    <string name="no_network_connection">No network connection.</string>
-    <string name="no_permitted_network_connection">No permitted network connection</string>
-    <string name="no_space_left_in_sdcard">No space left in SDcard</string>
-    <string name="download_failed">Download failed</string>
+  <string name="upload_fail_short_missing_token">Missing token</string>
+  <string name="upload_fail_short_missing_apk">Missing apk</string>
+  <string name="upload_fail_short_select_rating">Please select a rating</string>
+  <string name="upload_fail_short_enter_apk_name">Please enter an application name!</string>
+  <string name="upload_fail_short_select_category">Please select a category!</string>
+  <string name="upload_fail_short_enter_description">Please enter a description!</string>
 
-    <string name="repository">Store</string>
-    <string name="repository_example">(Example: your username)</string>
+  <string name="upload_fail_short_token_error">Token error</string>
+  <string name="upload_fail_short_invalid_repo_name">Invalid store name</string>
+  <string name="upload_fail_short_invalid_apk">Invalid apk</string>
+  <string name="upload_fail_short_invalid_rating">Invalid rating</string>
+  <string name="upload_fail_short_invalid_category">Invalid category</string>
+  <string name="upload_fail_short_invalid_website">Invalid website url</string>
+  <string name="upload_fail_short_invalid_email">Invalid e-mail address</string>
 
-    <string name="un_select_all">Un/Select all</string>
-    <string name="delete">Delete</string>
+  <string name="upload_fail_short_failed_apk_upload">Apk upload failed</string>
+  <string name="upload_fail_short_apk_too_big">Apk too big</string>
+  <string name="upload_fail_short_apk_duplicate">Apk duplicate</string>
+  <string name="upload_fail_short_apk_infected">Apk infected with virus</string>
+  <string name="upload_fail_short_apk_blacklisted">Apk blacklisted</string>
 
-    <string name="backup_selected_apps">Backup selected apps</string>
-    <string name="restore_selected_apps">Restore selected apps</string>
+  <string name="upload_fail_short_failed_server_connection">Server connection failed, please retry!</string>
+  <string name="upload_fail_short_server_error_apk">Server Error (Lost Apk)</string>
+  <string name="upload_fail_short_server_error_screenshots">Server Error (Screenchots)</string>
+  <string name="upload_fail_short_server_error_md5">Server Error (MD5)</string>
+  <string name="upload_fail_short_server_error_icon_upload">Server Error (Icon)</string>
+  <string name="upload_fail_short_server_error_graphic_upload">Server Error (Graphic)</string>
+  <string name="server_connection_short_server_error">Server Error</string>
+  <string name="login_status_short_updating_repo_please_wait">Updating store, please wait!</string>
 
-    <string name="form_intro">You may fill out the form:</string>
+  <string name="upload_short_success">Success</string>
 
+  <string name="upload_short_no_default_repo">This account has no default store.</string>
+  <string name="login_short_forgot_password">Forgot password?</string>
 
-    <string name="app_category">App category</string>
-    <string name="comics">Comics</string>
-    <string name="communication">Communication</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="finance">Finance</string>
-    <string name="health">Health</string>
-    <string name="lifestyle">Lifestyle</string>
-    <string name="multimedia">Multimedia</string>
-    <string name="news_weather">News &amp; Weather</string>
-    <string name="productivity">Productivity</string>
-    <string name="reference">Reference</string>
-    <string name="shopping">Shopping</string>
-    <string name="social">Social</string>
-    <string name="sports">Sports</string>
-    <string name="themes">Themes</string>
-    <string name="tools">Tools</string>
-    <string name="travel">Travel</string>
-    <string name="demo">Demo</string>
-    <string name="software_libraries">Software Libraries</string>
-    <string name="arcade_action_games">Arcade &amp; Action (Games)</string>
-    <string name="brain_puzzle_games">Brain &amp; Puzzle (Games)</string>
-    <string name="cards_casino_games">Cards &amp; Casino (Games)</string>
-    <string name="casual_games">Casual (Games)</string>
+  <string-array name="app_category_array">
+    <item>@string/submit_app_category_short_comics</item>
+    <item>@string/submit_app_category_short_communication</item>
+    <item>@string/submit_app_category_short_entertainment</item>
+    <item>@string/submit_app_category_short_finance</item>
+    <item>@string/submit_app_category_short_health</item>
+    <item>@string/submit_app_category_short_lifestyle</item>
+    <item>@string/submit_app_category_short_multimedia</item>
+    <item>@string/submit_app_category_short_news_weather</item>
+    <item>@string/submit_app_category_short_productivity</item>
+    <item>@string/submit_app_category_short_reference</item>
+    <item>@string/submit_app_category_short_shopping</item>
+    <item>@string/submit_app_category_short_social</item>
+    <item>@string/submit_app_category_short_sports</item>
+    <item>@string/submit_app_category_short_themes</item>
+    <item>@string/submit_app_category_short_tools</item>
+    <item>@string/submit_app_category_short_travel</item>
+    <item>@string/submit_app_category_short_demo</item>
+    <item>@string/submit_app_category_short_software_libraries</item>
+    <item>@string/submit_app_category_short_arcade_action_games</item>
+    <item>@string/submit_app_category_short_brain_puzzle_games</item>
+    <item>@string/submit_app_category_short_cards_casino_games</item>
+    <item>@string/submit_app_category_short_casual_games</item>
+  </string-array>
 
-    <string name="app_rating">App rating</string>
-    <string name="all">All</string>
-    <string name="pre_teen">Pre-Teen (minimal age: 10)</string>
-    <string name="teen">Teen (minimal age: 16)</string>
-    <string name="mature">Mature (minimal age: 18)</string>
-
-    <string name="app_description_optional">App description (Optional)</string>
-    <string name="app_description">App description</string>
-    <string name="phone_number_optional">Phone number (Optional)</string>
-    <string name="phone_number">Phone number</string>
-    <string name="e_mail_optional">E-mail (Optional)</string>
-    <string name="e_mail">E-mail</string>
-    <string name="website_url_optional">Website url (Optional)</string>
-    <string name="website_url">Website url</string>
-
-    <string name="uploading_apps">Uploading apps:</string>
-    <string name="uploaded_apps">Uploaded apps:</string>
-    <string name="not_uploaded_apps">Failed to upload:</string>
-    <string name="return_to_apps_list">Return to apps list</string>
-
-    <string name="login_service_unavailable">Login service currently unavailable, please retry!</string>
-    <string name="login_create_service_unavailable">User creation service currently unavailable</string>
-    <string name="repo_service_unavailable">Store service currently unavailable</string>
-    <string name="repo_not_associated_with_user">This store is not associated with this user, please correct it!
-    </string>
-    <string name="check_login">Please check your username and password!</string>
-    <string name="check_repo">Please check your store!</string>
-    <string name="repo_is_private">Store is private!</string>
-    <string name="username_not_email">Username not properly formatted e-mail</string>
-    <string name="wrong_password">Wrong password</string>
-    <string name="hmac_problem">HMAC problem</string>
-    <string name="user_agent_problem">User agent problem</string>
-    <string name="username_already_registered">Username already registered</string>
-    <string name="missing_parameter">Missing parameter</string>
-    <string name="unknown_username">Unknown username</string>
-    <string name="repo_requires_authentication">Store requires authentication</string>
-    <string name="repo_already_exists">Store already exists</string>
-
-    <string name="missing_token">Missing token</string>
-    <string name="missing_apk">Missing apk</string>
-    <string name="select_rating">Please select a rating</string>
-    <string name="enter_apk_name">Please enter an application name!</string>
-    <string name="select_category">Please select a category!</string>
-    <string name="enter_description">Please enter a description!</string>
-
-    <string name="token_error">Token error</string>
-    <string name="invalid_repo_name">Invalid store name</string>
-    <string name="invalid_apk">Invalid apk</string>
-    <string name="invalid_rating">Invalid rating</string>
-    <string name="invalid_category">Invalid category</string>
-    <string name="invalid_website">Invalid website url</string>
-    <string name="invalid_email">Invalid e-mail address</string>
-
-    <string name="failed_apk_upload">Apk upload failed</string>
-    <string name="apk_too_big">Apk too big</string>
-    <string name="apk_duplicate">Apk duplicate</string>
-    <string name="apk_infected">Apk infected with virus</string>
-    <string name="apk_blacklisted">Apk blacklisted</string>
-
-    <string name="failed_server_connection">Server connection failed, please retry!</string>
-    <string name="server_error_apk">Server Error (Lost Apk)</string>
-    <string name="server_error_screenshots">Server Error (Screenchots)</string>
-    <string name="server_error_md5">Server Error (MD5)</string>
-    <string name="server_error_icon_upload">Server Error (Icon)</string>
-    <string name="server_error_graphic_upload">Server Error (Graphic)</string>
-    <string name="server_error">Server Error</string>
-    <string name="updating_repo_please_wait">Updating store, please wait!</string>
-
-    <string name="success">Success</string>
-
-    <string name="app_system_backup_may_fail">%s is protected by the system and Aptoide-AppsBackup might not be able to
-        back it up, or uninstall it
-    </string>
-    <string name="app_too_big_backup_may_fail">%s is too big, the server might refuse to receive the upload</string>
-
-    <string name="option_not_available_while_updating_repos">Option not available while updating stores!</string>
-    <string name="too_many_apps_to_select_at_once">Too many apps to select at once!</string>
-    <string name="please_wait_server_being_updated">Please wait, the server is being updated, this may take several
-        minutes!
-    </string>
-    <string name="no_default_repo">This account has no default store.</string>
-    <string name="forgot_passwd">Forgot password?</string>
-    <string name="restore_confirmation">You are ready to install %s apps. This can cause instability. Proceed?</string>
-    <string-array name="age_entries">
-        <item>@string/no_filter</item>
-        <item>@string/mature</item>
-        <item>@string/teen</item>
-        <item>@string/pre_teen</item>
-    </string-array>
-
-    <string-array name="category_array">
-        <item>@string/comics</item>
-        <item>@string/communication</item>
-        <item>@string/entertainment</item>
-        <item>@string/finance</item>
-        <item>@string/health</item>
-        <item>@string/lifestyle</item>
-        <item>@string/multimedia</item>
-        <item>@string/news_weather</item>
-        <item>@string/productivity</item>
-        <item>@string/reference</item>
-        <item>@string/shopping</item>
-        <item>@string/social</item>
-        <item>@string/sports</item>
-        <item>@string/themes</item>
-        <item>@string/tools</item>
-        <item>@string/travel</item>
-        <item>@string/demo</item>
-        <item>@string/software_libraries</item>
-        <item>@string/arcade_action_games</item>
-        <item>@string/brain_puzzle_games</item>
-        <item>@string/cards_casino_games</item>
-        <item>@string/casual_games</item>
-    </string-array>
-
-    <string-array name="rating_array">
-        <item>@string/all</item>
-        <item>@string/pre_teen</item>
-        <item>@string/teen</item>
-        <item>@string/mature</item>
-    </string-array>
+  <string-array name="app_rating_array">
+    <item>@string/submit_app_short_all</item>
+    <item>@string/submit_app_short_pre_teen</item>
+    <item>@string/submit_app_short_teen</item>
+    <item>@string/submit_app_short_mature</item>
+  </string-array>
 
 
-    <string name="aptoide_started">Aptoide has started</string>
-    <string name="aptoide_stopped">Aptoide has successfully stopped</string>
+  <string name="login_short_bad_login">Invalid Login</string>
 
-    <string name="manage_repos">Manage Stores</string>
-    <string name="remove_repo">Remove Store</string>
-    <string name="remove_repo_choose">Choose stores to remove</string>
-    <string name="remove_repo_confirm">Do you want to remove store?</string>
-    <string name="edit_repo">Edit Store</string>
-    <string name="edit_repo_choose">Choose store to edit</string>
-    <string name="add_repo_choose">Choose stores to add</string>
-    <string name="add_repo_confirm">Do you want to add this store to your list?\n\n</string>
-    <string name="add_repo">Add new store</string>
-    <string name="add_default_repo_confirm">You don\'t have any added store.\nDo you want to add our store?\n(Search for
-        more stores online)\n\n
-    </string>
-    <string name="repo_uri">URI to store:</string>
+  <string name="signup_title_store">Store</string>
 
-    <string name="downloading_repo">Downloading store index %s</string>
+  <string name="button_cancel">Cancel</string>
+  <string name="button_yes">Yes</string>
+  <string name="button_no">No</string>
 
-    <string name="username_email">Username (e-mail)</string>
-    <string name="show_password">Show password</string>
-    <string name="bad_login">Invalid Login</string>
-    <string name="cant_connect">Can\'t connect to store</string>
-    <string name="service_unavailable">Service unavailable</string>
+  <string name="submit_app_button">Submit</string>
 
-    <string name="store">Store</string>
-    <string name="local">Local</string>
-    <string name="likes">Likes</string>
-    <string name="dislikes">Dislikes</string>
-    <string name="screenshots">Screenshots:</string>
-    <string name="comments">Comments:</string>
-    <string name="comment_on_app">Comment on application</string>
-    <string name="comments_unavailable">Comments unavailable</string>
-    <string name="in_response_to">In response to</string>
-    <string name="comment_subject">Comment Subject</string>
-    <string name="comment_body">Comment Body</string>
-    <string name="no_body">No body</string>
+  <string name="login_message_check_repo_login">Please check your store\'s privacy username and password!</string>
+  <string name="update_self_message_retrieving_update">Retrieving update...</string>
+  <string name="update_self_title">Update available</string>
+  <string name="update_self_message">There is a new version of %s available,\ndo you wish to update?</string>
+  <string name="settings_button_logout">Logout</string>
+  <string name="download_short_downloading_apps">Ongoing</string>
+  <string name="download_short_completed">Completed</string>
+  <string name="download_short_no_downloads">No downloads or uploads.</string>
+  <string name="tabs_short_available">Available</string>
+  <string name="tabs_short_installed">Installed</string>
+  <string name="app_permissions_title">Permissions</string>
+  <string name="backup_permission_short_wifi">Allow backup on WiFi</string>
+  <string name="backup_permission_short_mobile_data">Allow backup on Mobile Data</string>
+  <string name="backup_permission_short_ethernet">Allow backup on Ethernet</string>
+  <string name="backup_permission_short_wimax">Allow backup on WiMax</string>
+  <string name="overflow_manager_button">Manager</string>
+  <string name="action_bar_button_sort">Sort</string>
+  <string name="sort_short_by_name">Alphabetically</string>
+  <string name="sort_short_by_size">By size</string>
+  <string name="sort_short_by_date">Most recent first</string>
+  <string name="sort_short_by_state">By state</string>
+  <string name="manager_button_clear_completed">Clear completed</string>
+  <string name="backup_message_login_to_backup">Login to backup selected apps</string>
+  <string name="message_no_permissions">No permissions required.</string>
+  <string name="download_notification_short_on_going">ongoing</string>
+  <string name="create_account_toast_short_fill_all_forms">You need to fill all forms.</string>
 
-    <string name="click_to_install_app">Click to install application</string>
-    <string name="bad_checksum">Bad checksum, please try again at a later date</string>
-    <string name="unable_to_connect">Unable to connect to store</string>
-
-    <string name="icon">Icon</string>
-    <string name="download_icons_permissions">Download Icons Permissions</string>
-    <string name="download_icons">Download icons</string>
-    <!--     <string name="download_icons_rules">Download icon rules </string> -->
-
-    <string name="hw_specs">Hardware specs</string>
-    <string name="sdk_version">SDK version</string>
-    <string name="screen_size">Screen size</string>
-    <string name="gles_version">GLES version</string>
-
-    <string name="hw_filters">Hardware Filters</string>
-    <string name="hw_filter_apps">Filter apps by hardware</string>
-    <string name="hw_show_apps">Don\'t show applications not compatible with your device.</string>
-    <!--     <string name="app_filter">Filter Applications</string> -->
-    <!--     <string name="app_filter_sum">Don\'t show applications not compatible with your device.</string> -->
-    <string name="mature_filter">Mature Filtering</string>
-    <string name="dont_show_mature_content">Don\'t show Mature content</string>
-
-    <!--     <string name="app_rating">Application Rating Filter</string> -->
-    <!--     <string name="mature">Mature</string> -->
-    <!--     <string name="teen">Teen</string> -->
-    <!--     <string name="pre_teen">Pre-Teen</string> -->
-    <string name="no_filter">No Filter</string>
-    <string name="app_rating_description">Filter apps rated above</string>
-
-    <string name="show_applications_by">Show applications by:</string>
-    <string name="category">Category</string>
-    <string name="all_applications">All applications</string>
-
-    <string name="updates">Updates</string>
-
-    <string name="update_all">Update all</string>
-
-    <string name="loading_more_apps">Loading more apps...</string>
-
-    <string name="search_bazaar">Search %s on Aptoide</string>
-    <string name="no_search_results">No search results</string>
-
-    <string name="select_version">Select version</string>
-    <string name="scheduled_downloads">Scheduled Downloads</string>
-    <string name="no_scheduled_downloads">No scheduled downloads!</string>
-    <string name="invert_selection">Invert Selection</string>
-    <string name="remove_selected">Remove Selected</string>
-    <string name="schedule_downloads_sum">Install scheduled downloads automatically when a Wifi connection is present
-    </string>
-    <string name="automatic_install">Automatic install</string>
-    <string name="schedule">Schedule</string>
-    <string name="unschedule">Unschedule</string>
-    <string name="scheduled">Scheduled</string>
-    <string name="unscheduled">Unscheduled</string>
-    <string name="name_of_application">Name of the application</string>
-
-    <string name="options">Options</string>
-    <string name="edit">Edit</string>
-    <string name="add">Add</string>
-    <string name="remove">Remove</string>
-    <string name="install">Install</string>
-    <string name="install_selected">Install Selected</string>
-    <string name="update">Update</string>
-    <string name="installed_version">Installed version:</string>
-    <string name="downgrade">Downgrade</string>
-    <string name="attention">Attention</string>
-    <string name="done">Done</string>
-    <string name="cancel">Cancel</string>
-    <string name="back">Back</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="starting">Starting</string>
-    <string name="download">download</string>
-    <string name="confirm_remove">Confirm Removal?</string>
-
-    <string name="submit">Submit</string>
-    <string name="submitting">Submitting</string>
-    <string name="submitted">Submitted</string>
-
-    <string name="loading">Loading...</string>
-
-    <string name="set_account_name">Do you wish to enter a Name for the account\'s user?</string>
-    <string name="name">Name</string>
-    <string name="optional_name">Optional name</string>
-
-    <string name="privacy_username">Store Username</string>
-    <string name="privacy_password">Store Password</string>
-    <string name="show_privacy_password">Show privacy password</string>
-
-    <string name="no_repository">No repository</string>
-    <string name="no_private_repo_username">No private repo username</string>
-    <string name="no_private_repo_password">No private repo password</string>
-
-    <string name="check_repo_login">Please check your store\'s privacy username and password!</string>
-    <string name="retrieving_update">Retrieving update...</string>
-    <string name="update_self_title">Update available</string>
-    <string name="update_self_msg">There is a new version of %s available,\ndo you wish to update?</string>
-    <string name="logout">Logout</string>
-    <string name="downloading_apps">Ongoing</string>
-    <string name="downloaded_apps">Completed</string>
-    <string name="no_downloads">No downloads or uploads.</string>
-    <string name="right_tab">Available</string>
-    <string name="left_tab">Installed</string>
-    <string name="permissions">Permissions</string>
-    <string name="backup_wifi">Allow backup on WiFi</string>
-    <string name="backup_mobile_data">Allow backup on Mobile Data</string>
-    <string name="backup_ethernet">Allow backup on Ethernet</string>
-    <string name="backup_wimax">Allow backup on WiMax</string>
-    <string name="manager">Manager</string>
-    <string name="sort">Sort</string>
-    <string name="by_name">Alphabetically</string>
-    <string name="by_size">By size</string>
-    <string name="by_date">Most recent first</string>
-    <string name="by_state">By state</string>
-    <string name="clear_completed">Clear completed</string>
-    <string name="selected_apps_prelogin">Login to backup selected apps</string>
-    <string name="no_permissions_required">No permissions required.</string>
-    <string name="on_going">ongoing</string>
-    <string name="fill_all_forms">You need to fill all forms.</string>
-
-    <string name="already_existent_store_name">That store name already exists, please choose another</string>
-    <string name="incorrect_private_store_credentials">The username or password you entered are incorrect</string>
-    <string name="store_login">Get Store</string>
-    <string name="apk_empty">apk is empty</string>
-    <string name="invalid_upload_type">Invalid uploadType</string>
-    <string name="upload_from_invalid">upload_from invalid</string>
-    <string name="server_error_screenshots_upload">Application screenshots error (possible server side error)</string>
-    <string name="empty_obb_main_file">Empty OBB main file obb_main</string>
-    <string name="empty_obb_patch_file">Empty OBB patch file obb_patch</string>
-    <string name="invalid_obb_main_file">Invalid OBB main file obb_main</string>
-    <string name="invalid_obb_patch_file">Invalid OBB patch file obb_patch</string>
-    <string name="hmac_invalid">hmac invalid</string>
-    <string name="obb_main_file_exceeds_max_size">OBB main file obb_main exceeds the max filesize permitted</string>
-    <string name="obb_patch_file_exceeds_max_size">OBB patch file obb_patch exceeds the max filesize permitted</string>
-    <string name="obb_main_stopped">OBB main file obb_main was stopped</string>
-    <string name="obb_patch_stopped">OBB patch file obb_patch was stopped</string>
-    <string name="obb_main_transfer_stopped">OBB main file obb_main upload failed for an unknown reason</string>
-    <string name="obb_patch_transfer_stopped">OBB patch file obb_patch upload failed for an unknown reason</string>
-    <string name="obb_main_processing_problem">OBB main file obb_main transfer failed (perhaps due to a server
+  <string name="store_creation_message_already_existent_store_name">That store name already exists, please choose another</string>
+  <string name="store_login_messagem_incorrect_private_store_credentials">The username or password you entered are incorrect</string>
+  <string name="store_login_dialog_button">Get Store</string>
+  <string name="upload_fail_short_apk_empty">apk is empty</string>
+  <string name="upload_fail_short_invalid_upload_type">Invalid uploadType</string>
+  <string name="upload_fail_short_upload_from_invalid">upload_from invalid</string>
+  <string name="upload_fail_message_server_error_screenshots_upload">Application screenshots error (possible server side error)</string>
+  <string name="upload_fail_short_empty_obb_main_file">Empty OBB main file obb_main</string>
+  <string name="upload_fail_short_empty_obb_patch_file">Empty OBB patch file obb_patch</string>
+  <string name="upload_fail_short_invalid_obb_main_file">Invalid OBB main file obb_main</string>
+  <string name="upload_fail_short_invalid_obb_patch_file">Invalid OBB patch file obb_patch</string>
+  <string name="upload_fail_short_hmac_invalid">hmac invalid</string>
+  <string name="upload_fail_message_obb_main_file_exceeds_max_size">OBB main file obb_main exceeds the max filesize permitted</string>
+  <string name="upload_fail_message_obb_patch_file_exceeds_max_size">OBB patch file obb_patch exceeds the max filesize permitted</string>
+  <string name="upload_fail_message_obb_main_stopped">OBB main file obb_main was stopped</string>
+  <string name="upload_fail_message_obb_patch_stopped">OBB patch file obb_patch was stopped</string>
+  <string name="upload_fail_message_obb_main_transfer_stopped">OBB main file obb_main upload failed for an unknown reason</string>
+  <string name="upload_fail_message_obb_patch_transfer_stopped">OBB patch file obb_patch upload failed for an unknown reason</string>
+  <string name="upload_fail_message_obb_main_processing_problem">OBB main file obb_main transfer failed (perhaps due to a server
         problem)
     </string>
-    <string name="obb_patch_processing_problem">OBB patch file obb_patch transfer failed (perhaps due to a server
+  <string name="upload_fail_message_obb_patch_processing_problem">OBB patch file obb_patch transfer failed (perhaps due to a server
         problem)
     </string>
-    <string name="invalid_obb_main_name">
+  <string name="upload_fail_message_invalid_obb_main_name">
         <![CDATA[OBB main file obb_main doesn\'t have a valid filename with the format main.<vercode>.<package>.obb ]]></string>
-    <string name="invalid_obb_patch_name">
+  <string name="upload_fail_message_invalid_obb_patch_name">
         <![CDATA[OBB patch file obb_patch doesn\'t have a valid filename with the format patch.<vercode>.<package>.obb ]]></string>
-    <string name="obb_main_md5_mismatch">There is already a main obb file in the system with the same type, package and
+  <string name="upload_fail_message_obb_main_md5_mismatch">There is already a main obb file in the system with the same type, package and
         version code as the one sent as obb_main, but with a different MD5 hash
     </string>
-    <string name="obb_patch_md5_mismatch">There is already a patch obb file in the system with the same type, package
+  <string name="upload_fail_message_obb_patch_md5_mismatch">There is already a patch obb file in the system with the same type, package
         and version code as the one sent as obb_patch, but with a different MD5 hash
     </string>
-    <string name="obb_main_type_mismatch">A main OBB file was received as obb_patch</string>
-    <string name="obb_patch_type_mismatch">A patch OBB file was received as obb_main</string>
-    <string name="obb_main_version_mismatch">The main OBB file obb_main version code is higher than the version code of
+  <string name="upload_fail_message_obb_main_type_mismatch">A main OBB file was received as obb_patch</string>
+  <string name="upload_fail_message_obb_patch_type_mismatch">A patch OBB file was received as obb_main</string>
+  <string name="upload_fail_message_obb_main_version_mismatch">The main OBB file obb_main version code is higher than the version code of
         the uploaded apk
     </string>
-    <string name="obb_patch_version_mismatch">The patch OBB file obb_patch version code is higher than the version code
+  <string name="upload_fail_message_obb_patch_version_mismatch">The patch OBB file obb_patch version code is higher than the version code
         of the uploaded apk
     </string>
-    <string name="obb_main_package_mismatch">The main OBB file obb_main package differs from the apk</string>
-    <string name="obb_patch_package_mismatch">The patch OBB file obb_patch package differs from the apk</string>
-    <string name="patch_obb_without_main_obb">A patch OBB file obb_patch was uploaded, but not its mandatory main OBB
+  <string name="upload_fail_message_obb_main_package_mismatch">The main OBB file obb_main package differs from the apk</string>
+  <string name="upload_fail_message_obb_patch_package_mismatch">The patch OBB file obb_patch package differs from the apk</string>
+  <string name="upload_fail_mesage_patch_obb_without_main_obb">A patch OBB file obb_patch was uploaded, but not its mandatory main OBB
         file obb_main
     </string>
-    <string name="anti_spam_rule">Error uploading your APK file. The APK matched an anti-spam rule. Please contact support@...</string>
-    <string name="invalid_apk_origin">Error uploading your apk. Invalid APK origin. Please contact support@...</string>
-    <string name="invalid_apk_data">Error uploading your apk. Invalid APK data. Please contact support@...</string>
-    <string name="invalid_origin_for_signup">Invalid origin for signup. Please contact support@...</string>
+  <string name="upload_fail_message_anti_spam_rule">Error uploading your APK file. The APK matched an anti-spam rule. Please contact support@...</string>
+  <string name="upload_fail_message_invalid_apk_origin">Error uploading your apk. Invalid APK origin. Please contact support@...</string>
+  <string name="upload_fail_message_invalid_apk_data">Error uploading your apk. Invalid APK data. Please contact support@...</string>
+  <string name="upload_fail_message_invalid_origin_for_signup">Invalid origin for signup. Please contact support@...</string>
 
-    <string name="repo_creation_title">"Create your store"</string>
-    <string name="create_repo">"Create"</string>
-    <string name="google_not_available">You don\'t have Google Play Services Available</string>
-    <string name="store_username">Store username</string>
-    <string name="store_password">Store password</string>
+  <string name="store_creation_title">"Create your store"</string>
+  <string name="create_repo_button">"Create"</string>
+  <string name="google_login_message_play_services_not_available">You don\'t have Google Play Services Available</string>
+  <string name="store_creation_short_store_username">Store username</string>
+  <string name="store_creation_short_store_password">Store password</string>
 
 
-    <string name="store_without_name">Your store must have a name</string>
-    <string name="store_username_undefined">You should define an username for your private store</string>
-    <string name="store_password_undefined">You should define a password for your private store</string>
-    <string name="empty_store_username">Empty store username</string>
-    <string name="empty_store_password">Empty store password</string>
-    <string name="private_store_credentials">Private store: %s</string>
-    <string name="logged_in_from_aptoide">Logged in from Aptoide account with</string>
-    <string name="logged_out_from_aptoide">Logged out from Aptoide account</string>
-    <string name="unknown_error">Unknown Error</string>
-    <string name="no_apk_found">No info for this app found. Click here to complete upload.</string>
-    <string name="password_validation_text">Password must be at least 8 caracters and should have at least one letter
+  <string name="store_creation_short_no_name">Your store must have a name</string>
+  <string name="store_creation_message_username_undefined">You should define an username for your private store</string>
+  <string name="store_creation_message_store_password_undefined">You should define a password for your private store</string>
+  <string name="store_login_short_empty_store_username">Empty store username</string>
+  <string name="store_login_short_empty_store_password">Empty store password</string>
+  <string name="login_toast_message_logged_in_from_aptoide">Logged in from Aptoide account with</string>
+  <string name="logout_toast_message_logged_out_from_aptoide">Logged out from Aptoide account</string>
+  <string name="upload_failed_short_unknown_error">Unknown Error</string>
+  <string name="upload_fail_message_no_apk_found">No info for this app found. Click here to complete upload.</string>
+  <string name="signup_message_password_validation_text">Password must be at least 8 caracters and should have at least one letter
         and one number or special caracter (!@#$%*)
     </string>
   <string name="settings_login_text">Login</string>
-    <string name="settings_login_description_text">Login into your account or create a new one.</string>
-    <string name="settings_logged_text">Logged as:</string>
+  <string name="settings_login_description_text">Login into your account or create a new one.</string>
+  <string name="settings_logged_text">Logged as:</string>
+  <string name="settings_version_text">Version</string>
+  <string name="settings_versioname_text">Version name: %s</string>
+  <string name="settings_version_category_title_text">App Information</string>
 </resources>

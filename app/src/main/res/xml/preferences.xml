@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:title="@string/settings" >
+    android:title="@string/title_settings">
 
-    <PreferenceCategory android:key="login_cat" android:title="@string/bazaar_login" >
-        <Preference
-                android:key="set_server_login"
-                android:summary="@string/set_new_login_sum"
-                android:title="@string/logout" />
-    </PreferenceCategory>
+  <PreferenceCategory
+      android:key="login_cat"
+      android:title="@string/aptoide_login_title">
+    <Preference
+        android:key="set_server_login"
+        android:summary="@string/logout_short"
+        android:title="@string/settings_button_logout"/>
+  </PreferenceCategory>
 
 
-    <PreferenceCategory android:title="@string/auto_backup" >
-        <CheckBoxPreference
-                android:key="automatic_install"
-                android:summary="@string/auto_backup_sum"
-                android:title="@string/auto_backup" />
-        <PreferenceScreen
-                android:key="icon_download_permissions"
-                android:summary="@string/allowed_connections"
-                android:title="@string/backup_uploads_permissions" >
-            <CheckBoxPreference
-                    android:key="prefer_wifi"
-                    android:defaultValue="true"
-                    android:title="@string/backup_wifi" />
-            <CheckBoxPreference
-                    android:key="prefer_mobile_data"
-                    android:defaultValue="true"
-                    android:title="@string/backup_mobile_data" />
-            <CheckBoxPreference
-                    android:defaultValue="true"
-                    android:key="prefer_ethernet"
-                    android:title="@string/backup_ethernet" />
-            <CheckBoxPreference
-                    android:defaultValue="true"
-                    android:key="prefer_wimax"
-                    android:title="@string/backup_wimax" />
-        </PreferenceScreen>
-    </PreferenceCategory>
+  <PreferenceCategory android:title="@string/settings_title_auto_backup">
+    <CheckBoxPreference
+        android:key="automatic_install"
+        android:summary="@string/settings_backup_short_on_new_install"
+        android:title="@string/settings_title_auto_backup"/>
+    <PreferenceScreen
+        android:key="icon_download_permissions"
+        android:summary="@string/settings_title_allowed_connections"
+        android:title="@string/backup_uploads_permissions">
+      <CheckBoxPreference
+          android:defaultValue="true"
+          android:key="prefer_wifi"
+          android:title="@string/backup_permission_short_wifi"/>
+      <CheckBoxPreference
+          android:defaultValue="true"
+          android:key="prefer_mobile_data"
+          android:title="@string/backup_permission_short_mobile_data"/>
+      <CheckBoxPreference
+          android:defaultValue="true"
+          android:key="prefer_ethernet"
+          android:title="@string/backup_permission_short_ethernet"/>
+      <CheckBoxPreference
+          android:defaultValue="true"
+          android:key="prefer_wimax"
+          android:title="@string/backup_permission_short_wimax"/>
+    </PreferenceScreen>
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:enabled="false"
+      android:title="@string/settings_version_category_title_text"
+      >
+    <Preference
+        android:key="version_name"
+        android:summary="@string/settings_versioname_text"
+        android:title="@string/settings_version_text"
+        />
+  </PreferenceCategory>
 
 </PreferenceScreen>
