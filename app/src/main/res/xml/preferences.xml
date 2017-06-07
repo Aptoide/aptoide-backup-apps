@@ -46,7 +46,6 @@
       >
     <Preference
         android:key="version_name"
-        android:summary="@string/settings_versioname_text"
         android:title="@string/settings_version_text"
         />
   </PreferenceCategory>

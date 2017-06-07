@@ -269,7 +269,6 @@
   <string name="settings_login_text">Login</string>
   <string name="settings_login_description_text">Login into your account or create a new one.</string>
   <string name="settings_logged_text">Logged as:</string>
-  <string name="settings_version_text">Version</string>
-  <string name="settings_versioname_text">Version name: %s</string>
+  <string name="settings_version_text">Version %s</string>
   <string name="settings_version_category_title_text">App Information</string>
 </resources>
