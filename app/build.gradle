@@ -45,7 +45,7 @@ android {
         applicationId "pt.aptoide.backupapps"
         minSdkVersion 9
         targetSdkVersion 21
-        versionCode 20102
+        versionCode project.APTOIDE_BACKUP_VERSION_CODE.toInteger()
         versionName "2.1.2.1"
 
         def localyticsKey = localProperties.LOCALYTICS_RELEASE_KEY
