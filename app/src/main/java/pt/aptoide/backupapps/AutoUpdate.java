@@ -94,7 +94,7 @@ public class AutoUpdate extends AsyncTask<Void, Void, AutoUpdate.AutoUpdateInfo>
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         final AlertDialog updateSelfDialog = dialogBuilder.create();
         updateSelfDialog.setTitle(activity.getText(R.string.update_self_title));
-        updateSelfDialog.setIcon(R.drawable.ic_launcher);
+        updateSelfDialog.setIcon(R.mipmap.backup);
         updateSelfDialog.setMessage(activity.getString(R.string.update_self_message, "Aptoide Backup Apps"));
         updateSelfDialog.setCancelable(false);
         updateSelfDialog.setButton(Dialog.BUTTON_POSITIVE, activity.getString(android.R.string.yes), new Dialog.OnClickListener() {

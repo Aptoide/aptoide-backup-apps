@@ -40,7 +40,7 @@
     </PreferenceScreen>
   </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/about">
+  <PreferenceCategory android:title="@string/settings_title_about">
     <Preference android:key="version_id" />
   </PreferenceCategory>
 

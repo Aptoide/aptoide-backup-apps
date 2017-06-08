@@ -249,7 +249,7 @@
 
   <string name="store_creation_title">"Create your store"</string>
   <string name="create_repo_button">"Create"</string>
-  <string name="google_login_message_play_services_not_available">You don\'t have Google Play Services Available</string>
+  <string name="google_login_message_play_services_not_availab1le">You don\'t have Google Play Services Available</string>
   <string name="store_creation_short_store_username">Store username</string>
   <string name="store_creation_short_store_password">Store password</string>
 
@@ -272,4 +272,5 @@
   <string name="settings_logged_text">Logged as:</string>
   <string name="settings_version_text">Version %s</string>
   <string name="settings_version_category_title_text">App Information</string>
+  <string name="settings_title_about">About</string>
 </resources>

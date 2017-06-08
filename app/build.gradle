@@ -1,4 +1,18 @@
+buildscript {
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
+
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.+'
+  }
+}
 apply plugin: 'com.android.application'
+
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+}
+
 apply plugin: 'io.fabric'
 
 
@@ -19,7 +33,7 @@ android {
     defaultConfig {
         applicationId "pt.aptoide.backupapps"
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 15
         versionCode project.APTOIDE_BACKUP_VERSION_CODE.toInteger()
         versionName "2.1.2.1"
 
@@ -61,6 +75,20 @@ android {
         // Lots of issues with the project..
         abortOnError false
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def project = "backup"
+            def SEP = "_"
+            def buildType = variant.variantData.variantConfiguration.buildType.name
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+
+            def newApkName = project + SEP + buildType + SEP + versionName + SEP + versionCode + ".apk"
+
+            output.outputFile = new File(output.outputFile.parent, newApkName)
+        }
+    }
 }
 
 dependencies {
@@ -72,7 +100,7 @@ dependencies {
     compile project(':actionbarsherlock')
     compile project(':MultiChoiceAdapter')
     compile project(':ViewPagerIndicator')
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
     compile files('libs/localytics.jar')

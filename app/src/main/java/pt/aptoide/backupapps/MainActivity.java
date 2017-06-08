@@ -717,7 +717,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
                     connectPlusClient();
                 }
             } else {
-                Toast.makeText(this, getString(R.string.google_not_available), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.google_login_message_play_services_not_availab1le), Toast.LENGTH_SHORT).show();
             }
         }
     }
