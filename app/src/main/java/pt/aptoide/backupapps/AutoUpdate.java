@@ -11,9 +11,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -97,8 +94,8 @@ public class AutoUpdate extends AsyncTask<Void, Void, AutoUpdate.AutoUpdateInfo>
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         final AlertDialog updateSelfDialog = dialogBuilder.create();
         updateSelfDialog.setTitle(activity.getText(R.string.update_self_title));
-        updateSelfDialog.setIcon(R.mipmap.backup);
-        updateSelfDialog.setMessage(activity.getString(R.string.update_self_msg, "Aptoide Backup Apps"));
+        updateSelfDialog.setIcon(R.drawable.ic_launcher);
+        updateSelfDialog.setMessage(activity.getString(R.string.update_self_message, "Aptoide Backup Apps"));
         updateSelfDialog.setCancelable(false);
         updateSelfDialog.setButton(Dialog.BUTTON_POSITIVE, activity.getString(android.R.string.yes), new Dialog.OnClickListener() {
             @Override
@@ -177,7 +174,7 @@ public class AutoUpdate extends AsyncTask<Void, Void, AutoUpdate.AutoUpdateInfo>
         }
         @Override
         protected void onPreExecute() {
-            this.dialog.setMessage(activity.getString(R.string.retrieving_update));
+            this.dialog.setMessage(activity.getString(R.string.update_self_message_retrieving_update));
             this.dialog.show();
             super.onPreExecute();
         }

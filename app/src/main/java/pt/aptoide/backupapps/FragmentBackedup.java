@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -13,10 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.manuelpeinado.multichoiceadapter.CheckableRelativeLayout;
-import com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque;
 import com.squareup.otto.Subscribe;
 import pt.aptoide.backupapps.database.Database;
 import pt.aptoide.backupapps.download.event.BusProvider;
@@ -61,7 +58,7 @@ public class FragmentBackedup extends SherlockListFragment implements LoaderMana
         getListView().setFastScrollEnabled(true);
         //setListShown(false);
 
-        setEmptyText(getSherlockActivity().getString(R.string.no_apps));
+        setEmptyText(getSherlockActivity().getString(R.string.backed_up_short_no_apps));
         getListView().setCacheColorHint(0);
 
     }
@@ -164,7 +161,7 @@ public class FragmentBackedup extends SherlockListFragment implements LoaderMana
         if(getView()!=null){
             setListShown(true);
             if(event.isError()){
-                setEmptyText(getString(R.string.no_network_connection));
+                setEmptyText(getString(R.string.backed_up_apps_message_no_network_connection));
             }
         }
     }

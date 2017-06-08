@@ -4,5 +4,5 @@
     <item
             android:id="@+id/menu_download"
             android:showAsAction="always|withText"
-            android:title="@string/restore"/>
+            android:title="@string/action_bar_button_restore_app"/>
 </menu>

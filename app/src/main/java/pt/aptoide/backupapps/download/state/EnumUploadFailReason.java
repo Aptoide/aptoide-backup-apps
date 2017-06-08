@@ -90,132 +90,132 @@ public enum EnumUploadFailReason {
     public String toString(Context context) {
         switch (this) {
             case APK_NOT_FOUND:
-                return context.getString(R.string.no_apk_found);
+                return context.getString(R.string.upload_fail_message_no_apk_found);
             case APK_DUPLICATE:
-                return  context.getString(R.string.apk_duplicate);
+                return  context.getString(R.string.upload_fail_short_apk_duplicate);
             case APK_INFECTED_WITH_VIRUS:
-                return  context.getString(R.string.apk_infected);
+                return  context.getString(R.string.upload_fail_short_apk_infected);
             case APK_TOO_BIG:
-                return  context.getString(R.string.apk_too_big);
+                return  context.getString(R.string.upload_fail_short_apk_too_big);
             case APK_EMPTY:
-                return context.getString(R.string.apk_empty);
+                return context.getString(R.string.upload_fail_short_apk_empty);
             case BAD_APK:
-                return  context.getString(R.string.invalid_apk);
+                return  context.getString(R.string.upload_fail_short_invalid_apk);
             case BAD_APK_UPLOAD:
-                return  context.getString(R.string.failed_apk_upload);
+                return  context.getString(R.string.upload_fail_short_failed_apk_upload);
             case BAD_CATEGORY:
-                return  context.getString(R.string.invalid_category);
+                return  context.getString(R.string.upload_fail_short_invalid_category);
             case BAD_EMAIL:
-                return  context.getString(R.string.invalid_email);
+                return  context.getString(R.string.upload_fail_short_invalid_email);
             case BAD_LOGIN:
-                return  context.getString(R.string.check_login);
+                return  context.getString(R.string.login_message_check_login);
             case BAD_RATING:
-                return  context.getString(R.string.invalid_rating);
+                return  context.getString(R.string.upload_fail_short_invalid_rating);
             case BAD_REPO:
-                return  context.getString(R.string.invalid_repo_name);
+                return  context.getString(R.string.upload_fail_short_invalid_repo_name);
             case BAD_TOKEN:
-                return  context.getString(R.string.token_error);
+                return  context.getString(R.string.upload_fail_short_token_error);
             case BAD_WEBSITE:
-                return  context.getString(R.string.invalid_website);
+                return  context.getString(R.string.upload_fail_short_invalid_website);
             case APK_BLACKLISTED:
-                return  context.getString(R.string.apk_blacklisted);
+                return  context.getString(R.string.upload_fail_short_apk_blacklisted);
             case CONNECTION_ERROR:
-                return  context.getString(R.string.failed_server_connection);
+                return  context.getString(R.string.upload_fail_short_failed_server_connection);
             case MISSING_APK:
-                return  context.getString(R.string.missing_apk);
+                return  context.getString(R.string.upload_fail_short_missing_apk);
             case MISSING_APK_NAME:
-                return  context.getString(R.string.enter_apk_name);
+                return  context.getString(R.string.upload_fail_short_enter_apk_name);
             case MISSING_CATEGORY:
-                return  context.getString(R.string.select_category);
+                return  context.getString(R.string.upload_fail_short_select_category);
             case MISSING_DESCRIPTION:
-                return  context.getString(R.string.enter_description);
+                return  context.getString(R.string.upload_fail_short_enter_description);
             case MISSING_RATING:
-                return  context.getString(R.string.select_rating);
+                return  context.getString(R.string.upload_fail_short_select_rating);
             case MISSING_TOKEN:
-                return  context.getString(R.string.missing_token);
+                return  context.getString(R.string.upload_fail_short_missing_token);
             case SERVER_ERROR_GRAPHIC_UPLOAD:
-                return  context.getString(R.string.server_error_graphic_upload);
+                return  context.getString(R.string.upload_fail_short_server_error_graphic_upload);
             case SERVER_ERROR_ICON_UPLOAD:
-                return  context.getString(R.string.server_error_icon_upload);
+                return  context.getString(R.string.upload_fail_short_server_error_icon_upload);
             case SERVER_ERROR_MD5:
-                return  context.getString(R.string.server_error_md5);
+                return  context.getString(R.string.upload_fail_short_server_error_md5);
             case SERVER_ERROR_MISSING_FILE:
-                return  context.getString(R.string.server_error_apk);
+                return  context.getString(R.string.upload_fail_short_server_error_apk);
             case SERVER_ERROR_SCREENSHOTS_UPLOAD:
-                return context.getString(R.string.server_error_screenshots_upload);
+                return context.getString(R.string.upload_fail_message_server_error_screenshots_upload);
             case SERVER_ERROR_SCREENSHOTS:
-                return  context.getString(R.string.server_error_screenshots);
+                return  context.getString(R.string.upload_fail_short_server_error_screenshots);
             case SERVER_ERROR:
-                return  context.getString(R.string.server_error);
+                return  context.getString(R.string.server_connection_short_server_error);
             case TOKEN_INCONSISTENT_WITH_REPO:
-                return  context.getString(R.string.repo_not_associated_with_user);
+                return  context.getString(R.string.repo_message_not_associated_with_user);
             case SUCCESS:
-                return  context.getString(R.string.success);
+                return  context.getString(R.string.upload_short_success);
             case HMAC_AUTHENTICATION_FAILURE:
-                return context.getString(R.string.hmac_invalid);
+                return context.getString(R.string.upload_fail_short_hmac_invalid);
             case UPLOAD_FROM_INVALID:
-                return context.getString(R.string.upload_from_invalid);
+                return context.getString(R.string.upload_fail_short_upload_from_invalid);
             case INVALID_UPLOAD_TYPE:
-                return context.getString(R.string.invalid_upload_type);
+                return context.getString(R.string.upload_fail_short_invalid_upload_type);
             case EMPTY_OBB_MAIN_FILE:
-                return context.getString(R.string.empty_obb_main_file);
+                return context.getString(R.string.upload_fail_short_empty_obb_main_file);
             case EMPTY_OBB_PATCH_FILE:
-                return context.getString(R.string.empty_obb_patch_file);
+                return context.getString(R.string.upload_fail_short_empty_obb_patch_file);
             case INVALID_OBB_MAIN_FILE:
-                return context.getString(R.string.invalid_obb_main_file);
+                return context.getString(R.string.upload_fail_short_invalid_obb_main_file);
             case INVALID_OBB_PATCH_FILE:
-                return context.getString(R.string.invalid_obb_patch_file);
+                return context.getString(R.string.upload_fail_short_invalid_obb_patch_file);
             case OBB_MAIN_FILE_EXCEEDS_MAXIMUM_SIZE:
-                return context.getString(R.string.obb_main_file_exceeds_max_size);
+                return context.getString(R.string.upload_fail_message_obb_main_file_exceeds_max_size);
             case OBB_PATCH_FILE_EXCEEDS_MAXIMUM_SIZE:
-                return context.getString(R.string.obb_patch_file_exceeds_max_size);
+                return context.getString(R.string.upload_fail_message_obb_patch_file_exceeds_max_size);
             case OBB_MAIN_FILE_TRANSFER_STOPPED:
-                return context.getString(R.string.obb_main_stopped);
+                return context.getString(R.string.upload_fail_message_obb_main_stopped);
             case OBB_PATCH_FILE_TRANSFER_STOPPED:
-                return context.getString(R.string.obb_patch_stopped);
+                return context.getString(R.string.upload_fail_message_obb_patch_stopped);
             case OBB_MAIN_FILE_TRANSFER_FAILED:
-                return context.getString(R.string.obb_main_transfer_stopped);
+                return context.getString(R.string.upload_fail_message_obb_main_transfer_stopped);
             case OBB_PATCH_FILE_TRANSFER_FAILED:
-                return context.getString(R.string.obb_patch_transfer_stopped);
+                return context.getString(R.string.upload_fail_message_obb_patch_transfer_stopped);
             case OBB_MAIN_FILE_PROCESSING_PROBLEM:
-                return context.getString(R.string.obb_main_processing_problem);
+                return context.getString(R.string.upload_fail_message_obb_main_processing_problem);
             case OBB_PATCH_FILE_PROCESSING_PROBLEM:
-                return context.getString(R.string.obb_patch_processing_problem);
+                return context.getString(R.string.upload_fail_message_obb_patch_processing_problem);
             case INVALID_OBB_MAIN_NAME:
-                return context.getString(R.string.invalid_obb_main_name);
+                return context.getString(R.string.upload_fail_message_invalid_obb_main_name);
             case INVALID_OBB_PATCH_NAME:
-                return context.getString(R.string.invalid_obb_patch_name);
+                return context.getString(R.string.upload_fail_message_invalid_obb_patch_name);
             case OBB_MAIN_FILE_MD5_MISMATCH:
-                return context.getString(R.string.obb_main_md5_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_main_md5_mismatch);
             case OBB_PATCH_FILE_MD5_MISMATCH:
-                return context.getString(R.string.obb_patch_md5_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_patch_md5_mismatch);
             case OBB_MAIN_FILE_TYPE_MISMATCH:
-                return context.getString(R.string.obb_main_type_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_main_type_mismatch);
             case OBB_PATCH_FILE_TYPE_MISMATCH:
-                return context.getString(R.string.obb_patch_type_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_patch_type_mismatch);
             case OBB_MAIN_FILE_VERSION_MISMATCH:
-                return context.getString(R.string.obb_main_version_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_main_version_mismatch);
             case OBB_PATCH_FILE_VERSION_MISMATCH:
-                return context.getString(R.string.obb_patch_version_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_patch_version_mismatch);
             case OBB_MAIN_FILE_PACKAGE_MISMATCH:
-                return context.getString(R.string.obb_main_package_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_main_package_mismatch);
             case OBB_PATCH_FILE_PACKAGE_MISMATCH:
-                return context.getString(R.string.obb_patch_package_mismatch);
+                return context.getString(R.string.upload_fail_message_obb_patch_package_mismatch);
             case PATCH_OBB_FILE_WITHOUT_MAIN_OBB:
-                return context.getString(R.string.patch_obb_without_main_obb);
+                return context.getString(R.string.upload_fail_mesage_patch_obb_without_main_obb);
             case ANTI_SPAM_RULE:
-                return context.getString(R.string.anti_spam_rule);
+                return context.getString(R.string.upload_fail_message_anti_spam_rule);
             case INVALID_APK_ORIGIN:
-                return context.getString(R.string.invalid_apk_origin);
+                return context.getString(R.string.upload_fail_message_invalid_apk_origin);
             case INVALID_APK_DATA:
-                return context.getString(R.string.invalid_apk_data);
+                return context.getString(R.string.upload_fail_message_invalid_apk_data);
             case INVALID_ORIGIN_FOR_SIGNUP:
-                return context.getString(R.string.invalid_origin_for_signup);
+                return context.getString(R.string.upload_fail_message_invalid_origin_for_signup);
             case UNKONWN:
-                return context.getString(R.string.unknown_error);
+                return context.getString(R.string.upload_failed_short_unknown_error);
 
             default:
-                return  context.getString(R.string.server_error);
+                return  context.getString(R.string.server_connection_short_server_error);
         }
     }
 

@@ -3,14 +3,12 @@ package pt.aptoide.backupapps;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import pt.aptoide.backupapps.database.Database;
 import pt.aptoide.backupapps.download.event.AskRepoLoginDataEvent;
@@ -52,7 +50,7 @@ public class RepoLoginDialog extends DialogFragment {
 
         builder.setTitle("Private store: " + repoName)
                 .setView(view)
-                .setPositiveButton(R.string.store_login, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.store_login_dialog_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -60,10 +58,10 @@ public class RepoLoginDialog extends DialogFragment {
 
 
                         if (repoUsername.getText().toString() == null || repoUsername.getText().toString().length() == 0) {
-                            Toast.makeText(getActivity(), R.string.empty_store_username, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.store_login_short_empty_store_username, Toast.LENGTH_SHORT).show();
                             BusProvider.getInstance().post(new AskRepoLoginDataEvent(false));
                         } else if (repoPassword.getText().toString() == null || repoPassword.getText().toString().length() == 0) {
-                            Toast.makeText(getActivity(), R.string.empty_store_password, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.store_login_short_empty_store_password, Toast.LENGTH_SHORT).show();
                             BusProvider.getInstance().post(new AskRepoLoginDataEvent(false));
                         } else {
 
@@ -79,7 +77,7 @@ public class RepoLoginDialog extends DialogFragment {
                     }
                 }
                 )
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         RepoLoginDialog.this.getDialog().cancel();

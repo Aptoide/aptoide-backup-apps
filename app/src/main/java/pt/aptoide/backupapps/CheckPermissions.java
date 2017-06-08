@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,7 +16,6 @@ import pt.aptoide.backupapps.download.DownloadExecutorImpl;
 import pt.aptoide.backupapps.download.DownloadInfo;
 import pt.aptoide.backupapps.download.DownloadManager;
 import pt.aptoide.backupapps.download.DownloadModel;
-import pt.aptoide.backupapps.model.Apk;
 import pt.aptoide.backupapps.model.RepoApk;
 import pt.aptoide.backupapps.util.Constants;
 
@@ -51,7 +49,7 @@ public class CheckPermissions extends AsyncTask<RepoApk, Void, ArrayList<Downloa
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(context);
-        pd.setMessage(context.getString(R.string.please_wait));
+        pd.setMessage(context.getString(R.string.short_please_wait));
 
         pd.show();
     }
@@ -111,7 +109,7 @@ public class CheckPermissions extends AsyncTask<RepoApk, Void, ArrayList<Downloa
             }else{
                 TextView tv = new TextView(context);
                 tv.setPadding(10, 10, 10, 10);
-                tv.setText(context.getString(R.string.no_permissions_required));
+                tv.setText(context.getString(R.string.message_no_permissions));
                 layout.addView(tv);
             }
         } else {
@@ -119,10 +117,10 @@ public class CheckPermissions extends AsyncTask<RepoApk, Void, ArrayList<Downloa
         }
 
         AlertDialog dialog = new AlertDialog.Builder(context).setView(v).create();
-        dialog.setTitle(context.getString(R.string.restore) + " " + apk.getName() + "?");
+        dialog.setTitle(context.getString(R.string.action_bar_button_restore_app) + " " + apk.getName() + "?");
         dialog.setIcon(R.drawable.ic_download);
 
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), new DialogInterface.OnClickListener() {
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.button_yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DownloadModel model = new DownloadModel(apk.getPath(), Constants.PATH_CACHE_APKS + "/" + apk.getPackageName() + "." + apk.getMd5Sum() + ".apk", apk.getMd5Sum());
@@ -140,7 +138,7 @@ public class CheckPermissions extends AsyncTask<RepoApk, Void, ArrayList<Downloa
             }
         });
 
-        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.no), new DialogInterface.OnClickListener() {
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.button_no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 list.remove(0);

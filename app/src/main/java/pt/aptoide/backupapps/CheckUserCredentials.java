@@ -284,12 +284,12 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             repoUsername = (EditText) view.findViewById(R.id.repo_username);
             repoPassword = (EditText) view.findViewById(R.id.repo_password);
 
-            builder.setTitle(R.string.repo_creation_title)
+            builder.setTitle(R.string.store_creation_title)
                     .setView(view)
-                    .setPositiveButton(R.string.create_repo, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (repository.getText() != null) {
+                    .setPositiveButton(R.string.create_repo_button, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (repository.getText() != null) {
 
                                         boolean isRepoPrivate = privateButton.isChecked();
 
@@ -300,24 +300,24 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                                             login.setPrivateRepoPassword(repoPassword.getText().toString().trim());
                                         }
 
-                                        if (login.getRepo() != null && login.getRepo().length() != 0) {
-                                            if (isRepoPrivate) {
-                                                if (login.getPrivateRepoUsername() == null || login.getPrivateRepoUsername().length() == 0) {
-                                                    Toast.makeText(getActivity(), getString(R.string.store_username_undefined), Toast.LENGTH_SHORT).show();
-                                                    showRepoCreatorDialog();
-                                                } else if (login.getPrivateRepoPassword() == null || login.getPrivateRepoPassword().length() == 0) {
-                                                    Toast.makeText(getActivity(), getString(R.string.store_password_undefined), Toast.LENGTH_SHORT).show();
-                                                    showRepoCreatorDialog();
-                                                } else {
-                                                    new CheckUserCredentials(activity).execute(login);
-                                                }
-                                            } else {
-                                                new CheckUserCredentials(activity).execute(login);
-                                            }
-                                        } else {
-                                            Toast.makeText(getActivity(), getString(R.string.store_without_name), Toast.LENGTH_SHORT).show();
+                                if(login.getRepo() != null && login.getRepo().length() != 0) {
+                                    if(isRepoPrivate) {
+                                        if(login.getPrivateRepoUsername() == null || login.getPrivateRepoUsername().length() == 0) {
+                                            Toast.makeText(getActivity(), getString(R.string.store_creation_message_username_undefined), Toast.LENGTH_SHORT).show();
                                             showRepoCreatorDialog();
+                                        } else if(login.getPrivateRepoPassword() == null || login.getPrivateRepoPassword().length() == 0) {
+                                            Toast.makeText(getActivity(), getString(R.string.store_creation_message_store_password_undefined), Toast.LENGTH_SHORT).show();
+                                            showRepoCreatorDialog();
+                                        } else {
+                                            new CheckUserCredentials(activity).execute(login);
                                         }
+                                    } else {
+                                        new CheckUserCredentials(activity).execute(login);
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity(), getString(R.string.store_creation_short_no_name), Toast.LENGTH_SHORT).show();
+                                    showRepoCreatorDialog();
+                                }
 
                                     }
 
@@ -325,7 +325,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                                 }
                             }
                     )
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RepoCreatorDialog.this.getDialog().cancel();

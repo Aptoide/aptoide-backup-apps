@@ -68,7 +68,7 @@ public class FragmentContainer extends SherlockFragment {
         Log.d("TAG", "onLogoutEvent");
 
         if(event.isFromAccountManager()) {
-            Toast.makeText(getSherlockActivity(), getString(R.string.logged_out_from_aptoide), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getSherlockActivity(), getString(R.string.logout_toast_message_logged_out_from_aptoide), Toast.LENGTH_SHORT).show();
         }
 
         Fragment loginFragment = getFragmentManager().findFragmentByTag("loginFragment");

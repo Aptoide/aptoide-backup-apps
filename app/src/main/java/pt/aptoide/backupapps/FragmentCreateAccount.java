@@ -70,10 +70,10 @@ public class FragmentCreateAccount extends SherlockFragment {
                 if (email.getText().toString().length() == 0 ||
                         password.getText().toString().length() == 0 ||
                         repository.getText().toString().length() == 0) {
-                    Toast.makeText(getSherlockActivity(), getString(R.string.fill_all_forms), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getSherlockActivity(), getString(R.string.create_account_toast_short_fill_all_forms), Toast.LENGTH_LONG).show();
                     v.setEnabled(true);
                 } else if (!has1number1letter(password.getText().toString())) {
-                    Toast.makeText(getSherlockActivity(), getString(R.string.password_validation_text), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getSherlockActivity(), getString(R.string.signup_message_password_validation_text), Toast.LENGTH_LONG).show();
                     v.setEnabled(true);
                 } else {
 
@@ -180,7 +180,7 @@ public class FragmentCreateAccount extends SherlockFragment {
             super.onPreExecute();
 
             pd = new ProgressDialog(getSherlockActivity());
-            pd.setMessage(getString(R.string.please_wait));
+            pd.setMessage(getString(R.string.short_please_wait));
             pd.show();
             pd.setCancelable(false);
 
@@ -218,13 +218,13 @@ public class FragmentCreateAccount extends SherlockFragment {
                         Toast.makeText(getSherlockActivity(), error, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(getSherlockActivity(), R.string.failed_server_connection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getSherlockActivity(), R.string.upload_fail_short_failed_server_connection, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
             }else{
                 button.setEnabled(true);
-                Toast.makeText(getSherlockActivity(), R.string.failed_server_connection, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getSherlockActivity(), R.string.upload_fail_short_failed_server_connection, Toast.LENGTH_SHORT).show();
             }
 
         }

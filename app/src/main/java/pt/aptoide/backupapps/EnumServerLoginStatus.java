@@ -47,23 +47,23 @@ public enum EnumServerLoginStatus {
 	public String toString(Context context){
 		switch (this) {
 			case BAD_LOGIN:
-				return context.getString(R.string.check_login);
+				return context.getString(R.string.login_message_check_login);
 			case REPO_NOT_FROM_DEVELOPPER:
-				return context.getString(R.string.repo_not_associated_with_user);
+				return context.getString(R.string.repo_message_not_associated_with_user);
 			case REPO_SERVICE_UNAVAILABLE:
-				return  context.getString(R.string.repo_service_unavailable);
+				return  context.getString(R.string.repo_message_service_unavailable);
 			case BAD_REPO_PRIVACY_LOGIN:
-				return context.getString(R.string.check_repo_login);
+				return context.getString(R.string.login_message_check_repo_login);
 			case LOGIN_SERVICE_UNAVAILABLE:
-				return  context.getString(R.string.login_service_unavailable);
+				return  context.getString(R.string.login_message_service_unavailable);
 			case PREVIOUS_LOGIN_STILL_FINISHING_UP:
-				return context.getString(R.string.updating_repo_please_wait);
+				return context.getString(R.string.login_status_short_updating_repo_please_wait);
             case NO_DEFAULT_REPO:
-                return context.getString(R.string.no_default_repo);
+                return context.getString(R.string.upload_short_no_default_repo);
             case REPO_NAME_ALREADY_EXISTS:
-                return context.getString(R.string.already_existent_store_name);
+                return context.getString(R.string.store_creation_message_already_existent_store_name);
 			default:
-				return context.getString(R.string.server_error);
+				return context.getString(R.string.server_connection_short_server_error);
 		}
 	}
 }

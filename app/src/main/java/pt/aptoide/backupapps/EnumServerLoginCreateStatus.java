@@ -20,7 +20,6 @@
 
 package pt.aptoide.backupapps;
 
-import pt.aptoide.backupapps.R;
 import android.content.Context;
 
 /**
@@ -31,24 +30,7 @@ import android.content.Context;
  *
  */
 public enum EnumServerLoginCreateStatus {
-	SUCCESS,
-	PREVIOUS_LOGIN_STILL_FINISHING_UP,
-	REPO_SERVICE_UNAVAILABLE,
-	LOGIN_CREATE_SERVICE_UNAVAILABLE,
-	USERNAME_NOT_PROPER_EMAIL,
-	BAD_PASSWORD_HASH,
-	BAD_HMAC,
-	BAD_USER_AGENT,
-	USERNAME_ALREADY_REGISTERED,
-	MISSING_PARAMETER,
-	UNKNOWN_USERNAME,				// on nickname update
-	BAD_LOGIN, 						// on nickname update
-	BAD_REPO_NAME,					
-	REPO_REQUIRES_AUTHENTICATION,
-	REPO_ALREADY_EXISTS,
-	REPO_NOT_FROM_DEVELOPPER,
-	BAD_REPO_PRIVACY_LOGIN,
-	SERVER_ERROR;
+	BAD_LOGIN;
 	
 	public static EnumServerLoginCreateStatus reverseOrdinal(int ordinal){
 		return values()[ordinal];
@@ -56,45 +38,10 @@ public enum EnumServerLoginCreateStatus {
 	
 	public String toString(Context context) {
 		switch (this) {
-			case MISSING_PARAMETER:
-				return context.getString(R.string.missing_parameter);
-			case BAD_HMAC:
-				return context.getString(R.string.hmac_problem);
 			case BAD_LOGIN:
-				return context.getString(R.string.check_login);
-			case BAD_PASSWORD_HASH:
-				return context.getString(R.string.wrong_password);
-			case BAD_REPO_NAME:
-				return context.getString(R.string.invalid_repo_name);
-			case BAD_REPO_PRIVACY_LOGIN:
-				return context.getString(R.string.check_repo_login);
-			case BAD_USER_AGENT:
-				return context.getString(R.string.user_agent_problem);
-			case LOGIN_CREATE_SERVICE_UNAVAILABLE:
-				return context.getString(R.string.login_create_service_unavailable);
-			case REPO_ALREADY_EXISTS:
-				return context.getString(R.string.repo_already_exists);
-			case REPO_NOT_FROM_DEVELOPPER:
-				return context.getString(R.string.repo_not_associated_with_user);
-			case REPO_REQUIRES_AUTHENTICATION:
-				return context.getString(R.string.repo_requires_authentication);
-			case REPO_SERVICE_UNAVAILABLE:
-				return context.getString(R.string.repo_service_unavailable);
-			case UNKNOWN_USERNAME:
-				return context.getString(R.string.unknown_username);
-			case USERNAME_ALREADY_REGISTERED:
-				return context.getString(R.string.username_already_registered);
-			case USERNAME_NOT_PROPER_EMAIL:
-				return context.getString(R.string.username_not_email);
-			case SERVER_ERROR:
-				return context.getString(R.string.server_error);
-			case PREVIOUS_LOGIN_STILL_FINISHING_UP:
-				return context.getString(R.string.updating_repo_please_wait);
-			case SUCCESS:
-				return context.getString(R.string.success);
-	
+				return context.getString(R.string.login_message_check_login);
 			default:
-				return context.getString(R.string.server_error);
+				return context.getString(R.string.server_connection_short_server_error);
 		}
 	}
 }

@@ -163,7 +163,7 @@ public class BackupAppsApplication extends Application {
 
         Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
         shortcutIntent.setClassName(context, Constants.APTOIDE_CLASS_NAME);
-        shortcutIntent.putExtra(Constants.APTOIDE_PACKAGE_NAME, context.getString(R.string.description));
+        shortcutIntent.putExtra(Constants.APTOIDE_PACKAGE_NAME, context.getString(R.string.app_message_description));
 
 
         final Intent intent = new Intent();

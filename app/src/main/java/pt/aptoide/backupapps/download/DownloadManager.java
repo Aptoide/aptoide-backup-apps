@@ -130,7 +130,7 @@ public class DownloadManager {
 
             notification = new NotificationCompat.Builder(BackupAppsApplication.getContext())
                     .setContentTitle(BackupAppsApplication.getContext().getString(R.string.app_name))
-                    .setContentText(mOngoingList.size() + " " + BackupAppsApplication.getContext().getString(R.string.on_going))
+                    .setContentText(mOngoingList.size() + " " + BackupAppsApplication.getContext().getString(R.string.download_notification_short_on_going))
                     .setSmallIcon(notification_icon)
                     .setLargeIcon(BitmapFactory.decodeResource(BackupAppsApplication.getContext().getResources(), R.mipmap.backup))
                     .setContentIntent(pIntent)

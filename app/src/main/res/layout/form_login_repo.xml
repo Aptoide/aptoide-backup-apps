@@ -18,7 +18,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="@string/username"
+            android:text="@string/store_login_username"
             android:textSize="15sp" />
 
     <EditText
@@ -37,7 +37,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="@string/password"
+            android:text="@string/store_login_password"
             android:textSize="15sp" />
 
     <EditText

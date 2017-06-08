@@ -60,7 +60,7 @@ public class DownloadExecutorImpl implements DownloadExecutor {
                 // The PendingIntent to launch our activity if the user selects this notification
                 PendingIntent onClickAction = PendingIntent.getActivity(context, 0, onClick, 0);
                 mBuilder.setContentTitle("Aptoide Backup Apps")
-                        .setContentText(context.getString(R.string.installing, apk.getName()));
+                        .setContentText(context.getString(R.string.notification_message_installing, apk.getName()));
 
                 Bitmap bm = BitmapFactory.decodeFile(ImageLoader.getInstance().getDiscCache().get(apk.getPackageName() + "|" + apk.getVersionCode()).getAbsolutePath());
 
@@ -121,7 +121,7 @@ public class DownloadExecutorImpl implements DownloadExecutor {
                                 // The PendingIntent to launch our activity if the user selects this notification
                                 PendingIntent onClickAction = PendingIntent.getActivity(context, 0, onClick, 0);
                                 mBuilder.setContentTitle(context.getString(R.string.app_name))
-                                        .setContentText(context.getString(R.string.finished_install, apk.getName()));
+                                        .setContentText(context.getString(R.string.notification_message_installed, apk.getName()));
 
                                 Bitmap bm = BitmapFactory.decodeFile(ImageLoader.getInstance().getDiscCache().get(apk.getPackageName() + "|" + apk.getVersionCode()).getAbsolutePath());
                                 mBuilder.setLargeIcon(bm);

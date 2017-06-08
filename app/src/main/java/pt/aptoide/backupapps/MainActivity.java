@@ -152,7 +152,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
 //                        Database.getInstance().removeAllData();
 //                        Database.getInstance().insertServer("http://" + repo + Constants.DOMAIN_APTOIDE_STORE, account.name, "");
 //
-                        Toast.makeText(MainActivity.this, getString(R.string.logged_in_from_aptoide) + " " + account.name + "!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.login_toast_message_logged_in_from_aptoide) + " " +account.name + "!", Toast.LENGTH_SHORT).show();
 //
                         BusProvider.getInstance().post(new ShowLoginScreen());
 //                        parseServer();
@@ -256,7 +256,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
         Log.d("TAG", "getting repo login data event");
 
         if (event.isAfterWrongCredentials()) {
-            Toast.makeText(this, getString(R.string.incorrect_private_store_credentials), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.store_login_messagem_incorrect_private_store_credentials), Toast.LENGTH_SHORT).show();
         }
 
         RepoLoginDialog dialog = new RepoLoginDialog(sPref.getString(Constants.LOGIN_USER_DEFAULT_REPO, ""));
@@ -743,7 +743,7 @@ public class MainActivity extends BaseSherlockFragmentActivity implements Google
             mContext = activity;
             mViewPager = pager;
             mViewPager.setAdapter(this);
-            CONTENT = new String[]{activity.getString(R.string.left_tab), activity.getString(R.string.right_tab)};
+            CONTENT = new String[]{activity.getString(R.string.tabs_short_installed), activity.getString(R.string.tabs_short_available)};
         }
 
         public void addFragment(Fragment fragment) {

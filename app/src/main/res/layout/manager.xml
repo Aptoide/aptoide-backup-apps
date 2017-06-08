@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/main_container"
-                android:layout_width="match_parent"
+    android:layout_width="match_parent"
                 android:layout_height="match_parent" >
     <LinearLayout
             android:layout_width="match_parent"
@@ -14,7 +13,7 @@
                 style="?attr/labelBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/downloading_apps" />
+                android:text="@string/download_short_downloading_apps" />
 
         <ListView
                 android:id="@+id/active"
@@ -28,7 +27,7 @@
                 style="?attr/labelBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/downloaded_apps" />
+                android:text="@string/download_short_completed" />
         <!-- <LinearLayout -->
         <!-- android:layout_width="fill_parent" -->
         <!-- android:layout_height="wrap_content" -->
@@ -48,6 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_margin="5dp"
-            android:text="@string/no_downloads"
+            android:text="@string/download_short_no_downloads"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 </RelativeLayout>

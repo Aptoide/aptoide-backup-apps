@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceAdapterHelper;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceBaseAdapter;
-import pt.aptoide.backupapps.database.Schema;
 import pt.aptoide.backupapps.download.*;
 import pt.aptoide.backupapps.download.event.BusProvider;
 import pt.aptoide.backupapps.model.InstalledApk;
@@ -26,7 +24,6 @@ import pt.aptoide.backupapps.util.Constants;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -135,7 +132,7 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
                 } else {
                     localCheckedItems.clear();
                     localCheckedItems.addAll(getCheckedItems());
-                    Toast.makeText(getContext(), R.string.selected_apps_prelogin, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.backup_message_login_to_backup, Toast.LENGTH_LONG).show();
                     BusProvider.getInstance().post(new LoginMoveEvent());
                 }
                 mode.finish();
