@@ -48,42 +48,6 @@
 
   <string name="backed_up_apps_message_no_network_connection">No network connection.</string>
 
-
-  <string name="submit_app_title_app_category">App category</string>
-  <string name="submit_app_category_short_comics">Comics</string>
-  <string name="submit_app_category_short_communication">Communication</string>
-  <string name="submit_app_category_short_entertainment">Entertainment</string>
-  <string name="submit_app_category_short_finance">Finance</string>
-  <string name="submit_app_category_short_health">Health</string>
-  <string name="submit_app_category_short_lifestyle">Lifestyle</string>
-  <string name="submit_app_category_short_multimedia">Multimedia</string>
-  <string name="submit_app_category_short_news_weather">News &amp; Weather</string>
-  <string name="submit_app_category_short_productivity">Productivity</string>
-  <string name="submit_app_category_short_reference">Reference</string>
-  <string name="submit_app_category_short_shopping">Shopping</string>
-  <string name="submit_app_category_short_social">Social</string>
-  <string name="submit_app_category_short_sports">Sports</string>
-  <string name="submit_app_category_short_themes">Themes</string>
-  <string name="submit_app_category_short_tools">Tools</string>
-  <string name="submit_app_category_short_travel">Travel</string>
-  <string name="submit_app_category_short_demo">Demo</string>
-  <string name="submit_app_category_short_software_libraries">Software Libraries</string>
-  <string name="submit_app_category_short_arcade_action_games">Arcade &amp; Action (Games)</string>
-  <string name="submit_app_category_short_brain_puzzle_games">Brain &amp; Puzzle (Games)</string>
-  <string name="submit_app_category_short_cards_casino_games">Cards &amp; Casino (Games)</string>
-  <string name="submit_app_category_short_casual_games">Casual (Games)</string>
-
-  <string name="submit_app_title_app_rating">App rating</string>
-  <string name="submit_app_short_all">All</string>
-  <string name="submit_app_short_pre_teen">Pre-Teen (minimal age: 10)</string>
-  <string name="submit_app_short_teen">Teen (minimal age: 16)</string>
-  <string name="submit_app_short_mature">Mature (minimal age: 18)</string>
-
-  <string name="submit_app_title_app_description">App description</string>
-  <string name="submit_app_title_phone_number">Phone number</string>
-  <string name="submit_app_title_e_mail">E-mail</string>
-  <string name="submit_app_title_website_url">Website url</string>
-
   <string name="login_message_service_unavailable">Login service currently unavailable, please retry!</string>
   <string name="repo_message_service_unavailable">Store service currently unavailable</string>
   <string name="repo_message_not_associated_with_user">This store is not associated with this user, please correct it!
@@ -125,38 +89,14 @@
   <string name="upload_short_no_default_repo">This account has no default store.</string>
   <string name="login_short_forgot_password">Forgot password?</string>
 
-  <string-array name="app_category_array">
-    <item>@string/submit_app_category_short_comics</item>
-    <item>@string/submit_app_category_short_communication</item>
-    <item>@string/submit_app_category_short_entertainment</item>
-    <item>@string/submit_app_category_short_finance</item>
-    <item>@string/submit_app_category_short_health</item>
-    <item>@string/submit_app_category_short_lifestyle</item>
-    <item>@string/submit_app_category_short_multimedia</item>
-    <item>@string/submit_app_category_short_news_weather</item>
-    <item>@string/submit_app_category_short_productivity</item>
-    <item>@string/submit_app_category_short_reference</item>
-    <item>@string/submit_app_category_short_shopping</item>
-    <item>@string/submit_app_category_short_social</item>
-    <item>@string/submit_app_category_short_sports</item>
-    <item>@string/submit_app_category_short_themes</item>
-    <item>@string/submit_app_category_short_tools</item>
-    <item>@string/submit_app_category_short_travel</item>
-    <item>@string/submit_app_category_short_demo</item>
-    <item>@string/submit_app_category_short_software_libraries</item>
-    <item>@string/submit_app_category_short_arcade_action_games</item>
-    <item>@string/submit_app_category_short_brain_puzzle_games</item>
-    <item>@string/submit_app_category_short_cards_casino_games</item>
-    <item>@string/submit_app_category_short_casual_games</item>
-  </string-array>
+  <string name="submit_app_title_app_category">App category</string>
 
-  <string-array name="app_rating_array">
-    <item>@string/submit_app_short_all</item>
-    <item>@string/submit_app_short_pre_teen</item>
-    <item>@string/submit_app_short_teen</item>
-    <item>@string/submit_app_short_mature</item>
-  </string-array>
+  <string name="submit_app_title_app_rating">App rating</string>
 
+  <string name="submit_app_title_app_description">App description</string>
+  <string name="submit_app_title_phone_number">Phone number</string>
+  <string name="submit_app_title_e_mail">E-mail</string>
+  <string name="submit_app_title_website_url">Website url</string>
 
   <string name="login_short_bad_login">Invalid Login</string>
 
@@ -266,7 +206,7 @@
   <string name="signup_message_password_validation_text">Password must be at least 8 caracters and should have at least one letter
         and one number or special caracter (!@#$%*)
     </string>
-    <string name="facebook_error">You should provide your email in order to login.</string>
+  <string name="facebook_error">You should provide your email in order to login.</string>
   <string name="settings_login_text">Login</string>
   <string name="settings_login_description_text">Login into your account or create a new one.</string>
   <string name="settings_logged_text">Logged as:</string>
