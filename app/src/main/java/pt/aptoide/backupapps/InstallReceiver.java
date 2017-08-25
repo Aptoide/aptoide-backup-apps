@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import pt.aptoide.backupapps.database.Database;
 import pt.aptoide.backupapps.download.ApkMetaData;
 import pt.aptoide.backupapps.download.DownloadInfo;
@@ -43,7 +42,8 @@ public class InstallReceiver extends BroadcastReceiver {
                     metaData.setName(apk.getName());
                     metaData.setPackageName(apk.getPackageName());
                     UploadModel model = new UploadModel(files, metaData, sPref.getString(Constants.LOGIN_USER_TOKEN, ""), sPref.getString(Constants.LOGIN_USER_DEFAULT_REPO, ""));
-                    DownloadInfo info = new DownloadInfo(new Random().nextInt(Integer.MAX_VALUE), apk);
+                    DownloadInfo info = new DownloadInfo(new Random().nextInt(Integer.MAX_VALUE), apk,
+                        context);
                     info.setUploadModel(model);
                     info.download();
                 } catch (PackageManager.NameNotFoundException e) {

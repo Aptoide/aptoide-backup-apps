@@ -1,5 +1,6 @@
 package pt.aptoide.backupapps.download;
 
+import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 import pt.aptoide.backupapps.download.event.BusProvider;
@@ -49,10 +50,11 @@ public class DownloadInfo implements Runnable{
     private boolean isPaused = false;
     private UploadModel uploadModel;
     private boolean isUpload;
+    private Context context;
 
 
-    public DownloadInfo(int id, Apk apk) {
-        this(null, id, apk);
+    public DownloadInfo(int id, Apk apk, Context context) {
+        this(null, id, apk, context);
     }
 
     public void setFilesToDownload(List<DownloadModel> mFilesToDownload) {
@@ -68,10 +70,11 @@ public class DownloadInfo implements Runnable{
     }
 
 
-    public DownloadInfo(List<DownloadModel> filesToDownload, int id, Apk apk) {
+    public DownloadInfo(List<DownloadModel> filesToDownload, int id, Apk apk, Context context) {
         this.mFilesToDownload = filesToDownload;
         this.id = id;
         this.apk = apk;
+        this.context = context;
         mStatusState = new NoState(this);
     }
 
@@ -94,7 +97,7 @@ public class DownloadInfo implements Runnable{
         try {
 
             if(uploadModel != null){
-                UploadThread thread = new UploadThread(uploadModel, this);
+                UploadThread thread = new UploadThread(uploadModel, this, context);
                 executor.submit(thread);
                 threads.add(thread);
                 this.isUpload = true;

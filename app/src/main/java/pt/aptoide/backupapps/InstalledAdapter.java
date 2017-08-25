@@ -16,6 +16,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceAdapterHelper;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceBaseAdapter;
+import pt.aptoide.backupapps.analytics.FacebookAnalytics;
 import pt.aptoide.backupapps.download.*;
 import pt.aptoide.backupapps.download.event.BusProvider;
 import pt.aptoide.backupapps.model.InstalledApk;
@@ -37,14 +38,17 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
 
     private final ArrayList<InstalledApk> objects;
     private final Context context;
+    private final FacebookAnalytics facebookAnalytics;
     private ArrayList<Integer> backedupPackages;
     private ArrayList<Long> localCheckedItems = new ArrayList<Long>();
 
-    public InstalledAdapter(Bundle savedInstance, Context context, int resource, ArrayList<InstalledApk> objects, ArrayList<Integer> backedupPackages) {
+    public InstalledAdapter(Bundle savedInstance, Context context, int resource, ArrayList<InstalledApk> objects, ArrayList<Integer> backedupPackages,
+        FacebookAnalytics facebookAnalytics) {
         super(null);
         this.backedupPackages = backedupPackages;
         this.objects = objects;
         this.context = context;
+        this.facebookAnalytics = facebookAnalytics;
     }
 
 
@@ -105,14 +109,12 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
         ArrayList<Long> items;
         switch (item.getItemId()) {
             case R.id.menu_backup:
-
-
                 SharedPreferences sPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
                 if (sPrefs.contains(Constants.LOGIN_USER_LOGIN)) {
 
                     items = new ArrayList<Long>(getCheckedItems());
-
+                    facebookAnalytics.sendBackupAppsClickEvent(items.size());
                     for (Long id : items) {
                         if (!DownloadManager.INSTANCE.mIds.contains(id)) {
                             InstalledApk apk = getItem(id.intValue());
@@ -122,7 +124,8 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
                             metaData.setPackageName(apk.getPackageName());
 
                             UploadModel model = new UploadModel(files, metaData, sPrefs.getString(Constants.LOGIN_USER_TOKEN, ""), sPrefs.getString(Constants.LOGIN_USER_DEFAULT_REPO, ""));
-                            DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(null,(apk.getPackageName() + apk.getVersionCode()).hashCode(), apk);
+                            DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(null,(apk.getPackageName() + apk.getVersionCode()).hashCode(), apk,
+                                context);
                             info.setUploadModel(model);
                             info.download();
                         }
@@ -140,6 +143,7 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
                 break;
             case R.id.menu_uninstall:
                 items = new ArrayList<Long>(getCheckedItems());
+                facebookAnalytics.sendUninstallAppsEvent(items.size());
                 for (Long id : items) {
                     InstalledApk apk = getItem(id.intValue());
 
@@ -194,7 +198,8 @@ public class InstalledAdapter extends MultiChoiceBaseAdapter {
                 metaData.setName(apk.getName());
                 metaData.setPackageName(apk.getPackageName());
                 UploadModel model = new UploadModel(files, metaData, sPrefs.getString(Constants.LOGIN_USER_TOKEN, ""), sPrefs.getString(Constants.LOGIN_USER_DEFAULT_REPO, ""));
-                DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(null,(apk.getPackageName() + apk.getVersionCode()).hashCode(), apk);
+                DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(null,(apk.getPackageName() + apk.getVersionCode()).hashCode(), apk,
+                    context);
                 info.setUploadModel(model);
                 info.download();
             }

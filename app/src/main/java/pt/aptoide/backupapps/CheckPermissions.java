@@ -127,7 +127,8 @@ public class CheckPermissions extends AsyncTask<RepoApk, Void, ArrayList<Downloa
                 models.add(model);
                 model.setAutoExecute(true);
 
-                DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(models, (apk.getPackageName() + apk.getVersionCode()).hashCode(), apk);
+                DownloadInfo info = DownloadManager.INSTANCE.getDownloadInfo(models, (apk.getPackageName() + apk.getVersionCode()).hashCode(), apk,
+                    context);
                 info.setDownloadExecutor(new DownloadExecutorImpl(root));
                 info.download();
                 list.remove(0);

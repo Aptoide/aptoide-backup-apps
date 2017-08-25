@@ -60,7 +60,8 @@ public class DownloadManager {
     }
 
 
-    public DownloadInfo getDownloadInfo(List<DownloadModel> models, int id, Apk apk){
+     public DownloadInfo getDownloadInfo(List<DownloadModel> models, int id, Apk apk,
+				 Context context){
 
         for(DownloadInfo info : mOngoingList){
 
@@ -76,7 +77,7 @@ public class DownloadManager {
             }
         }
 
-        return new DownloadInfo(models, id, apk);
+        return new DownloadInfo(models, id, apk, context);
 
     }
 
