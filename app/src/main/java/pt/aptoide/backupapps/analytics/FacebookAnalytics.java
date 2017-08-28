@@ -20,47 +20,60 @@ public class FacebookAnalytics {
   }
 
   public void sendBackupAppsClickEvent(int numberOfBackedUpApps) {
-    //facebook.logEvent(BACKUP_APPS_PRESS, createBackupAppsBundle(numberOfBackedUpApps));
+    facebook.logEvent(BACKUP_APPS_PRESS, createBackupAppsBundle(numberOfBackedUpApps));
   }
 
   public void sendBackupAppStatusEvent(String status) {
-    //facebook.logEvent(BACKUP_APPS_STATUS, createBackupAppStatusBundle(status));
+    facebook.logEvent(BACKUP_APPS_STATUS, createBackupAppStatusBundle(status));
   }
 
   public void sendUninstallAppsEvent(int numberofUninstallApps) {
-    //facebook.logEvent(UNINSTALL_APPS, createUninstallAppsBundle(numberofUninstallApps));
+    facebook.logEvent(UNINSTALL_APPS, createUninstallAppsBundle(numberofUninstallApps));
   }
 
   public void sendInstalledTabOpenEvent() {
-    //facebook.logEvent("Installed_Tab_Open");
+    facebook.logEvent("Installed_Tab_Open");
   }
 
   public void sendAvailableTabOpenEvent() {
-    //facebook.logEvent("Available_Tab_Open");
+    facebook.logEvent("Available_Tab_Open");
   }
 
   public void sendSortAppsEvent(String sortType) {
     sortType = formatString(sortType);
-    //facebook.logEvent("Sort", createSortEventBundle(sortType));
+    facebook.logEvent("Sort", createSortEventBundle(sortType));
   }
 
   public void sendShowSystemApplicationsEvent(boolean checked) {
-    //facebook.logEvent("Show_System_Applications", createShowSystemApplicationsBundle(checked));
+    facebook.logEvent("Show_System_Applications", createShowSystemApplicationsBundle(checked));
   }
 
   public void sendDrawerInteract(String overflowOption) {
     overflowOption = formatString(overflowOption);
-    //facebook.logEvent(DRAWER_INTERACT, createDrawerInteractBundle(overflowOption));
+    facebook.logEvent(DRAWER_INTERACT, createDrawerInteractBundle(overflowOption));
   }
 
-  public void sendSettingsInteractEvent(String action, String automaticBackup,
+  public void sendSettingsInteractEvent(String action, String automaticBackup, String backupOnWifi,
+      String backupOnData, String backupOnEthernet, String backupOnWimax) {
+    facebook.logEvent("Setting_Interact",
+        createSettingInteractBundle(action, automaticBackup, backupOnWifi, backupOnData,
+            backupOnEthernet, backupOnWimax));
+  }
+
+  private Bundle createSettingInteractBundle(String action, String automaticBackup,
       String backupOnWifi, String backupOnData, String backupOnEthernet, String backupOnWimax) {
-    /*facebook.logEvent("Setting_Interact", createSettingInteractBundle(action,
-        automaticBackup, backupOnWifi, backupOnData, backupOnEthernet, backupOnWimax));*/
+    Bundle bundle = new Bundle();
+    bundle.putString("action", action);
+    bundle.putString("has_automatic_backup", automaticBackup);
+    bundle.putString("allow_backup_on_Wifi", backupOnWifi);
+    bundle.putString("allow_backup_on_Data", backupOnData);
+    bundle.putString("allow_backup_on_Ethernet", backupOnEthernet);
+    bundle.putString("allow_backup_on_WiMax", backupOnWimax);
+    return bundle;
   }
 
   public void sendManagerInteractEvent() {
-    //facebook.logEvent("Manager_Interact", createManagerInteractBundle());
+    facebook.logEvent("Manager_Interact", createManagerInteractBundle());
   }
 
   private String formatString(String unformattedString) {

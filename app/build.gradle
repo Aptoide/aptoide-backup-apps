@@ -40,7 +40,7 @@ android {
         manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
                                 fabricApiKey      : project.FABRIC_API_KEY]
 
-        resValue "string", "facebook_app_id", "\"" + project.FACEBOOK_APP_ID + "\""
+        resValue "string", "facebook_app_id", "\"" + project.BACKUP_APPS_FACEBOOK_APP_ID + "\""
 
         // OAuth server id for Google Plus Sign In
         buildConfigField "String", "GOOGLE_OAUTH_SERVER_ID", "\"" + project.GMS_SERVER_ID + "\""
