@@ -36,3 +36,9 @@ captures/
 
 signing.properties
 fabric.properties
+
+.idea/instapk.xml
+instapk.log*
+
+.hgignore
+instapk.properties
