@@ -77,7 +77,7 @@
 
   <string name="upload_fail_short_failed_server_connection">Server connection failed, please retry!</string>
   <string name="upload_fail_short_server_error_apk">Server Error (Lost Apk)</string>
-  <string name="upload_fail_short_server_error_screenshots">Server Error (Screenchots)</string>
+  <string name="upload_fail_short_server_error_screenshots">Server Error (Screenshots)</string>
   <string name="upload_fail_short_server_error_md5">Server Error (MD5)</string>
   <string name="upload_fail_short_server_error_icon_upload">Server Error (Icon)</string>
   <string name="upload_fail_short_server_error_graphic_upload">Server Error (Graphic)</string>
