@@ -52,7 +52,7 @@ public class Settings extends BaseSherlockPreferenceActivity {
       Preference preference = new Preference(this);
       preference.setOrder(-1);
       preference.setSelectable(false);
-      preference.setTitle("Logged as: " + sPref.getString(Constants.LOGIN_USER_LOGIN, ""));
+      preference.setTitle(getString(R.string.settings_title_logged_as, sPref.getString(Constants.LOGIN_USER_LOGIN, "")));
       ((PreferenceCategory) findPreference("login_cat")).addPreference(preference);
 
       findPreference("set_server_login").setOnPreferenceClickListener(

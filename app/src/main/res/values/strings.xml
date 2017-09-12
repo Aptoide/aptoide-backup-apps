@@ -213,4 +213,5 @@
   <string name="settings_version_text">Version %s</string>
   <string name="settings_version_category_title_text">App Information</string>
   <string name="settings_title_about">About</string>
+  <string name="settings_title_logged_as">Logged as: %s</string>
 </resources>
