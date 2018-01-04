@@ -35,7 +35,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 15
         versionCode project.APTOIDE_BACKUP_VERSION_CODE.toInteger()
-        versionName "2.1.2"
+        versionName "2.3.0"
 
         manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
                                 fabricApiKey      : project.FABRIC_API_KEY]
