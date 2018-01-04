@@ -9,6 +9,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import com.actionbarsherlock.view.MenuItem;
 import com.facebook.AppEventsLogger;
 import pt.aptoide.backupapps.analytics.FacebookAnalytics;
@@ -25,6 +26,7 @@ import pt.aptoide.backupapps.util.Constants;
 public class Settings extends BaseSherlockPreferenceActivity {
 
   private FacebookAnalytics facebookAnalytics;
+  private SharedPreferences sharedPreferences;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class Settings extends BaseSherlockPreferenceActivity {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
+    sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     PackageInfo pInfo = null;
     String version = "";
@@ -48,32 +50,15 @@ public class Settings extends BaseSherlockPreferenceActivity {
 
     ((Preference) findPreference("version_id")).setTitle(version);
 
-    if (sPref.contains(Constants.LOGIN_USER_LOGIN)) {
+    if (sharedPreferences.contains(Constants.LOGIN_USER_LOGIN)) {
       Preference preference = new Preference(this);
       preference.setOrder(-1);
       preference.setSelectable(false);
-      preference.setTitle(getString(R.string.settings_title_logged_as, sPref.getString(Constants.LOGIN_USER_LOGIN, "")));
+      preference.setTitle(getString(R.string.settings_title_logged_as, sharedPreferences.getString(Constants.LOGIN_USER_LOGIN, "")));
       ((PreferenceCategory) findPreference("login_cat")).addPreference(preference);
-
-      findPreference("set_server_login").setOnPreferenceClickListener(
-          new Preference.OnPreferenceClickListener() {
-            @Override public boolean onPreferenceClick(Preference preference) {
-              new Logout(Settings.this).execute();
-              return false;
-            }
-          });
     } else {
       findPreference("set_server_login").setTitle(R.string.settings_login_text);
       findPreference("set_server_login").setSummary(R.string.settings_login_description_text);
-      findPreference("set_server_login").setOnPreferenceClickListener(
-          new Preference.OnPreferenceClickListener() {
-            @Override public boolean onPreferenceClick(Preference preference) {
-              BusProvider.getInstance()
-                  .post(new LoginMoveEvent());
-              finish();
-              return false;
-            }
-          });
     }
     findPreference("automatic_install").setOnPreferenceClickListener(
         new Preference.OnPreferenceClickListener() {
@@ -146,5 +131,22 @@ public class Settings extends BaseSherlockPreferenceActivity {
 
   private boolean getBackupOnWimax() {
     return ((CheckBoxPreference) findPreference("prefer_wimax")).isChecked();
+  }
+
+  @Override
+  public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+
+    if(preference.getKey().equals("set_server_login")){
+      if (sharedPreferences.contains(Constants.LOGIN_USER_LOGIN)) {
+        new Logout(Settings.this).execute();
+      }
+      else{
+        BusProvider.getInstance()
+            .post(new LoginMoveEvent());
+        finish();
+      }
+    }
+
+    return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
 }
