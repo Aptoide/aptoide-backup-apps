@@ -19,8 +19,8 @@ apply plugin: 'io.fabric'
 android {
     signingConfigs {
         release {
-            storeFile = file(project.STORE_FILE_BACKUP)
-            storePassword = project.STORE_PASSWORD_BACKUP
+            storeFile = file(project.STORE_FILE_BACKUP_UPLOADER)
+            storePassword = project.STORE_PASSWORD_BACKUP_UPLOADER
             keyAlias = project.KEY_ALIAS_BACKUP
             keyPassword = project.KEY_PASSWORD_BACKUP
 //            v2SigningEnabled = false
@@ -40,7 +40,7 @@ android {
         manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
                                 fabricApiKey      : project.FABRIC_API_KEY]
 
-        resValue "string", "facebook_app_id", "\"" + project.BACKUP_APPS_FACEBOOK_APP_ID + "\""
+        resValue "string", "facebook_app_id", "\"" + project.FACEBOOK_APP_ID_BACKUP + "\""
 
         // OAuth server id for Google Plus Sign In
         buildConfigField "String", "GOOGLE_OAUTH_SERVER_ID", "\"" + project.GMS_SERVER_ID + "\""
@@ -56,18 +56,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
-
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    project.ext { appName = 'aptoide-BackupApps' }
-                    def formattedDate = new Date().format('yyyyMMddHHmmss')
-                    def newName = output.outputFile.name
-                    newName = newName.replace("app-", "$project.ext.appName-") //"MyAppName" -> I set my app variables in the root project
-                    newName = newName.replace("-release", "-" + versionName)
-                    //noinspection GroovyAssignabilityCheck
-                    output.outputFile = new File(output.outputFile.parent, newName)
-                }
-            }
         }
     }
 
