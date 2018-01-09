@@ -34,7 +34,7 @@ android {
         applicationId "pt.aptoide.backupapps"
         minSdkVersion 9
         targetSdkVersion 15
-        versionCode project.APTOIDE_BACKUP_VERSION_CODE.toInteger()
+        versionCode project.VERSION_CODE_BACKUP.toInteger()
         versionName "2.3.0"
 
         manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
