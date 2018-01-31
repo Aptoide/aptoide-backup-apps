@@ -133,7 +133,7 @@ public class FragmentLogin extends SherlockFragment {
       fbAuthButton = (LoginButton) view.findViewById(R.id.fb_loginButton);
       gSignInButton = (SignInButton) view.findViewById(R.id.g_sign_in_button);
 
-      fbAuthButton.setReadPermissions(Arrays.asList("basic_info", "email"));
+      fbAuthButton.setReadPermissions(Arrays.asList("email", "user_friends"));
 
       gSignInButton.setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {

@@ -240,6 +240,9 @@ public class MainActivity extends BaseSherlockFragmentActivity
             session.closeAndClearTokenInformation();
           }
         });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email");
+        meRequest.setParameters(parameters);
         meRequest.executeAsync();
       }
     }
@@ -646,8 +649,7 @@ public class MainActivity extends BaseSherlockFragmentActivity
             .post(new BackedUpRefreshEvent(currentSort));
         BusProvider.getInstance()
             .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(
-          String.valueOf(FacebookAnalytics.SORT_TYPE.BY_SIZE));
+        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_SIZE));
         break;
       case R.id.system:
 
@@ -672,8 +674,7 @@ public class MainActivity extends BaseSherlockFragmentActivity
         currentSort = EnumSortBy.STATE;
         BusProvider.getInstance()
             .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(
-            String.valueOf(FacebookAnalytics.SORT_TYPE.BY_STATE));
+        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_STATE));
         break;
     }
 
