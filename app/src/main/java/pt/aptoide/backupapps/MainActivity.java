@@ -171,7 +171,7 @@ public class MainActivity extends BaseSherlockFragmentActivity
 
             if (loginType.equals("aptoide")) {
               login = new Login(account.name, passHash, false);
-            } else if (loginType.equals("facebook")) {
+            } else if (loginType.equals("facebook_backupapps")) {
               login = new Login(account.name, passHash, loginType);
               login.setLoginMode(Login.LoginMode.FACEBOOK_OAUTH);
             } else {
@@ -234,7 +234,7 @@ public class MainActivity extends BaseSherlockFragmentActivity
                 }
               });
             } else {
-              Login login = new Login(username, session.getAccessToken(), "facebook");
+              Login login = new Login(username, session.getAccessToken(), "facebook_backupapps");
               new CheckUserCredentials(MainActivity.this).execute(login);
             }
             session.closeAndClearTokenInformation();
