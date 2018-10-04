@@ -1,12 +1,12 @@
 package pt.aptoide.backupapps;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import android.preference.PreferenceActivity;
 import pt.aptoide.backupapps.analytics.Analytics;
 
 /**
  * Created by neuro on 09-02-2016.
  */
-public class BaseSherlockPreferenceActivity extends SherlockPreferenceActivity {
+public class BaseSherlockPreferenceActivity extends PreferenceActivity {
 
   @Override protected void onResume() {
     super.onResume();

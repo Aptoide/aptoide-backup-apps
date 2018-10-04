@@ -15,113 +15,112 @@
  */
 package com.manuelpeinado.multichoiceadapter;
 
-import java.util.List;
-import java.util.Set;
-
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import java.util.List;
+import java.util.Set;
 
-import com.actionbarsherlock.view.ActionMode;
+public abstract class MultiChoiceArrayAdapter<T> extends ArrayAdapter<T>
+    implements ActionMode.Callback, MultiChoiceAdapter {
+  private MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this);
 
-public abstract class MultiChoiceArrayAdapter<T> extends ArrayAdapter<T> implements ActionMode.Callback,
-        MultiChoiceAdapter {
-    private MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this);
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource,
+      int textViewResourceId, List<T> objects) {
+    super(context, resource, textViewResourceId, objects);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource, int textViewResourceId,
-            List<T> objects) {
-        super(context, resource, textViewResourceId, objects);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource,
+      int textViewResourceId, T[] objects) {
+    super(context, resource, textViewResourceId, objects);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource, int textViewResourceId,
-            T[] objects) {
-        super(context, resource, textViewResourceId, objects);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource,
+      int textViewResourceId) {
+    super(context, resource, textViewResourceId);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int resource, int textViewResourceId) {
-        super(context, resource, textViewResourceId);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int textViewResourceId,
+      List<T> objects) {
+    super(context, textViewResourceId, objects);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int textViewResourceId, List<T> objects) {
-        super(context, textViewResourceId, objects);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int textViewResourceId,
+      T[] objects) {
+    super(context, textViewResourceId, objects);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int textViewResourceId, T[] objects) {
-        super(context, textViewResourceId, objects);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context,
+      int textViewResourceId) {
+    super(context, textViewResourceId);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public MultiChoiceArrayAdapter(Bundle savedInstanceState, Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
+    helper.setAdapterView(adapterView);
+  }
 
-    public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
-        helper.setAdapterView(adapterView);
-    }
+  public void setOnItemClickListener(OnItemClickListener listener) {
+    helper.setOnItemClickListener(listener);
+  }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        helper.setOnItemClickListener(listener);
-    }
+  public void save(Bundle outState) {
+    helper.save(outState);
+  }
 
-    public void save(Bundle outState) {
-        helper.save(outState);
-    }
+  public void setItemChecked(long position, boolean checked) {
+    helper.setItemChecked(position, checked);
+  }
 
-    public void setItemChecked(long position, boolean checked) {
-        helper.setItemChecked(position, checked);
-    }
+  public Set<Long> getCheckedItems() {
+    return helper.getCheckedItems();
+  }
 
-    public Set<Long> getCheckedItems() {
-        return helper.getCheckedItems();
-    }
+  public int getCheckedItemCount() {
+    return helper.getCheckedItemCount();
+  }
 
-    public int getCheckedItemCount() {
-        return helper.getCheckedItemCount();
-    }
+  public boolean isChecked(long position) {
+    return helper.isChecked(position);
+  }
 
-    public boolean isChecked(long position) {
-        return helper.isChecked(position);
-    }
+  protected void finishActionMode() {
+    helper.finishActionMode();
+  }  public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
+    helper.setItemClickInActionModePolicy(policy);
+  }
 
-    public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
-        helper.setItemClickInActionModePolicy(policy);
-    }
+  @Override public void onDestroyActionMode(ActionMode mode) {
+    helper.onDestroyActionMode(mode);
+  }  public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
+    return helper.getItemClickInActionModePolicy();
+  }
 
-    public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
-        return helper.getItemClickInActionModePolicy();
-    }
+  @Override public final View getView(int position, View convertView, ViewGroup parent) {
+    View viewWithoutSelection = getViewImpl(position, convertView, parent);
+    return helper.getView(position, viewWithoutSelection);
+  }
 
-    protected void finishActionMode() {
-        helper.finishActionMode();
-    }
+  protected View getViewImpl(int position, View convertView, ViewGroup parent) {
+    return super.getView(position, convertView, parent);
+  }
 
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-        helper.onDestroyActionMode(mode);
-    }
 
-    @Override
-    public final View getView(int position, View convertView, ViewGroup parent) {
-        View viewWithoutSelection = getViewImpl(position, convertView, parent);
-        return helper.getView(position, viewWithoutSelection);
-    }
 
-    protected View getViewImpl(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
-    }
 
-    @Override
-    public boolean isItemCheckable(int position) {
-        return true;
-    }
+
+  @Override public boolean isItemCheckable(int position) {
+    return true;
+  }
 }

@@ -15,107 +15,102 @@
  */
 package com.manuelpeinado.multichoiceadapter;
 
-import java.util.Set;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-
-import com.actionbarsherlock.view.ActionMode;
+import android.widget.SimpleCursorAdapter;
+import java.util.Set;
 
 /**
  */
-public abstract class MultiChoiceSimpleCursorAdapter extends SimpleCursorAdapter implements ActionMode.Callback,
-        MultiChoiceAdapter {
+public abstract class MultiChoiceSimpleCursorAdapter extends SimpleCursorAdapter
+    implements ActionMode.Callback, MultiChoiceAdapter {
 
-    private MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this) {
-        @Override
-        protected long positionToSelectionHandle(int position) {
-            return getItemId(position);
-        }
-    };
-
-    public MultiChoiceSimpleCursorAdapter(Bundle savedInstanceState, Context context, int layout, Cursor cursor,
-            String[] from, int[] to, int flags) {
-        super(context, layout, cursor, from, to, flags);
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  private MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this) {
+    @Override protected long positionToSelectionHandle(int position) {
+      return getItemId(position);
     }
+  };
 
-    public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
-        helper.setAdapterView(adapterView);
-    }
+  public MultiChoiceSimpleCursorAdapter(Bundle savedInstanceState, Context context, int layout,
+      Cursor cursor, String[] from, int[] to, int flags) {
+    super(context, layout, cursor, from, to, flags);
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        helper.setOnItemClickListener(listener);
-    }
+  public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
+    helper.setAdapterView(adapterView);
+  }
 
-    public void save(Bundle outState) {
-        helper.save(outState);
-    }
+  public void setOnItemClickListener(OnItemClickListener listener) {
+    helper.setOnItemClickListener(listener);
+  }
 
-    public void setItemChecked(long itemId, boolean checked) {
-        helper.setItemChecked(itemId, checked);
-    }
+  public void save(Bundle outState) {
+    helper.save(outState);
+  }
 
-    public Set<Long> getCheckedItems() {
-        return helper.getCheckedItems();
-    }
+  public void setItemChecked(long itemId, boolean checked) {
+    helper.setItemChecked(itemId, checked);
+  }
 
-    public int getCheckedItemCount() {
-        return helper.getCheckedItemCount();
-    }
+  public Set<Long> getCheckedItems() {
+    return helper.getCheckedItems();
+  }
 
-    public boolean isChecked(long itemId) {
-        return helper.isChecked(itemId);
-    }
+  public int getCheckedItemCount() {
+    return helper.getCheckedItemCount();
+  }
 
-    public void setItemChecked(int position, boolean checked) {
-        helper.setItemChecked(position, checked);
-    }
+  public boolean isChecked(long itemId) {
+    return helper.isChecked(itemId);
+  }
 
-    public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
-        helper.setItemClickInActionModePolicy(policy);
-    }
+  public void setItemChecked(int position, boolean checked) {
+    helper.setItemChecked(position, checked);
+  }
 
-    public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
-        return helper.getItemClickInActionModePolicy();
-    }
+  protected void finishActionMode() {
+    helper.finishActionMode();
+  }  public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
+    helper.setItemClickInActionModePolicy(policy);
+  }
 
-    protected void finishActionMode() {
-        helper.finishActionMode();
-    }
+  protected Context getContext() {
+    return helper.getContext();
+  }  public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
+    return helper.getItemClickInActionModePolicy();
+  }
 
-    protected Context getContext() {
-        return helper.getContext();
-    }
+  @Override public void onDestroyActionMode(ActionMode mode) {
+    helper.onDestroyActionMode(mode);
+  }
 
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-        helper.onDestroyActionMode(mode);
-    }
+  @Override public final View getView(int position, View convertView, ViewGroup parent) {
+    View viewWithoutSelection = getViewImpl(position, convertView, parent);
+    return helper.getView(position, viewWithoutSelection);
+  }
 
-    @Override
-    public final View getView(int position, View convertView, ViewGroup parent) {
-        View viewWithoutSelection = getViewImpl(position, convertView, parent);
-        return helper.getView(position, viewWithoutSelection);
-    }
+  /**
+   * Override this method if you need to customize the model-to-view mapping performed by
+   * SimpleCursorAdapter (for
+   * instance, to populate an image view based on a URL stored in a DB column)
+   */
+  protected View getViewImpl(int position, View convertView, ViewGroup parent) {
+    return super.getView(position, convertView, parent);
+  }
 
-    @Override
-    public boolean isItemCheckable(int position) {
-        return true;
-    }
 
-    /**
-     * Override this method if you need to customize the model-to-view mapping performed by SimpleCursorAdapter (for
-     * instance, to populate an image view based on a URL stored in a DB column)
-     */
-    protected View getViewImpl(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
-    }
+
+  @Override public boolean isItemCheckable(int position) {
+    return true;
+  }
+
+
 }

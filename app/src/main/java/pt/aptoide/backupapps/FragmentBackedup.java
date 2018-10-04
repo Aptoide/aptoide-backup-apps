@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.manuelpeinado.multichoiceadapter.CheckableRelativeLayout;
 import com.squareup.otto.Subscribe;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import pt.aptoide.backupapps.model.InstalledApk;
  * Time: 15:55
  * To change this template use File | Settings | File Templates.
  */
-public class FragmentBackedup extends SherlockListFragment
+public class FragmentBackedup extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor> {
 
   BackedUpCursorAdapter backedUpAdapter;
@@ -58,8 +58,13 @@ public class FragmentBackedup extends SherlockListFragment
     getListView().setFastScrollEnabled(true);
     //setListShown(false);
 
-    setEmptyText(getSherlockActivity().getString(R.string.backed_up_short_no_apps));
+    setEmptyText(getActivity().getString(R.string.backed_up_short_no_apps));
     getListView().setCacheColorHint(0);
+  }
+
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    context = activity;
   }
 
   @Override public void onCreate(Bundle savedInstance) {
@@ -72,11 +77,6 @@ public class FragmentBackedup extends SherlockListFragment
     super.onDestroy();
     BusProvider.getInstance()
         .unregister(this);
-  }
-
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    context = activity;
   }
 
   @Override public void onDetach() {
@@ -104,7 +104,7 @@ public class FragmentBackedup extends SherlockListFragment
         }
 
         backedUpApps.addAll(backedAppsHashes);
-        getSherlockActivity().runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
           @Override public void run() {
             backedUpAdapter.notifyDataSetChanged();
           }
@@ -119,7 +119,7 @@ public class FragmentBackedup extends SherlockListFragment
 
   @Override
   public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, final Bundle bundle) {
-    return new SimpleCursorLoader(getSherlockActivity()) {
+    return new SimpleCursorLoader(getActivity()) {
       @Override public Cursor loadInBackground() {
         return Database.getInstance()
             .getAvailable(bundle.getInt(

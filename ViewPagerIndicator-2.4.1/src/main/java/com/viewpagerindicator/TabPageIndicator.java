@@ -44,7 +44,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     public interface OnTabReselectedListener {
         /**
          * Callback when the selected tab has been reselected.
-         *
+         *g
          * @param position Position of the current center item.
          */
         void onTabReselected(int position);

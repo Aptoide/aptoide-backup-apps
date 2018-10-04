@@ -10,16 +10,16 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.facebook.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -33,7 +33,7 @@ import java.util.Arrays;
  * Time: 12:01
  * To change this template use File | Settings | File Templates.
  */
-public class FragmentLogin extends SherlockFragment {
+public class FragmentLogin extends Fragment {
 
   SharedPreferences sPref;
   private MainActivity main_activity;
@@ -44,11 +44,20 @@ public class FragmentLogin extends SherlockFragment {
   private LoginButton fbAuthButton;
   private SignInButton gSignInButton;
 
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    main_activity = (MainActivity) activity;
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    sPref = PreferenceManager.getDefaultSharedPreferences(getSherlockActivity());
-    previousSPref =
-        getSherlockActivity().getSharedPreferences("aptoide_preferences", Context.MODE_PRIVATE);
+    sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    previousSPref = getActivity().getSharedPreferences("aptoide_preferences", Context.MODE_PRIVATE);
 
     return inflater.inflate(R.layout.login_screen, null);
   }
@@ -68,7 +77,7 @@ public class FragmentLogin extends SherlockFragment {
           .toString(), password.getText()
           .toString(), true);
       login.setFromUpdate(true);
-      new CheckUserCredentials(getSherlockActivity()).execute(login);
+      new CheckUserCredentials((AppCompatActivity) getActivity()).execute(login);
     }
 
     view.findViewById(R.id.button_loggin)
@@ -77,22 +86,21 @@ public class FragmentLogin extends SherlockFragment {
 
             if (username.getText()
                 .length() == 0) {
-              Toast.makeText(getSherlockActivity(), R.string.login_short_bad_login,
-                  Toast.LENGTH_LONG)
+              Toast.makeText(getActivity(), R.string.login_short_bad_login, Toast.LENGTH_LONG)
                   .show();
               return;
             }
 
             if (password.getText()
                 .length() == 0) {
-              Toast.makeText(getSherlockActivity(), R.string.login_short_bad_login,
-                  Toast.LENGTH_LONG)
+              Toast.makeText(getActivity(), R.string.login_short_bad_login, Toast.LENGTH_LONG)
                   .show();
               return;
             }
 
-            new CheckUserCredentials(getSherlockActivity()).execute(new Login(username.getText()
-                .toString(), password.getText()
+            new CheckUserCredentials((AppCompatActivity) getActivity()).execute(new Login(
+                username.getText()
+                    .toString(), password.getText()
                 .toString(), false));
           }
         });
@@ -100,8 +108,9 @@ public class FragmentLogin extends SherlockFragment {
     if (getArguments() != null && getArguments().containsKey("username")) {
       username.setText(getArguments().getString("username"));
       password.setText(getArguments().getString("password"));
-      new CheckUserCredentials(getSherlockActivity()).execute(new Login(username.getText()
-          .toString(), password.getText()
+      new CheckUserCredentials((AppCompatActivity) getActivity()).execute(new Login(
+          username.getText()
+              .toString(), password.getText()
           .toString(), true));
     }
 
@@ -135,13 +144,13 @@ public class FragmentLogin extends SherlockFragment {
 
       gSignInButton.setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
-          int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getSherlockActivity());
+          int val = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
           if (val == ConnectionResult.SUCCESS) {
             if (main_activity != null) {
               main_activity.connectPlusClient();
             }
           } else {
-            Toast.makeText(getSherlockActivity(),
+            Toast.makeText(getActivity(),
                 getString(R.string.google_login_message_play_services_not_availab1le),
                 Toast.LENGTH_SHORT)
                 .show();
@@ -156,11 +165,6 @@ public class FragmentLogin extends SherlockFragment {
     Log.d("TAG", "Fragments List " + getFragmentManager().getFragments());
   }
 
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    main_activity = (MainActivity) activity;
-  }
-
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     MenuItem populateItem = menu.add(Menu.NONE, 1, 0, "Populate");
@@ -169,10 +173,5 @@ public class FragmentLogin extends SherlockFragment {
     clearItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
     super.onCreateOptionsMenu(menu, inflater);
-  }
-
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setHasOptionsMenu(true);
   }
 }

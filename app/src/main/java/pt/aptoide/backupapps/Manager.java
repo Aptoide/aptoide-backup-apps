@@ -3,6 +3,8 @@ package pt.aptoide.backupapps;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -11,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.facebook.AppEventsLogger;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.otto.Subscribe;
@@ -115,15 +115,9 @@ public class Manager extends BaseSherlockActivity {
     adapter.notifyDataSetChanged();
   }
 
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    BusProvider.getInstance()
-        .unregister(this);
-  }
-
   @Override public boolean onCreateOptionsMenu(Menu menu) {
 
-    getSupportMenuInflater().inflate(R.menu.manager, menu);
+    getMenuInflater().inflate(R.menu.manager, menu);
 
     return super.onCreateOptionsMenu(
         menu);    //To change body of overridden methods use File | Settings | File Templates.
@@ -136,7 +130,7 @@ public class Manager extends BaseSherlockActivity {
         onDownloadEvent(null);
         facebookAnalytics.sendManagerInteractEvent();
         break;
-      case R.id.abs__home:
+      //case R.id.abs__home:
       case android.R.id.home:
         finish();
         break;
@@ -284,6 +278,12 @@ public class Manager extends BaseSherlockActivity {
     });
 
     onDownloadInfo(null);
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    BusProvider.getInstance()
+        .unregister(this);
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {

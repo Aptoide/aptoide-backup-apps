@@ -15,30 +15,32 @@
  */
 package com.manuelpeinado.multichoiceadapter;
 
-import java.util.Set;
-
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-
-import com.actionbarsherlock.view.ActionMode;
+import java.util.Set;
 
 /**
- * MultiChoiceBaseAdapter is an implementation of ListAdapter which adds support for modal multiple choice selection as
+ * MultiChoiceBaseAdapter is an implementation of ListAdapter which adds support for modal multiple
+ * choice selection as
  * in the native GMail app.
  * <p>
- * It provides a functionality similar to that of the CHOICE_MODE_MULTIPLE_MODAL ListView mode, but in a manner that is
- * compatible with every version of Android from 2.1. Of course, this requires that your project uses ActionBarSherlock
+ * It provides a functionality similar to that of the CHOICE_MODE_MULTIPLE_MODAL ListView mode, but
+ * in a manner that is
+ * compatible with every version of Android from 2.1. Of course, this requires that your project
+ * uses ActionBarSherlock
  * <hr>
  * <p>
  * You'll have to implement the following methods:
  * <p>
  * <b>ActionMode methods:</b>
- * <li><b>onCreateActionMode.</b> Create the action mode that will be displayed when at least one item is selected
+ * <li><b>onCreateActionMode.</b> Create the action mode that will be displayed when at least one
+ * item is selected
  * <li><b>onActionModeClicked.</b> Respond to any of your action mode's actions
  * <p>
  * <br>
@@ -47,11 +49,13 @@ import com.actionbarsherlock.view.ActionMode;
  * <li><b>getCount.</b> Return the number of items to show
  * <li><b>getItem.</b> Return the item at a given position
  * <li><b>getItemId.</b> Return the id of the item at a given position
- * <li><b>getViewImpl.</b> Returns the view to show for a given position. <b>Important:</b> do not override
+ * <li><b>getViewImpl.</b> Returns the view to show for a given position. <b>Important:</b> do not
+ * override
  * ListAdapter's getView method, override this method instead
  * <hr>
  * <p>
- * Once you've implemented your class that derives from SelectionAdapter, you'll have to attach it to a ListView like
+ * Once you've implemented your class that derives from SelectionAdapter, you'll have to attach it
+ * to a ListView like
  * this:
  * <p>
  * <br>
@@ -64,7 +68,8 @@ import com.actionbarsherlock.view.ActionMode;
  * </p>
  * <p>
  * <br>
- * Do not forget to derive your activity from one of the ActionBarSherlock activities, except SherlockListActivity
+ * Do not forget to derive your activity from one of the ActionBarSherlock activities, except
+ * SherlockListActivity
  * </p>
  * <p>
  * <br>
@@ -75,152 +80,152 @@ import com.actionbarsherlock.view.ActionMode;
  * See the accompanying sample project for a full working application that implements this class
  * </p>
  */
-public abstract class MultiChoiceBaseAdapter extends BaseAdapter implements ActionMode.Callback, MultiChoiceAdapter {
+public abstract class MultiChoiceBaseAdapter extends BaseAdapter
+    implements ActionMode.Callback, MultiChoiceAdapter {
 
-    protected MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this);
+  protected MultiChoiceAdapterHelper helper = new MultiChoiceAdapterHelper(this);
 
-    /**
-     * @param savedInstanceState
-     *            Pass your activity's saved instance state here. This is necessary for the adapter to retain its
-     *            selection in the event of a configuration change
-     */
-    public MultiChoiceBaseAdapter(Bundle savedInstanceState) {
-        helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
-    }
+  /**
+   * @param savedInstanceState Pass your activity's saved instance state here. This is necessary for
+   * the adapter to retain its
+   * selection in the event of a configuration change
+   */
+  public MultiChoiceBaseAdapter(Bundle savedInstanceState) {
+    helper.restoreSelectionFromSavedInstanceState(savedInstanceState);
+  }
 
-    /**
-     * Sets the adapter view on which this adapter will operate. You should call this method from the onCreate method of
-     * your activity. This method calls setAdapter on the adapter view, so you don't have to do it yourself
-     * 
-     * @param The
-     *            adapter view (typically a ListView) this adapter will operate on
-     */
-    public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
-        helper.setAdapterView(adapterView);
-    }
+  /**
+   * Sets the adapter view on which this adapter will operate. You should call this method from the
+   * onCreate method of
+   * your activity. This method calls setAdapter on the adapter view, so you don't have to do it
+   * yourself
+   *
+   * @param The adapter view (typically a ListView) this adapter will operate on
+   */
+  public void setAdapterView(AdapterView<? super BaseAdapter> adapterView) {
+    helper.setAdapterView(adapterView);
+  }
 
-    /**
-     * Register a callback to be invoked when an item in the associated AdapterView has been clicked
-     * 
-     * @param listener
-     *            The callback that will be invoked
-     */
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        helper.setOnItemClickListener(listener);
-    }
+  /**
+   * Register a callback to be invoked when an item in the associated AdapterView has been clicked
+   *
+   * @param listener The callback that will be invoked
+   */
+  public void setOnItemClickListener(OnItemClickListener listener) {
+    helper.setOnItemClickListener(listener);
+  }
 
-    /**
-     * Always call this method from your activity's onSaveInstanceState method. This is necessary for the adapter to
-     * retain its selection in the event of a configuration change
-     * 
-     * @param outState
-     *            The same bundle you are passed in onSaveInstanceState
-     */
-    public void save(Bundle outState) {
-        helper.save(outState);
-    }
+  /**
+   * Always call this method from your activity's onSaveInstanceState method. This is necessary for
+   * the adapter to
+   * retain its selection in the event of a configuration change
+   *
+   * @param outState The same bundle you are passed in onSaveInstanceState
+   */
+  public void save(Bundle outState) {
+    helper.save(outState);
+  }
 
-    /**
-     * Changes the selection of an item. If the item was already in the specified state, nothing is done. May cause the
-     * activation of the action mode if an item is selected an no items were previously selected
-     * 
-     * @param position
-     *            The position of the item to select
-     * @param checked
-     *            The desired state (selected or not) for the item
-     */
-    public void setItemChecked(long position, boolean checked) {
-        helper.setItemChecked(position, checked);
-    }
+  /**
+   * Changes the selection of an item. If the item was already in the specified state, nothing is
+   * done. May cause the
+   * activation of the action mode if an item is selected an no items were previously selected
+   *
+   * @param position The position of the item to select
+   * @param checked The desired state (selected or not) for the item
+   */
+  public void setItemChecked(long position, boolean checked) {
+    helper.setItemChecked(position, checked);
+  }
 
-    /**
-     * Returns the indices of the currently selectly items.
-     * 
-     * @return Indices of the currently selectly items. The empty set if no item is selected
-     */
-    public Set<Long> getCheckedItems() {
-        return helper.getCheckedItems();
-    }
+  /**
+   * Returns the indices of the currently selectly items.
+   *
+   * @return Indices of the currently selectly items. The empty set if no item is selected
+   */
+  public Set<Long> getCheckedItems() {
+    return helper.getCheckedItems();
+  }
 
-    /**
-     * Returns the number of selected items
-     * 
-     * @return Number of selected items
-     */
-    public int getCheckedItemCount() {
-        return helper.getCheckedItemCount();
-    }
+  /**
+   * Returns the number of selected items
+   *
+   * @return Number of selected items
+   */
+  public int getCheckedItemCount() {
+    return helper.getCheckedItemCount();
+  }
 
-    /**
-     * Returns true if the item at the specified position is selected
-     * 
-     * @param position
-     *            The item position
-     * @return Whether the item is selected
-     */
-    public boolean isChecked(long position) {
-        return helper.isChecked(position);
-    }
+  /**
+   * Returns true if the item at the specified position is selected
+   *
+   * @param position The item position
+   *
+   * @return Whether the item is selected
+   */
+  public boolean isChecked(long position) {
+    return helper.isChecked(position);
+  }
 
-    public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
-        helper.setItemClickInActionModePolicy(policy);
-    }
+  /**
+   * Get a View that displays the data at the specified position in the data set. Subclasses should
+   * implement this
+   * method instead of the traditional ListAdapter#getView
+   *
+   * @param position
+   * @param convertView
+   * @param parent
+   *
+   * @return
+   */
+  protected abstract View getViewImpl(int position, View convertView, ViewGroup parent);  public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
+    helper.setItemClickInActionModePolicy(policy);
+  }
 
-    public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
-        return helper.getItemClickInActionModePolicy();
-    }
+  /**
+   * Subclasses can invoke this method in order to finish the action mode. This has the side effect
+   * of unselecting all
+   * items
+   */
+  protected void finishActionMode() {
+    helper.finishActionMode();
+  }  public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
+    return helper.getItemClickInActionModePolicy();
+  }
 
-    /**
-     * Get a View that displays the data at the specified position in the data set. Subclasses should implement this
-     * method instead of the traditional ListAdapter#getView
-     * 
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
-     */
-    protected abstract View getViewImpl(int position, View convertView, ViewGroup parent);
+  /**
+   * Convenience method for subclasses that need an activity context
+   */
+  protected Context getContext() {
+    return helper.getContext();
+  }
 
-    /**
-     * Subclasses can invoke this method in order to finish the action mode. This has the side effect of unselecting all
-     * items
-     */
-    protected void finishActionMode() {
-        helper.finishActionMode();
-    }
+  @Override public void onDestroyActionMode(ActionMode mode) {
+    helper.onDestroyActionMode(mode);
+  }
 
-    /**
-     * Convenience method for subclasses that need an activity context
-     */
-    protected Context getContext() {
-        return helper.getContext();
-    }
+  @Override public final View getView(int position, View convertView, ViewGroup parent) {
+    View viewWithoutSelection = getViewImpl(position, convertView, parent);
+    return helper.getView(position, viewWithoutSelection);
+  }
 
-    //
-    // ActionMode.Callback implementation
-    //
+  //
+  // ActionMode.Callback implementation
+  //
 
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-        helper.onDestroyActionMode(mode);
-    }
 
-    //
-    // MultiChoiceAdapter implementation
-    //
-    
-    @Override
-    public boolean isItemCheckable(int position) {
-        return true;
-    }
 
-    //
-    // BaseAdapter implementation
-    //
+  //
+  // MultiChoiceAdapter implementation
+  //
 
-    @Override
-    public final View getView(int position, View convertView, ViewGroup parent) {
-        View viewWithoutSelection = getViewImpl(position, convertView, parent);
-        return helper.getView(position, viewWithoutSelection);
-    }
+  @Override public boolean isItemCheckable(int position) {
+    return true;
+  }
+
+  //
+  // BaseAdapter implementation
+  //
+
+
 }

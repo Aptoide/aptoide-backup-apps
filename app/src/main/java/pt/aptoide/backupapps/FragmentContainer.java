@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.squareup.otto.Subscribe;
 import pt.aptoide.backupapps.download.event.BusProvider;
 
@@ -19,7 +18,7 @@ import pt.aptoide.backupapps.download.event.BusProvider;
  * Time: 16:09
  * To change this template use File | Settings | File Templates.
  */
-public class FragmentContainer extends SherlockFragment {
+public class FragmentContainer extends Fragment {
 
   private FragmentBackedup fragmentBackup;
 
@@ -27,6 +26,12 @@ public class FragmentContainer extends SherlockFragment {
     super.onCreate(
         savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
     setHasOptionsMenu(true);
+  }
+
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.login_frag_container,
+        null);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
@@ -70,7 +75,7 @@ public class FragmentContainer extends SherlockFragment {
     Log.d("TAG", "onLogoutEvent");
 
     if (event.isFromAccountManager()) {
-      Toast.makeText(getSherlockActivity(),
+      Toast.makeText(getActivity(),
           getString(R.string.logout_toast_message_logged_out_from_aptoide), Toast.LENGTH_SHORT)
           .show();
     }
@@ -83,12 +88,6 @@ public class FragmentContainer extends SherlockFragment {
         .replace(R.id.frag_container_A, loginFragment, "loginFragment")
         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         .commitAllowingStateLoss();
-  }
-
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.login_frag_container,
-        null);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Subscribe public void onShowBackedUpApps(ShowBackedUpApps event) {

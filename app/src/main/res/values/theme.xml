@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <style name="Theme.Light.NoActionBar.Intro" parent="Theme.Sherlock.Light.NoActionBar">
+  <style name="Theme.Light.NoActionBar.Intro" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@color/blueBackground</item>
     <item name="introLogoLayoutTopPadding">20dp</item>
     <item name="introLogoBottomMargin">0dp</item>
@@ -9,7 +9,7 @@
     <item name="introTabletFragBWeight">1.0</item>
   </style>
 
-  <style name="StyledIndicators" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+  <style name="StyledIndicators" parent="@style/Theme.AppCompat.Light.DarkActionBar">
     <item name="android:windowBackground">@color/grayBackground</item>
     <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
     <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
@@ -20,21 +20,26 @@
     <item name="custom_color">@color/custom_color</item>
   </style>
 
-  <style name="Aptoide.BackupApps.Theme" parent="@style/Theme.Sherlock.Light">
+  <style name="Aptoide.BackupApps.Theme" parent="@style/Theme.AppCompat.Light">
     <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
     <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
   </style>
 
-  <style name="Aptoide.BackupApps.Styled.ActionBar" parent="Widget.Sherlock.ActionBar">
+  <style name="Aptoide.BackupApps.Styled.ActionBar" parent="Widget.AppCompat.ActionBar">
     <item name="background">@drawable/actionbar_background</item>
     <item name="android:background">@drawable/actionbar_background</item>
     <item name="android:titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
     <item name="titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
   </style>
 
-  <style name="Aptoide.BackupApps.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+  <style name="Aptoide.BackupApps.ActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
     <item name="android:textColor">@android:color/white</item>
 
+  </style>
+
+  <style name="SettingsTheme" parent="style/Theme.AppCompat.Light">
+    <item name="android:windowNoTitle">false</item>
+    <item name="android:windowActionBar">true</item>
   </style>
 
 

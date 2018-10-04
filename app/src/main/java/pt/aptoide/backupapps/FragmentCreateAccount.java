@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockFragment;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +36,7 @@ import pt.aptoide.backupapps.util.Constants;
  * Time: 12:01
  * To change this template use File | Settings | File Templates.
  */
-public class FragmentCreateAccount extends SherlockFragment {
+public class FragmentCreateAccount extends Fragment {
 
   NewAccount account;
   private Button signup;
@@ -71,14 +70,14 @@ public class FragmentCreateAccount extends SherlockFragment {
             || repository.getText()
             .toString()
             .length() == 0) {
-          Toast.makeText(getSherlockActivity(),
+          Toast.makeText(getActivity(),
               getString(R.string.create_account_toast_short_fill_all_forms), Toast.LENGTH_LONG)
               .show();
           v.setEnabled(true);
         } else if (!has1number1letter(password.getText()
             .toString())) {
-          Toast.makeText(getSherlockActivity(),
-              getString(R.string.signup_message_password_validation_text), Toast.LENGTH_LONG)
+          Toast.makeText(getActivity(), getString(R.string.signup_message_password_validation_text),
+              Toast.LENGTH_LONG)
               .show();
           v.setEnabled(true);
         } else {
@@ -198,7 +197,7 @@ public class FragmentCreateAccount extends SherlockFragment {
     @Override protected void onPreExecute() {
       super.onPreExecute();
 
-      pd = new ProgressDialog(getSherlockActivity());
+      pd = new ProgressDialog(getActivity());
       pd.setMessage(getString(R.string.short_please_wait));
       pd.show();
       pd.setCancelable(false);
@@ -234,18 +233,18 @@ public class FragmentCreateAccount extends SherlockFragment {
             for (int i = 0; i != array.length(); i++) {
               error = array.getString(i);
             }
-            Toast.makeText(getSherlockActivity(), error, Toast.LENGTH_LONG)
+            Toast.makeText(getActivity(), error, Toast.LENGTH_LONG)
                 .show();
           }
         } catch (JSONException e) {
-          Toast.makeText(getSherlockActivity(), R.string.upload_fail_short_failed_server_connection,
+          Toast.makeText(getActivity(), R.string.upload_fail_short_failed_server_connection,
               Toast.LENGTH_SHORT)
               .show();
           e.printStackTrace();
         }
       } else {
         button.setEnabled(true);
-        Toast.makeText(getSherlockActivity(), R.string.upload_fail_short_failed_server_connection,
+        Toast.makeText(getActivity(), R.string.upload_fail_short_failed_server_connection,
             Toast.LENGTH_SHORT)
             .show();
       }

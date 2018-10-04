@@ -24,9 +24,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.facebook.AppEventsLogger;
 import com.facebook.Request;
 import com.facebook.Response;
@@ -374,26 +374,8 @@ public class MainActivity extends BaseSherlockFragmentActivity
     }
   }
 
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    BusProvider.getInstance()
-        .unregister(this);
-
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onDestroy();
-    }
-    unbindService(conn);
-  }
-
-  @Override public void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onSaveInstanceState(outState);
-    }
-  }
-
   @Override public boolean onCreateOptionsMenu(Menu menu) {
-    getSupportMenuInflater().inflate(R.menu.actionbar, menu);
+    getMenuInflater().inflate(R.menu.actionbar, menu);
 
     return super.onCreateOptionsMenu(menu);
   }
@@ -423,6 +405,94 @@ public class MainActivity extends BaseSherlockFragmentActivity
     }
 
     return super.onPrepareOptionsMenu(menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+
+    switch (item.getItemId()) {
+      case R.id.menu_manager:
+        startActivity(new Intent(this, Manager.class));
+        facebookAnalytics.sendDrawerInteract(String.valueOf(FacebookAnalytics.OVERFLOW.SETTINGS));
+        break;
+      case R.id.menu_settings:
+        startActivity(new Intent(this, Settings.class));
+        facebookAnalytics.sendDrawerInteract(String.valueOf(FacebookAnalytics.OVERFLOW.MANAGER));
+        break;
+      case R.id.date:
+        if (item.isChecked()) {
+          item.setChecked(false);
+        } else {
+          item.setChecked(true);
+        }
+        currentSort = EnumSortBy.DATE;
+        BusProvider.getInstance()
+            .post(new BackedUpRefreshEvent(currentSort));
+        BusProvider.getInstance()
+            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
+        facebookAnalytics.sendSortAppsEvent(
+            String.valueOf(FacebookAnalytics.SORT_TYPE.MOST_RECENT_FIRST));
+        break;
+      case R.id.name:
+        if (item.isChecked()) {
+          item.setChecked(false);
+        } else {
+          item.setChecked(true);
+        }
+        currentSort = EnumSortBy.NAME;
+        BusProvider.getInstance()
+            .post(new BackedUpRefreshEvent(currentSort));
+        BusProvider.getInstance()
+            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
+        facebookAnalytics.sendSortAppsEvent(
+            String.valueOf(FacebookAnalytics.SORT_TYPE.ALPHABETICALLY));
+        break;
+      case R.id.size:
+        if (item.isChecked()) {
+          item.setChecked(false);
+        } else {
+          item.setChecked(true);
+        }
+        currentSort = EnumSortBy.SIZE;
+        BusProvider.getInstance()
+            .post(new BackedUpRefreshEvent(currentSort));
+        BusProvider.getInstance()
+            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
+        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_SIZE));
+        break;
+      case R.id.system:
+
+        if (item.isChecked()) {
+          item.setChecked(false);
+        } else {
+          item.setChecked(true);
+        }
+
+        showSystemApps = item.isChecked();
+        BusProvider.getInstance()
+            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
+        facebookAnalytics.sendShowSystemApplicationsEvent(item.isChecked());
+        break;
+      case R.id.status:
+        if (item.isChecked()) {
+          item.setChecked(false);
+        } else {
+          item.setChecked(true);
+        }
+
+        currentSort = EnumSortBy.STATE;
+        BusProvider.getInstance()
+            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
+        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_STATE));
+        break;
+    }
+
+    PreferenceManager.getDefaultSharedPreferences(this)
+        .edit()
+        .putInt("sort", currentSort.ordinal())
+        .commit();
+
+    return super.onOptionsItemSelected(
+        item);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
@@ -485,6 +555,24 @@ public class MainActivity extends BaseSherlockFragmentActivity
           .build();
       mConnectionProgressDialog = new ProgressDialog(this);
       mConnectionProgressDialog.setMessage("Signing in...");
+    }
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    BusProvider.getInstance()
+        .unregister(this);
+
+    if (Build.VERSION.SDK_INT >= 8) {
+      uiLifecycleHelper.onDestroy();
+    }
+    unbindService(conn);
+  }
+
+  @Override public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    if (Build.VERSION.SDK_INT >= 8) {
+      uiLifecycleHelper.onSaveInstanceState(outState);
     }
   }
 
@@ -597,94 +685,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
     Collections.sort(installedApks, comparator);
 
     return installedApks;
-  }
-
-  @Override public boolean onMenuItemSelected(int featureId, MenuItem item) {
-
-    switch (item.getItemId()) {
-      case R.id.menu_manager:
-        startActivity(new Intent(this, Manager.class));
-        facebookAnalytics.sendDrawerInteract(String.valueOf(FacebookAnalytics.OVERFLOW.SETTINGS));
-        break;
-      case R.id.menu_settings:
-        startActivity(new Intent(this, Settings.class));
-        facebookAnalytics.sendDrawerInteract(String.valueOf(FacebookAnalytics.OVERFLOW.MANAGER));
-        break;
-      case R.id.date:
-        if (item.isChecked()) {
-          item.setChecked(false);
-        } else {
-          item.setChecked(true);
-        }
-        currentSort = EnumSortBy.DATE;
-        BusProvider.getInstance()
-            .post(new BackedUpRefreshEvent(currentSort));
-        BusProvider.getInstance()
-            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(
-            String.valueOf(FacebookAnalytics.SORT_TYPE.MOST_RECENT_FIRST));
-        break;
-      case R.id.name:
-        if (item.isChecked()) {
-          item.setChecked(false);
-        } else {
-          item.setChecked(true);
-        }
-        currentSort = EnumSortBy.NAME;
-        BusProvider.getInstance()
-            .post(new BackedUpRefreshEvent(currentSort));
-        BusProvider.getInstance()
-            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(
-            String.valueOf(FacebookAnalytics.SORT_TYPE.ALPHABETICALLY));
-        break;
-      case R.id.size:
-        if (item.isChecked()) {
-          item.setChecked(false);
-        } else {
-          item.setChecked(true);
-        }
-        currentSort = EnumSortBy.SIZE;
-        BusProvider.getInstance()
-            .post(new BackedUpRefreshEvent(currentSort));
-        BusProvider.getInstance()
-            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_SIZE));
-        break;
-      case R.id.system:
-
-        if (item.isChecked()) {
-          item.setChecked(false);
-        } else {
-          item.setChecked(true);
-        }
-
-        showSystemApps = item.isChecked();
-        BusProvider.getInstance()
-            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendShowSystemApplicationsEvent(item.isChecked());
-        break;
-      case R.id.status:
-        if (item.isChecked()) {
-          item.setChecked(false);
-        } else {
-          item.setChecked(true);
-        }
-
-        currentSort = EnumSortBy.STATE;
-        BusProvider.getInstance()
-            .post(new RefreshInstalledAppsEvent(getInstalledApks(currentSort), showSystemApps));
-        facebookAnalytics.sendSortAppsEvent(String.valueOf(FacebookAnalytics.SORT_TYPE.BY_STATE));
-        break;
-    }
-
-    PreferenceManager.getDefaultSharedPreferences(this)
-        .edit()
-        .putInt("sort", currentSort.ordinal())
-        .commit();
-
-    return super.onMenuItemSelected(featureId,
-        item);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override public void onConnected(Bundle bundle) {

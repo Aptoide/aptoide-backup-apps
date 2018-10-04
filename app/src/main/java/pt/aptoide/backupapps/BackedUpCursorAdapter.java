@@ -5,17 +5,17 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.CursorAdapter;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.manuelpeinado.multichoiceadapter.ItemClickInActionModePolicy;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceAdapter;
 import com.manuelpeinado.multichoiceadapter.MultiChoiceAdapterHelper;
@@ -177,8 +177,6 @@ public class BackedUpCursorAdapter extends CursorAdapter
    */
   protected void finishActionMode() {
     helper.finishActionMode();
-  }  public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
-    helper.setItemClickInActionModePolicy(policy);
   }
 
   /**
@@ -186,8 +184,6 @@ public class BackedUpCursorAdapter extends CursorAdapter
    */
   protected Context getContext() {
     return helper.getContext();
-  }  public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
-    return helper.getItemClickInActionModePolicy();
   }
 
   @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -195,19 +191,13 @@ public class BackedUpCursorAdapter extends CursorAdapter
     mode.setTitle("Download");
     inflater.inflate(R.menu.download, menu);
     return true;  //To change body of implemented methods use File | Settings | File Templates.
+  }  public void setItemClickInActionModePolicy(ItemClickInActionModePolicy policy) {
+    helper.setItemClickInActionModePolicy(policy);
   }
 
   @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
     return false;  //To change body of implemented methods use File | Settings | File Templates.
   }
-
-  //
-  // ActionMode.Callback implementation
-  //
-
-  //
-  // MultiChoiceAdapter implementation
-  //
 
   @Override public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
     ArrayList<Long> selectedList;
@@ -232,12 +222,12 @@ public class BackedUpCursorAdapter extends CursorAdapter
     }
 
     return false;  //To change body of implemented methods use File | Settings | File Templates.
-  }  @Override public boolean isItemCheckable(int position) {
-    return true;
   }
 
   @Override public void onDestroyActionMode(ActionMode mode) {
     helper.onDestroyActionMode(mode);
+  }  public ItemClickInActionModePolicy getItemClickInActionModePolicy() {
+    return helper.getItemClickInActionModePolicy();
   }
 
   public MultiChoiceAdapterHelper getActionMode() {
@@ -250,6 +240,14 @@ public class BackedUpCursorAdapter extends CursorAdapter
         .getIconsPath();
   }
 
+  //
+  // ActionMode.Callback implementation
+  //
+
+  //
+  // MultiChoiceAdapter implementation
+  //
+
   static class ViewHolder {
     public TextView status;
     public TextView timestamp;
@@ -261,7 +259,9 @@ public class BackedUpCursorAdapter extends CursorAdapter
 
 
 
-
+  @Override public boolean isItemCheckable(int position) {
+    return true;
+  }
 
 
 }

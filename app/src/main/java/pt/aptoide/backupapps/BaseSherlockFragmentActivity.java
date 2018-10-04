@@ -1,12 +1,12 @@
 package pt.aptoide.backupapps;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import pt.aptoide.backupapps.analytics.Analytics;
 
 /**
  * Created by neuro on 09-02-2016.
  */
-public class BaseSherlockFragmentActivity extends SherlockFragmentActivity {
+public class BaseSherlockFragmentActivity extends AppCompatActivity {
 
   @Override protected void onPause() {
     Analytics.Lifecycle.Activity.onPause(this);

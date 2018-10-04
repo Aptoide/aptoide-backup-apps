@@ -1,10 +1,10 @@
 package pt.aptoide.backupapps;
 
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.facebook.AppEventsLogger;
 import com.manuelpeinado.multichoiceadapter.CheckableRelativeLayout;
 import com.squareup.otto.Subscribe;
@@ -21,7 +21,7 @@ import pt.aptoide.backupapps.model.InstalledApk;
  * Time: 15:37
  * To change this template use File | Settings | File Templates.
  */
-public class FragmentInstalled extends SherlockListFragment {
+public class FragmentInstalled extends ListFragment {
 
   private ArrayList<InstalledApk> installedApks = new ArrayList<InstalledApk>(50);
   private ArrayList<Integer> backedUpApps = new ArrayList<Integer>();
@@ -36,18 +36,12 @@ public class FragmentInstalled extends SherlockListFragment {
         new FacebookAnalytics(AppEventsLogger.newLogger(getActivity().getApplicationContext()));
   }
 
-  @Override public void onDestroy() {
-    super.onDestroy();
-    BusProvider.getInstance()
-        .unregister(this);
-  }
-
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
     installedAdapter =
-        new InstalledAdapter(savedInstanceState, getSherlockActivity(), 0, installedApks,
-            backedUpApps, facebookAnalytics);
+        new InstalledAdapter(savedInstanceState, getActivity(), 0, installedApks, backedUpApps,
+            facebookAnalytics);
     setListAdapter(installedAdapter);
     installedAdapter.setAdapterView(getListView());
     installedAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,6 +51,12 @@ public class FragmentInstalled extends SherlockListFragment {
     });
     getListView().setFastScrollEnabled(true);
     setListShown(false);
+  }
+
+  @Override public void onDestroy() {
+    super.onDestroy();
+    BusProvider.getInstance()
+        .unregister(this);
   }
 
   @Subscribe public void onRefreshBackedUpApps(RefreshInstalledBackedUpAppsEvent event) {

@@ -6,13 +6,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -88,14 +88,9 @@ public class SubmitForm extends BaseSherlockActivity {
     return null;
   }
 
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    asyncTask.cancel(false);
-  }
-
   @Override public boolean onCreateOptionsMenu(Menu menu) {
 
-    getSupportMenuInflater().inflate(R.menu.submit, menu);
+    getMenuInflater().inflate(R.menu.submit, menu);
 
     return super.onCreateOptionsMenu(
         menu);    //To change body of overridden methods use File | Settings | File Templates.
@@ -133,7 +128,7 @@ public class SubmitForm extends BaseSherlockActivity {
         finish();
         break;
       case android.R.id.home:
-      case R.id.abs__home:
+        //case R.id.abs__home:
         finish();
         break;
     }
@@ -260,6 +255,11 @@ public class SubmitForm extends BaseSherlockActivity {
     //
     //            }
     //        });
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    asyncTask.cancel(false);
   }
 
   static class GetCategories extends AsyncTask<String, Void, ArrayList<Category>> {

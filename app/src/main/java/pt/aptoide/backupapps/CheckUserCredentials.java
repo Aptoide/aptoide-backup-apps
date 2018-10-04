@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
@@ -19,7 +20,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -46,9 +46,9 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
   ProgressDialog pd;
   Login login;
 
-  SherlockFragmentActivity activity;
+  AppCompatActivity activity;
 
-  public CheckUserCredentials(SherlockFragmentActivity activity) {
+  public CheckUserCredentials(AppCompatActivity activity) {
     this.activity = activity;
     sPref = PreferenceManager.getDefaultSharedPreferences(activity);
     previousSPref = activity.getSharedPreferences("aptoide_preferences", Context.MODE_PRIVATE);
@@ -136,12 +136,6 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
     }
 
     return response;
-  }  @Override protected void onPreExecute() {
-    super.onPreExecute();
-    pd = new ProgressDialog(activity);
-    pd.setMessage("Please wait");
-    pd.setCancelable(false);
-    pd.show();
   }
 
   private String formatPostData(Login login) {
@@ -234,6 +228,12 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
 
     Log.d("MYLOG", "Post data: " + requestData);
     return requestData;
+  }  @Override protected void onPreExecute() {
+    super.onPreExecute();
+    pd = new ProgressDialog(activity);
+    pd.setMessage("Please wait");
+    pd.setCancelable(false);
+    pd.show();
   }
 
   public void showRepoCreatorDialog() {
@@ -381,7 +381,47 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             .post(new LogoutEvent());
       }
     }
-  }  @Override protected void onPostExecute(LoginResponse response) {
+  }
+
+  public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
+
+    @Override protected Void doInBackground(LoginResponse... params) {
+
+      LoginResponse response = params[0];
+      Database.getInstance()
+          .setLoggedIn(true);
+      Database.getInstance()
+          .removeAllData();
+
+        /*if(sPref.getBoolean(Constants.LOGIN_USER_REPO_PRIVACY, false)) {
+            Database.getInstance().insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
+                    sPref.getString(Constants.LOGIN_USER_PRIVATE_REPO_USERNAME, ""),
+                    sPref.getString(Constants.LOGIN_USER_PRIVATE_REPO_PASSWORD, "") );
+        } else {*/
+
+      String serverUsername = null;
+      String serverPassword = null;
+
+      if (login.getLoginMode() == Login.LoginMode.REGULAR) {
+        serverUsername = sPref.getString(Constants.LOGIN_USER_LOGIN, "");
+        serverPassword = sPref.getString(Constants.LOGIN_USER_PASSWORD, "");
+      }
+
+      Database.getInstance()
+          .insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
+              serverUsername, serverPassword);
+
+      return null;
+    }
+
+    @Override protected void onPostExecute(Void aVoid) {
+      BusProvider.getInstance()
+          .post(new LoginEvent());
+      super.onPostExecute(aVoid);
+    }
+  }
+
+  @Override protected void onPostExecute(LoginResponse response) {
     super.onPostExecute(response);
     pd.dismiss();
 
@@ -440,46 +480,6 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         break;
     }
   }
-
-  public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
-
-    @Override protected Void doInBackground(LoginResponse... params) {
-
-      LoginResponse response = params[0];
-      Database.getInstance()
-          .setLoggedIn(true);
-      Database.getInstance()
-          .removeAllData();
-
-        /*if(sPref.getBoolean(Constants.LOGIN_USER_REPO_PRIVACY, false)) {
-            Database.getInstance().insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
-                    sPref.getString(Constants.LOGIN_USER_PRIVATE_REPO_USERNAME, ""),
-                    sPref.getString(Constants.LOGIN_USER_PRIVATE_REPO_PASSWORD, "") );
-        } else {*/
-
-      String serverUsername = null;
-      String serverPassword = null;
-
-      if (login.getLoginMode() == Login.LoginMode.REGULAR) {
-        serverUsername = sPref.getString(Constants.LOGIN_USER_LOGIN, "");
-        serverPassword = sPref.getString(Constants.LOGIN_USER_PASSWORD, "");
-      }
-
-      Database.getInstance()
-          .insertServer("http://" + response.getDefaultStore() + Constants.DOMAIN_APTOIDE_STORE,
-              serverUsername, serverPassword);
-
-      return null;
-    }
-
-    @Override protected void onPostExecute(Void aVoid) {
-      BusProvider.getInstance()
-          .post(new LoginEvent());
-      super.onPostExecute(aVoid);
-    }
-  }
-
-
 
 
 }
