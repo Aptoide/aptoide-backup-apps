@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,11 +21,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.facebook.widget.LoginButton;
+import com.facebook.AccessToken;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
 import java.util.Arrays;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -141,6 +150,65 @@ public class FragmentLogin extends Fragment {
       gSignInButton = (SignInButton) view.findViewById(R.id.g_sign_in_button);
 
       fbAuthButton.setReadPermissions(Arrays.asList("email", "user_friends"));
+      fbAuthButton.registerCallback(
+          ((BackupAppsApplication) getActivity().getApplicationContext()).getCallbackManager(),
+          new FacebookCallback<LoginResult>() {
+            @Override public void onSuccess(LoginResult loginResult) {
+              Log.d("Facebook token", AccessToken.getCurrentAccessToken()
+                  .getToken());
+              GraphRequest meRequest =
+                  GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
+                      new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(final JSONObject user, GraphResponse response) {
+
+                          String username = null;
+                          try {
+                            username = user.get("email") == null ? "" : user.get("email")
+                                .toString();
+                          } catch (JSONException e) {
+                            e.printStackTrace();
+                          }
+
+                          if (TextUtils.isEmpty(username)) {
+
+                            //session.close();
+
+                            getActivity().runOnUiThread(new Runnable() {
+                              public void run() {
+                                Toast.makeText(getActivity(), R.string.facebook_error,
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                              }
+                            });
+                          } else {
+                            Login login = new Login(username, AccessToken.getCurrentAccessToken()
+                                .getToken(), "facebook_backupapps");
+                            new CheckUserCredentials((AppCompatActivity) getActivity()).execute(
+                                login);
+                          }
+                          //session.closeAndClearTokenInformation();
+                        }
+                      });
+              Bundle parameters = new Bundle();
+              parameters.putString("fields", "id,name,email");
+              meRequest.setParameters(parameters);
+              meRequest.executeAsync();
+            }
+
+            @Override public void onCancel() {
+
+            }
+
+            @Override public void onError(FacebookException error) {
+              if (error.getMessage()
+                  .equals("Log in attempt aborted.")) {
+                return;
+              }
+
+              error.printStackTrace();
+            }
+          });
 
       gSignInButton.setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {

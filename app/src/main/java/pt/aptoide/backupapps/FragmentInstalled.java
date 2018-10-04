@@ -5,7 +5,7 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import com.facebook.AppEventsLogger;
+import com.facebook.appevents.AppEventsLogger;
 import com.manuelpeinado.multichoiceadapter.CheckableRelativeLayout;
 import com.squareup.otto.Subscribe;
 import java.util.ArrayList;

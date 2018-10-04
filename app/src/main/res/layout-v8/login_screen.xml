@@ -46,7 +46,7 @@
         style="@style/button_style"
         />
 
-    <com.facebook.widget.LoginButton
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

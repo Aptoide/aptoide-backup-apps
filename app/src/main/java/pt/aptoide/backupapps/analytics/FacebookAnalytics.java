@@ -1,7 +1,7 @@
 package pt.aptoide.backupapps.analytics;
 
 import android.os.Bundle;
-import com.facebook.AppEventsLogger;
+import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by pedroribeiro on 21/08/17.

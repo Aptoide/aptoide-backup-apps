@@ -14,7 +14,7 @@ import android.preference.PreferenceScreen;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import com.facebook.AppEventsLogger;
+import com.facebook.appevents.AppEventsLogger;
 import pt.aptoide.backupapps.analytics.FacebookAnalytics;
 import pt.aptoide.backupapps.download.event.BusProvider;
 import pt.aptoide.backupapps.util.Constants;

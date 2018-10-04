@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import com.facebook.login.LoginManager;
 import pt.aptoide.backupapps.database.Database;
 import pt.aptoide.backupapps.download.DownloadManager;
 import pt.aptoide.backupapps.download.event.BusProvider;
@@ -41,6 +42,8 @@ public class Logout extends AsyncTask<Void, Void, Void> {
         .commit();
     Database.getInstance()
         .removeAllData();
+    LoginManager.getInstance()
+        .logOut();
     return null;  //To change body of implemented methods use File | Settings | File Templates.
   }
 

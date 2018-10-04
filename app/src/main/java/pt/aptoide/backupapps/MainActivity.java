@@ -22,18 +22,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.facebook.AppEventsLogger;
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
@@ -70,7 +63,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
   static private Database database = Database.getInstance();
   SharedPreferences sPref;
   private boolean showSystemApps = false;
-  private UiLifecycleHelper uiLifecycleHelper;
   private GoogleApiClient googleApiClient;
   private ProgressDialog mConnectionProgressDialog;
   private int RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE = 9000;
@@ -213,40 +205,40 @@ public class MainActivity extends BaseSherlockFragmentActivity
    */
 
   private ViewPager viewPager;
-  private Session.StatusCallback callback = new Session.StatusCallback() {
-    @Override public void call(final Session session, SessionState state, Exception exception) {
-      if (state.isOpened()) {
-        Log.d("Facebook token", session.getAccessToken());
-        Request meRequest = Request.newMeRequest(session, new Request.GraphUserCallback() {
-          @Override public void onCompleted(GraphUser user, Response response) {
-
-            String username = user.getProperty("email") == null ? "" : user.getProperty("email")
-                .toString();
-
-            if (TextUtils.isEmpty(username)) {
-
-              session.close();
-
-              MainActivity.this.runOnUiThread(new Runnable() {
-                public void run() {
-                  Toast.makeText(MainActivity.this, R.string.facebook_error, Toast.LENGTH_LONG)
-                      .show();
-                }
-              });
-            } else {
-              Login login = new Login(username, session.getAccessToken(), "facebook_backupapps");
-              new CheckUserCredentials(MainActivity.this).execute(login);
-            }
-            session.closeAndClearTokenInformation();
-          }
-        });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,email");
-        meRequest.setParameters(parameters);
-        meRequest.executeAsync();
-      }
-    }
-  };
+  //private Session.StatusCallback callback = new Session.StatusCallback() {
+  //  @Override public void call(final Session session, SessionState state, Exception exception) {
+  //    if (state.isOpened()) {
+  //      Log.d("Facebook token", session.getAccessToken());
+  //      Request meRequest = Request.newMeRequest(session, new Request.GraphUserCallback() {
+  //        @Override public void onCompleted(GraphUser user, Response response) {
+  //
+  //          String username = user.getProperty("email") == null ? "" : user.getProperty("email")
+  //              .toString();
+  //
+  //          if (TextUtils.isEmpty(username)) {
+  //
+  //            session.close();
+  //
+  //            MainActivity.this.runOnUiThread(new Runnable() {
+  //              public void run() {
+  //                Toast.makeText(MainActivity.this, R.string.facebook_error, Toast.LENGTH_LONG)
+  //                    .show();
+  //              }
+  //            });
+  //          } else {
+  //            Login login = new Login(username, session.getAccessToken(), "facebook_backupapps");
+  //            new CheckUserCredentials(MainActivity.this).execute(login);
+  //          }
+  //          session.closeAndClearTokenInformation();
+  //        }
+  //      });
+  //      Bundle parameters = new Bundle();
+  //      parameters.putString("fields", "id,name,email");
+  //      meRequest.setParameters(parameters);
+  //      meRequest.executeAsync();
+  //    }
+  //  }
+  //};
 
   @Subscribe public void onUploadStatusEvent(UploadStatusEvent event) {
     Log.d("TAG", "receiving Upload event");
@@ -362,16 +354,10 @@ public class MainActivity extends BaseSherlockFragmentActivity
 
   @Override public void onPause() {
     super.onPause();
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onPause();
-    }
   }
 
   @Override public void onResume() {
     super.onResume();
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onResume();
-    }
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -543,9 +529,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
 
     if (Build.VERSION.SDK_INT >= 8) {
 
-      uiLifecycleHelper = new UiLifecycleHelper(this, callback);
-      uiLifecycleHelper.onCreate(savedInstanceState);
-
       final Plus.PlusOptions options =
           new Plus.PlusOptions.Builder().addActivityTypes("http://schemas.google.com/AddActivity",
               "http://schemas.google.com/BuyActivity")
@@ -563,30 +546,23 @@ public class MainActivity extends BaseSherlockFragmentActivity
     BusProvider.getInstance()
         .unregister(this);
 
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onDestroy();
-    }
     unbindService(conn);
   }
 
   @Override public void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onSaveInstanceState(outState);
-    }
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onActivityResult(requestCode, resultCode, data);
-
-      if (requestCode == RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE) {
-        if (resultCode == Activity.RESULT_OK) {
-          connectPlusClient();
-        }
+    if (requestCode == RESOLVE_GOOGLE_PLUS_LOGIN_REQUEST_CODE) {
+      if (resultCode == Activity.RESULT_OK) {
+        connectPlusClient();
       }
+    } else {
+      (((BackupAppsApplication) getApplication()).getCallbackManager()).onActivityResult(
+          requestCode, resultCode, data);
     }
   }
 

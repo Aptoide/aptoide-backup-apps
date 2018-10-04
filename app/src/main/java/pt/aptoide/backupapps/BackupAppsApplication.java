@@ -12,6 +12,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -38,6 +40,7 @@ public class BackupAppsApplication extends Application {
   private static final String ICON_CACHE_PATH = APTOIDE_PATH + "/icons";
   public static boolean DEBUG_MODE = Log.isLoggable("APTOIDE", Log.DEBUG);
   private static Context context;
+  private CallbackManager callbackManager;
 
   public static Context getContext() {
     return context;
@@ -66,8 +69,10 @@ public class BackupAppsApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     Fabric.with(this, new Crashlytics());
-
     setDebugMode();
+    FacebookSdk.sdkInitialize(this);
+
+    callbackManager = CallbackManager.Factory.create();
 
     Analytics.Lifecycle.Application.onCreate(this);
 
@@ -175,5 +180,9 @@ public class BackupAppsApplication extends Application {
     intent.putExtra("duplicate", false);
     intent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
     context.sendBroadcast(intent);
+  }
+
+  public CallbackManager getCallbackManager() {
+    return callbackManager;
   }
 }

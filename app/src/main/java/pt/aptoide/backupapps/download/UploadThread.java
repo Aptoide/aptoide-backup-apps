@@ -2,7 +2,7 @@ package pt.aptoide.backupapps.download;
 
 import android.content.Context;
 import android.util.Log;
-import com.facebook.AppEventsLogger;
+import com.facebook.appevents.AppEventsLogger;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
