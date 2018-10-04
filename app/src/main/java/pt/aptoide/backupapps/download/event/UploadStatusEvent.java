@@ -11,10 +11,8 @@ import android.util.Log;
  */
 public class UploadStatusEvent {
 
-    public UploadStatusEvent(){
+  public UploadStatusEvent() {
 
-        Log.d("TAG", "New upload status event");
-
-    }
-
+    Log.d("TAG", "New upload status event");
+  }
 }

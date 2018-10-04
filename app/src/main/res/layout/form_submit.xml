@@ -3,127 +3,142 @@
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
 
+    android:orientation="vertical"
+    android:padding="5dp"
+    >
+
+  <ScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:scrollbars="vertical"
+      >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:padding="5dp" >
+        >
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scrollbars="vertical" >
+      <TextView
+          android:id="@+id/form_name_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/app_name"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical" >
+      <EditText
+          android:id="@+id/form_name"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/app_name"
+          />
 
-                <TextView
-                    android:id="@+id/form_name_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:id="@+id/form_rating_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_app_rating"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <EditText
-                    android:id="@+id/form_name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/app_name" />
+      <Spinner
+          android:id="@+id/form_rating"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:entries="@array/app_rating_array"
+          android:prompt="@string/submit_app_title_app_rating"
+          android:textSize="8pt"
+          />
 
-                <TextView
-                    android:id="@+id/form_rating_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_app_rating"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:id="@+id/form_category_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_app_category"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <Spinner
-                    android:id="@+id/form_rating"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/app_rating_array"
-                    android:prompt="@string/submit_app_title_app_rating"
-                    android:textSize="8pt" />
+      <Spinner
+          android:id="@+id/form_category"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:entries="@array/app_category_array"
+          android:prompt="@string/submit_app_title_app_category"
+          android:textSize="8pt"
+          />
 
-                <TextView
-                    android:id="@+id/form_category_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_app_category"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:id="@+id/form_desc_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_app_description"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <Spinner
-                    android:id="@+id/form_category"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/app_category_array"
-                    android:prompt="@string/submit_app_title_app_category"
-                    android:textSize="8pt" />
+      <EditText
+          android:id="@+id/form_desc"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/submit_app_title_app_description"
+          android:inputType="text"
+          />
 
-                <TextView
-                    android:id="@+id/form_desc_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_app_description"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_phone_number"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <EditText
-                    android:id="@+id/form_desc"
-                    android:inputType="text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/submit_app_title_app_description" />
+      <EditText
+          android:id="@+id/form_phone"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/submit_app_title_phone_number"
+          android:inputType="phone"
+          />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_phone_number"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:id="@+id/form_e_mail_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_e_mail"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <EditText
-                    android:id="@+id/form_phone"
-                    android:inputType="phone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/submit_app_title_phone_number" />
+      <EditText
+          android:id="@+id/form_e_mail"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/submit_app_title_e_mail"
+          android:inputType="textEmailAddress"
+          />
 
-                <TextView
-                    android:id="@+id/form_e_mail_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_e_mail"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
+      <TextView
+          android:id="@+id/form_url_id"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/submit_app_title_website_url"
+          android:textColor="#424542"
+          android:textSize="15sp"
+          />
 
-                <EditText
-                    android:id="@+id/form_e_mail"
-                    android:inputType="textEmailAddress"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/submit_app_title_e_mail" />
-
-                <TextView
-                    android:id="@+id/form_url_id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/submit_app_title_website_url"
-                    android:textColor="#424542"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/form_url"
-                    android:inputType="textUri"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/submit_app_title_website_url" />
-            </LinearLayout>
-        </ScrollView>
-
-
+      <EditText
+          android:id="@+id/form_url"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/submit_app_title_website_url"
+          android:inputType="textUri"
+          />
+    </LinearLayout>
+  </ScrollView>
 
 
 </RelativeLayout><!--

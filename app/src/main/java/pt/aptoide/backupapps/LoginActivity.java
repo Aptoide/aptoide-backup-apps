@@ -11,23 +11,15 @@ import android.os.Bundle;
  */
 public class LoginActivity extends BaseSherlockFragmentActivity {
 
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    //        if(Database.getInstance().getServer()==null){
+    //            Database.getInstance().insertServer("http://apps.store.aptoide.com/");
+    //        }
+    //
+    //        finish();
+    //        startActivity(new Intent(this, MainActivity.class));
 
-
-
-
-
-
-//        if(Database.getInstance().getServer()==null){
-//            Database.getInstance().insertServer("http://apps.store.aptoide.com/");
-//        }
-//
-//        finish();
-//        startActivity(new Intent(this, MainActivity.class));
-
-
-    }
+  }
 }

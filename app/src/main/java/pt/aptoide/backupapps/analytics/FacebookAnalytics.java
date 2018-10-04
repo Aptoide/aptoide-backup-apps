@@ -12,8 +12,8 @@ public class FacebookAnalytics {
   private static final String BACKUP_APPS_STATUS = "Backup_App_Status";
   private static final String UNINSTALL_APPS = "Uninstall_Apps";
   private static final String DRAWER_INTERACT = "Drawer_Interact";
-  private final AppEventsLogger facebook;
   private static final String BACKUP_APPS_PRESS = "Backup_Apps_Press";
+  private final AppEventsLogger facebook;
 
   public FacebookAnalytics(AppEventsLogger facebook) {
     this.facebook = facebook;

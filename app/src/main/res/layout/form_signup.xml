@@ -1,134 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingTop="30dp"
+      >
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_shadow"
+        android:hint="@string/login_short_email_prompt"
+        android:imeOptions="actionNext|flagNoExtractUi"
+        android:inputType="textEmailAddress"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_shadow"
+        android:ems="10"
+        android:hint="@string/login_short_password_prompt"
+        android:imeOptions="actionNext|flagNoExtractUi"
+        android:inputType="textPassword"
+        android:padding="5dp"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/repository"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_shadow"
+        android:hint="@string/signup_title_store"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="textEmailAddress"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:text="@string/signup_title_store_privacy"
+        android:textSize="15sp"
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+
+      <RadioButton
+          android:id="@+id/public_store"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_weight="1"
+          android:checked="true"
+          android:text="@string/store_creation_button_public_key"
+          />
+
+      <RadioButton
+          android:id="@+id/private_store"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:checked="false"
+          android:text="@string/store_creation_button_private_key"
+          />
+    </RadioGroup>
+
+    <!-- <TextView -->
+    <!-- android:id="@+id/bad_registration" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_gravity="center_horizontal" -->
+    <!-- android:layout_marginTop="2dp" -->
+    <!-- android:textColor="#d90b0b" /> -->
 
     <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:orientation="vertical" >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-        <EditText
-                android:id="@+id/username"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittext_shadow"
-                android:hint="@string/login_short_email_prompt"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:inputType="textEmailAddress"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textSize="18sp" />
+      <Button
+          android:id="@+id/signup"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="@string/signup_button_new_account"
+          style="@style/button_style"
+          />
 
-        <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittext_shadow"
-                android:ems="10"
-                android:hint="@string/login_short_password_prompt"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:inputType="textPassword"
-                android:padding="5dp"
-                android:textSize="18sp" />
+      <Button
+          android:id="@+id/button_new_to_aptoide"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginBottom="@dimen/loginTextBottom"
+          android:layout_marginLeft="@dimen/loginTextLeft"
+          android:layout_marginRight="@dimen/loginTextRight"
+          android:layout_marginTop="@dimen/linkButtonButtomMarginTop"
+          android:background="@null"
+          android:text="@string/login_button_to_dropbox_switch"
+          android:textColor="@color/link_button"
+          android:textSize="@dimen/linkButtonTextSize"
+          android:textStyle="bold"
+          style="@style/button_style"
+          />
 
-        <EditText
-                android:id="@+id/repository"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittext_shadow"
-                android:hint="@string/signup_title_store"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                android:inputType="textEmailAddress"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_weight="1"
-                android:text="@string/signup_title_store_privacy"
-                android:textSize="15sp" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
-
-            <RadioButton
-                    android:id="@+id/public_store"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/store_creation_button_public_key"/>
-
-            <RadioButton
-                    android:id="@+id/private_store"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="false"
-                    android:text="@string/store_creation_button_private_key"/>
-        </RadioGroup>
-
-        <!-- <TextView -->
-        <!-- android:id="@+id/bad_registration" -->
-        <!-- android:layout_width="wrap_content" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:layout_gravity="center_horizontal" -->
-        <!-- android:layout_marginTop="2dp" -->
-        <!-- android:textColor="#d90b0b" /> -->
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-            <Button
-                    android:id="@+id/signup"
-                    style="@style/button_style"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/signup_button_new_account" />
-
-            <Button
-                    android:id="@+id/button_new_to_aptoide"
-                    style="@style/button_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/loginTextBottom"
-                    android:layout_marginLeft="@dimen/loginTextLeft"
-                    android:layout_marginRight="@dimen/loginTextRight"
-                    android:layout_marginTop="@dimen/linkButtonButtomMarginTop"
-                    android:background="@null"
-                    android:text="@string/login_button_to_dropbox_switch"
-                    android:textColor="@color/link_button"
-                    android:textSize="@dimen/linkButtonTextSize"
-                    android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:text="@string/signup_message_accept_terms"
-                    android:textSize="15sp" />
-        </LinearLayout>
+      <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="4dp"
+          android:text="@string/signup_message_accept_terms"
+          android:textSize="15sp"
+          />
     </LinearLayout>
+  </LinearLayout>
 
 </ScrollView>

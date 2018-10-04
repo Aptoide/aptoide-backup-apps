@@ -9,13 +9,13 @@ package pt.aptoide.backupapps.download.event;
  */
 public class AskRepoLoginDataEvent {
 
-    private boolean afterWrongCredentials;
+  private boolean afterWrongCredentials;
 
-    public AskRepoLoginDataEvent(boolean afterWrongCredentials) {
-        this.afterWrongCredentials = afterWrongCredentials;
-    }
+  public AskRepoLoginDataEvent(boolean afterWrongCredentials) {
+    this.afterWrongCredentials = afterWrongCredentials;
+  }
 
-    public boolean isAfterWrongCredentials() {
-        return afterWrongCredentials;
-    }
+  public boolean isAfterWrongCredentials() {
+    return afterWrongCredentials;
+  }
 }

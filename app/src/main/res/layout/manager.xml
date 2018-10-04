@@ -2,51 +2,56 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+    android:layout_height="match_parent"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
 
-        <TextView
-                android:id="@+id/downloading_intro"
-                style="?attr/labelBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/download_short_downloading_apps" />
-
-        <ListView
-                android:id="@+id/active"
-                android:layout_width="fill_parent"
-                android:layout_height="152dp"
-                android:layout_weight="0.25"
-                 />
-
-        <TextView
-                android:id="@+id/downloaded_intro"
-                style="?attr/labelBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/download_short_completed" />
-        <!-- <LinearLayout -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:orientation="vertical" -->
-        <!-- android:padding="5dp" > -->
-        <ListView
-                android:id="@+id/inactive"
-                android:layout_width="match_parent"
-                android:layout_height="146dp"
-                android:layout_weight="0.25"
-                 />
-
-    </LinearLayout>
     <TextView
-            android:id="@+id/no_downloads"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="5dp"
-            android:text="@string/download_short_no_downloads"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:id="@+id/downloading_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/download_short_downloading_apps"
+        style="?attr/labelBackground"
+        />
+
+    <ListView
+        android:id="@+id/active"
+        android:layout_width="fill_parent"
+        android:layout_height="152dp"
+        android:layout_weight="0.25"
+        />
+
+    <TextView
+        android:id="@+id/downloaded_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/download_short_completed"
+        style="?attr/labelBackground"
+        />
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:orientation="vertical" -->
+    <!-- android:padding="5dp" > -->
+    <ListView
+        android:id="@+id/inactive"
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        android:layout_weight="0.25"
+        />
+
+  </LinearLayout>
+  <TextView
+      android:id="@+id/no_downloads"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_margin="5dp"
+      android:text="@string/download_short_no_downloads"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      />
 </RelativeLayout>

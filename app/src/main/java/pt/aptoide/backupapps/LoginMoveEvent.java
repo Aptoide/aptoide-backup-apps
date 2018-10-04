@@ -1,7 +1,5 @@
 package pt.aptoide.backupapps;
 
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: rmateus

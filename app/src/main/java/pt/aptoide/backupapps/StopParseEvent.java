@@ -8,15 +8,14 @@ package pt.aptoide.backupapps;
  * To change this template use File | Settings | File Templates.
  */
 public class StopParseEvent {
-    private boolean error;
+  private boolean error;
 
-    public StopParseEvent(boolean error) {
+  public StopParseEvent(boolean error) {
 
+    this.error = error;
+  }
 
-        this.error = error;
-    }
-
-    public boolean isError() {
-        return error;
-    }
+  public boolean isError() {
+    return error;
+  }
 }

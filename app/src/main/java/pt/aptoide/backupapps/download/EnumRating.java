@@ -9,5 +9,5 @@ package pt.aptoide.backupapps.download;
  */
 public enum EnumRating {
 
-    NONE, ALL, PRE_TEEN, TEEN, ADULT
+  NONE, ALL, PRE_TEEN, TEEN, ADULT
 }

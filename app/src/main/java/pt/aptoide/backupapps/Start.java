@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-
 import pt.aptoide.backupapps.util.Constants;
 
 /**
@@ -16,18 +15,16 @@ import pt.aptoide.backupapps.util.Constants;
  */
 public class Start extends BaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-        SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        finish();
-        if(!sPref.contains(Constants.LOGIN_USER_LOGIN)){
-            startActivity(new Intent(this, LoginActivity.class));
-        }else{
-            startActivity(new Intent(this, MainActivity.class));
-        }
-
+    finish();
+    if (!sPref.contains(Constants.LOGIN_USER_LOGIN)) {
+      startActivity(new Intent(this, LoginActivity.class));
+    } else {
+      startActivity(new Intent(this, MainActivity.class));
     }
+  }
 }

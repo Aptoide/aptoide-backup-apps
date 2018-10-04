@@ -13,36 +13,31 @@ import java.net.URL;
  */
 public abstract class DownloadConnection {
 
+  protected URL mURL;
 
+  protected DownloadConnection(URL url) {
+    this.mURL = url;
+  }
 
-    protected URL mURL;
+  public String getFileName() {
+    String fileName = this.mURL.getFile();
+    return fileName.substring(fileName.lastIndexOf('/') + 1);
+  }
 
+  public URL getURL() {
+    return this.mURL;
+  }
 
-    protected DownloadConnection(URL url)
-    {
-        this.mURL = url;
-    }
+  public abstract long connect(long downloaded)
+      throws IOException, CompletedDownloadException, NotFoundException, IPBlackListedException;
 
-    public String getFileName()
-    {
-        String fileName = this.mURL.getFile();
-        return fileName.substring(fileName.lastIndexOf('/') + 1);
-    }
+  public abstract long getSize() throws IOException;
 
-    public URL getURL()
-    {
-        return this.mURL;
-    }
+  public abstract void close();
 
-    public abstract long connect(long downloaded) throws IOException, CompletedDownloadException, NotFoundException, IPBlackListedException;
+  public abstract BufferedInputStream getStream();
 
-    public abstract long getSize() throws IOException;
-
-    public abstract void close();
-
-
-    public abstract BufferedInputStream getStream() ;
-    public abstract long getShallowSize() throws IOException;
+  public abstract long getShallowSize() throws IOException;
 }
 
 

@@ -8,11 +8,11 @@ package pt.aptoide.backupapps.download;
  * To change this template use File | Settings | File Templates.
  */
 public interface ManagerThread {
-    long getmDownloadedSize();
+  long getmDownloadedSize();
 
-    long getmProgress();
+  long getmProgress();
 
-    long getmFullSize();
+  long getmFullSize();
 
-    long getmRemainingSize();
+  long getmRemainingSize();
 }

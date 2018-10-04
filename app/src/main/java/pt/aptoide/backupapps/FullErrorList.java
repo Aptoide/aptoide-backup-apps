@@ -1,7 +1,6 @@
 package pt.aptoide.backupapps;
 
 import java.util.HashMap;
-
 import pt.aptoide.backupapps.download.state.EnumUploadFailReason;
 
 /**
@@ -71,73 +70,74 @@ public class FullErrorList {
         OBB-103	"OBB main file package mismatch"	An OBB file of a specific package was received when one equal to the apk package was expected
         */
 
-    public static HashMap<String, EnumUploadFailReason> values = new HashMap<String, EnumUploadFailReason>();
+  public static HashMap<String, EnumUploadFailReason> values =
+      new HashMap<String, EnumUploadFailReason>();
 
-    static {
-        values.put("AUTH-4", EnumUploadFailReason.HMAC_AUTHENTICATION_FAILURE);
-        values.put("MARG-5", EnumUploadFailReason.MISSING_APK);
-        values.put("MARG-3", EnumUploadFailReason.BAD_APK_UPLOAD);
-        values.put("MARG-5", EnumUploadFailReason.MISSING_APK);
-        values.put("MARG-100", EnumUploadFailReason.MISSING_APK_NAME);
-        values.put("MARG-101", EnumUploadFailReason.MISSING_DESCRIPTION);
-        values.put("MARG-102", EnumUploadFailReason.MISSING_CATEGORY);
-        values.put("MARG-103", EnumUploadFailReason.MISSING_RATING);
-        values.put("IARG-1", EnumUploadFailReason.BAD_REPO);
-        values.put("IARG-2", EnumUploadFailReason.BAD_TOKEN);
-        values.put("IARG-103", EnumUploadFailReason.BAD_CATEGORY);
-        values.put("IARG-104", EnumUploadFailReason.BAD_RATING);
-        values.put("IARG-105", EnumUploadFailReason.BAD_WEBSITE);
-        values.put("IARG-106", EnumUploadFailReason.BAD_EMAIL);
-        values.put("IARG-202", EnumUploadFailReason.UPLOAD_FROM_INVALID);
-        values.put("IARG-300", EnumUploadFailReason.BAD_USER_CATEGORY);
-        values.put("APK-101", EnumUploadFailReason.APK_BLACKLISTED);
-        values.put("APK-102", EnumUploadFailReason.APK_INFECTED_WITH_VIRUS);
-        values.put("APK-103", EnumUploadFailReason.APK_DUPLICATE);
-        values.put("FILE-1", EnumUploadFailReason.APK_EMPTY);
-        values.put("FILE-2", EnumUploadFailReason.APK_MAXIMUM_SIZE);
-        values.put("FILE-3", EnumUploadFailReason.BAD_APK_UPLOAD);
-        values.put("FILE-4", EnumUploadFailReason.BAD_APK_UPLOAD);
-        values.put("FILE-5", EnumUploadFailReason.BAD_APK_UPLOAD);
-        values.put("FILE-100", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-101", EnumUploadFailReason.SERVER_ERROR);
-        values.put("FILE-102", EnumUploadFailReason.SERVER_ERROR_SCREENSHOTS_UPLOAD);
-        values.put("FILE-200", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-201", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-202", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-203", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-204", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-205", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-206", EnumUploadFailReason.BAD_APK);
-        values.put("FILE-300", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
-        values.put("FILE-301", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
-        values.put("FILE-302", EnumUploadFailReason.OBB_MAIN_FILE_EXCEEDS_MAXIMUM_SIZE);
-        values.put("FILE-303", EnumUploadFailReason.OBB_PATCH_FILE_EXCEEDS_MAXIMUM_SIZE);
-        values.put("FILE-304", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
-        values.put("FILE-305", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
-        values.put("FILE-306", EnumUploadFailReason.INVALID_OBB_MAIN_NAME);
-        values.put("FILE-307", EnumUploadFailReason.INVALID_OBB_PATCH_NAME);
-        values.put("FILE-308", EnumUploadFailReason.OBB_MAIN_FILE_TRANSFER_STOPPED);
-        values.put("FILE-309", EnumUploadFailReason.OBB_PATCH_FILE_TRANSFER_STOPPED);
-        values.put("FILE-310", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
-        values.put("FILE-311", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
-        values.put("FILE-312", EnumUploadFailReason.OBB_MAIN_FILE_TRANSFER_FAILED);
-        values.put("FILE-313", EnumUploadFailReason.OBB_PATCH_FILE_TRANSFER_FAILED);
-        values.put("FILE-314", EnumUploadFailReason.OBB_MAIN_FILE_PROCESSING_PROBLEM);
-        values.put("FILE-315", EnumUploadFailReason.OBB_PATCH_FILE_PROCESSING_PROBLEM);
-        values.put("FILE-316", EnumUploadFailReason.PATCH_OBB_FILE_WITHOUT_MAIN_OBB);
-//    values.put( "OBB-1",OBBmainMD5NOTexistent!
-//    values.put( "OBB-2",OBBpatchMD5NOTexistent!
-        values.put("OBB-3", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
-        values.put("OBB-4", EnumUploadFailReason.INVALID_OBB_MAIN_NAME);
-        values.put("OBB-5", EnumUploadFailReason.INVALID_OBB_PATCH_NAME);
-        values.put("OBB-101", EnumUploadFailReason.OBB_MAIN_FILE_TYPE_MISMATCH);
-        values.put("OBB-102", EnumUploadFailReason.OBB_MAIN_FILE_VERSION_MISMATCH);
-        values.put("OBB-103", EnumUploadFailReason.OBB_MAIN_FILE_PACKAGE_MISMATCH);
+  static {
+    values.put("AUTH-4", EnumUploadFailReason.HMAC_AUTHENTICATION_FAILURE);
+    values.put("MARG-5", EnumUploadFailReason.MISSING_APK);
+    values.put("MARG-3", EnumUploadFailReason.BAD_APK_UPLOAD);
+    values.put("MARG-5", EnumUploadFailReason.MISSING_APK);
+    values.put("MARG-100", EnumUploadFailReason.MISSING_APK_NAME);
+    values.put("MARG-101", EnumUploadFailReason.MISSING_DESCRIPTION);
+    values.put("MARG-102", EnumUploadFailReason.MISSING_CATEGORY);
+    values.put("MARG-103", EnumUploadFailReason.MISSING_RATING);
+    values.put("IARG-1", EnumUploadFailReason.BAD_REPO);
+    values.put("IARG-2", EnumUploadFailReason.BAD_TOKEN);
+    values.put("IARG-103", EnumUploadFailReason.BAD_CATEGORY);
+    values.put("IARG-104", EnumUploadFailReason.BAD_RATING);
+    values.put("IARG-105", EnumUploadFailReason.BAD_WEBSITE);
+    values.put("IARG-106", EnumUploadFailReason.BAD_EMAIL);
+    values.put("IARG-202", EnumUploadFailReason.UPLOAD_FROM_INVALID);
+    values.put("IARG-300", EnumUploadFailReason.BAD_USER_CATEGORY);
+    values.put("APK-101", EnumUploadFailReason.APK_BLACKLISTED);
+    values.put("APK-102", EnumUploadFailReason.APK_INFECTED_WITH_VIRUS);
+    values.put("APK-103", EnumUploadFailReason.APK_DUPLICATE);
+    values.put("FILE-1", EnumUploadFailReason.APK_EMPTY);
+    values.put("FILE-2", EnumUploadFailReason.APK_MAXIMUM_SIZE);
+    values.put("FILE-3", EnumUploadFailReason.BAD_APK_UPLOAD);
+    values.put("FILE-4", EnumUploadFailReason.BAD_APK_UPLOAD);
+    values.put("FILE-5", EnumUploadFailReason.BAD_APK_UPLOAD);
+    values.put("FILE-100", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-101", EnumUploadFailReason.SERVER_ERROR);
+    values.put("FILE-102", EnumUploadFailReason.SERVER_ERROR_SCREENSHOTS_UPLOAD);
+    values.put("FILE-200", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-201", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-202", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-203", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-204", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-205", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-206", EnumUploadFailReason.BAD_APK);
+    values.put("FILE-300", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
+    values.put("FILE-301", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
+    values.put("FILE-302", EnumUploadFailReason.OBB_MAIN_FILE_EXCEEDS_MAXIMUM_SIZE);
+    values.put("FILE-303", EnumUploadFailReason.OBB_PATCH_FILE_EXCEEDS_MAXIMUM_SIZE);
+    values.put("FILE-304", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
+    values.put("FILE-305", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
+    values.put("FILE-306", EnumUploadFailReason.INVALID_OBB_MAIN_NAME);
+    values.put("FILE-307", EnumUploadFailReason.INVALID_OBB_PATCH_NAME);
+    values.put("FILE-308", EnumUploadFailReason.OBB_MAIN_FILE_TRANSFER_STOPPED);
+    values.put("FILE-309", EnumUploadFailReason.OBB_PATCH_FILE_TRANSFER_STOPPED);
+    values.put("FILE-310", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
+    values.put("FILE-311", EnumUploadFailReason.EMPTY_OBB_PATCH_FILE);
+    values.put("FILE-312", EnumUploadFailReason.OBB_MAIN_FILE_TRANSFER_FAILED);
+    values.put("FILE-313", EnumUploadFailReason.OBB_PATCH_FILE_TRANSFER_FAILED);
+    values.put("FILE-314", EnumUploadFailReason.OBB_MAIN_FILE_PROCESSING_PROBLEM);
+    values.put("FILE-315", EnumUploadFailReason.OBB_PATCH_FILE_PROCESSING_PROBLEM);
+    values.put("FILE-316", EnumUploadFailReason.PATCH_OBB_FILE_WITHOUT_MAIN_OBB);
+    //    values.put( "OBB-1",OBBmainMD5NOTexistent!
+    //    values.put( "OBB-2",OBBpatchMD5NOTexistent!
+    values.put("OBB-3", EnumUploadFailReason.EMPTY_OBB_MAIN_FILE);
+    values.put("OBB-4", EnumUploadFailReason.INVALID_OBB_MAIN_NAME);
+    values.put("OBB-5", EnumUploadFailReason.INVALID_OBB_PATCH_NAME);
+    values.put("OBB-101", EnumUploadFailReason.OBB_MAIN_FILE_TYPE_MISMATCH);
+    values.put("OBB-102", EnumUploadFailReason.OBB_MAIN_FILE_VERSION_MISMATCH);
+    values.put("OBB-103", EnumUploadFailReason.OBB_MAIN_FILE_PACKAGE_MISMATCH);
 
-        // Operation "Clean Fakes"
-        values.put("APK-107", EnumUploadFailReason.ANTI_SPAM_RULE);
-        values.put("APK-108", EnumUploadFailReason.INVALID_APK_ORIGIN);
-        values.put("APK-109", EnumUploadFailReason.INVALID_APK_DATA);
-        values.put("REPO-8", EnumUploadFailReason.INVALID_ORIGIN_FOR_SIGNUP);
-    }
+    // Operation "Clean Fakes"
+    values.put("APK-107", EnumUploadFailReason.ANTI_SPAM_RULE);
+    values.put("APK-108", EnumUploadFailReason.INVALID_APK_ORIGIN);
+    values.put("APK-109", EnumUploadFailReason.INVALID_APK_DATA);
+    values.put("REPO-8", EnumUploadFailReason.INVALID_ORIGIN_FOR_SIGNUP);
+  }
 }

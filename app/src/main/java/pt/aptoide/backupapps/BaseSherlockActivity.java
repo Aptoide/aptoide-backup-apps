@@ -1,9 +1,6 @@
 package pt.aptoide.backupapps;
 
-import android.os.Bundle;
-
 import com.actionbarsherlock.app.SherlockActivity;
-
 import pt.aptoide.backupapps.analytics.Analytics;
 
 /**
@@ -11,15 +8,13 @@ import pt.aptoide.backupapps.analytics.Analytics;
  */
 public class BaseSherlockActivity extends SherlockActivity {
 
-	@Override
-	protected void onPause() {
-		Analytics.Lifecycle.Activity.onPause(this);
-		super.onPause();
-	}
+  @Override protected void onPause() {
+    Analytics.Lifecycle.Activity.onPause(this);
+    super.onPause();
+  }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		Analytics.Lifecycle.Activity.onResume(this);
-	}
+  @Override protected void onResume() {
+    super.onResume();
+    Analytics.Lifecycle.Activity.onResume(this);
+  }
 }

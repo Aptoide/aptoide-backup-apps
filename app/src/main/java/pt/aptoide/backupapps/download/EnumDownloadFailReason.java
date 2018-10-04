@@ -16,13 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 package pt.aptoide.backupapps.download;
 
 import android.content.Context;
 import pt.aptoide.backupapps.R;
-
 
 /**
  * EnumDownloadFailReason, typeSafes Downloads fail reasons when status equals FAIL in Aptoide
@@ -31,32 +30,26 @@ import pt.aptoide.backupapps.R;
  *
  */
 public enum EnumDownloadFailReason {
-	NO_REASON,
-	TIMEOUT,
-	IP_BLACKLISTED,
-	CONNECTION_ERROR,
-	NOT_FOUND,
-	MD5_CHECK_FAILED,
-    PAIDAPP_NOTFOUND;
+  NO_REASON, TIMEOUT, IP_BLACKLISTED, CONNECTION_ERROR, NOT_FOUND, MD5_CHECK_FAILED, PAIDAPP_NOTFOUND;
 
-	public static EnumDownloadFailReason reverseOrdinal(int ordinal){
-		return values()[ordinal];
-	}
+  public static EnumDownloadFailReason reverseOrdinal(int ordinal) {
+    return values()[ordinal];
+  }
 
-	public String toString(Context context) {
-		switch (this) {
-			case TIMEOUT:
-				return context.getString(R.string.download_failed_short_timeou);
-			case IP_BLACKLISTED:
-				return context.getString(R.string.download_failed_short_blacklisted_ip);
-			case CONNECTION_ERROR:
-				return context.getString(R.string.download_failed_short_connection_error);
-			case NOT_FOUND:
-				return context.getString(R.string.download_failed_short_apk_not_found);
-			case MD5_CHECK_FAILED:
-				return context.getString(R.string.upload_fail_short_invalid_apk);
-			default:
-				return context.getString(R.string.server_connection_short_server_error);
-		}
-	}
+  public String toString(Context context) {
+    switch (this) {
+      case TIMEOUT:
+        return context.getString(R.string.download_failed_short_timeou);
+      case IP_BLACKLISTED:
+        return context.getString(R.string.download_failed_short_blacklisted_ip);
+      case CONNECTION_ERROR:
+        return context.getString(R.string.download_failed_short_connection_error);
+      case NOT_FOUND:
+        return context.getString(R.string.download_failed_short_apk_not_found);
+      case MD5_CHECK_FAILED:
+        return context.getString(R.string.upload_fail_short_invalid_apk);
+      default:
+        return context.getString(R.string.server_connection_short_server_error);
+    }
+  }
 }

@@ -1,9 +1,8 @@
 package pt.aptoide.backupapps;
 
-import pt.aptoide.backupapps.util.Algorithms;
-
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import pt.aptoide.backupapps.util.Algorithms;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,155 +13,148 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Login {
 
-    private boolean fromAccountManager = false;
+  private boolean fromAccountManager = false;
+  private String username;
+  private String password;
+  private String repo;
 
-    public void setFromAccountManager(boolean fromAccountManager) {
-        this.fromAccountManager = fromAccountManager;
+  ;
+  private boolean isPrivateRepo;
+  private String privateRepoUsername;
+  private String privateRepoPassword;
+  private boolean fromSignUp;
+  private boolean fromUpdate = false;
+  private LoginMode loginMode;
+  private String oAuthAccessToken;
+  private String oAuthMode;
+  private String oAuthUsername;
+
+  public Login(String username, String password, boolean fromSignUp) {
+    this.username = username;
+    this.password = password;
+    this.fromSignUp = fromSignUp;
+    setLoginMode(LoginMode.REGULAR);
+  }
+  public Login(String username, String oAuthAccessToken, String oAuthMode) {
+    this.username = username;
+    this.oAuthAccessToken = oAuthAccessToken;
+    this.oAuthMode = oAuthMode;
+    setLoginMode(LoginMode.FACEBOOK_OAUTH);
+  }
+  public Login(String username, String oAuthAccessToken, String oAuthMode, String oAuthUsername) {
+    this.username = username;
+    this.oAuthAccessToken = oAuthAccessToken;
+    this.oAuthMode = oAuthMode;
+    this.oAuthUsername = oAuthUsername;
+    setLoginMode(LoginMode.GOOGLE_OAUTH);
+  }
+
+  public Login() {
+    this("", "", false);
+  }
+
+  public boolean isFromAccountManager() {
+    return fromAccountManager;
+  }
+
+  public void setFromAccountManager(boolean fromAccountManager) {
+    this.fromAccountManager = fromAccountManager;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getPasswordSha1() {
+
+    if (fromUpdate) {
+      return password;
     }
 
-    public boolean isFromAccountManager() {
-        return fromAccountManager;
+    try {
+      return Algorithms.computeSHA1sum(getPassword());
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
     }
+    return "";
+  }
 
-    public enum LoginMode {
-        REGULAR, FACEBOOK_OAUTH, GOOGLE_OAUTH
-    };
+  public void setRepo(String repo, boolean privateRepo) {
+    this.repo = repo;
+    this.isPrivateRepo = privateRepo;
+  }
 
-    private String username;
-    private String password;
+  public String getRepo() {
+    return repo;
+  }
 
-    private String repo;
-    private boolean isPrivateRepo;
-    private String privateRepoUsername;
-    private String privateRepoPassword;
+  public void setRepo(String repo) {
+    this.repo = repo;
+  }
 
-    private boolean fromSignUp;
-    private boolean fromUpdate = false;
+  public boolean isRepoPrivate() {
+    return isPrivateRepo;
+  }
 
-    private LoginMode loginMode;
+  public LoginMode getLoginMode() {
+    return loginMode;
+  }
 
-    private String oAuthAccessToken;
-    private String oAuthMode;
-    private String oAuthUsername;
+  public void setLoginMode(LoginMode loginMode) {
+    this.loginMode = loginMode;
+  }
 
-    public Login(String username, String password, boolean fromSignUp) {
-        this.username = username;
-        this.password = password;
-        this.fromSignUp = fromSignUp;
-        setLoginMode(LoginMode.REGULAR);
-    }
+  public String getoAuthAccessToken() {
+    return oAuthAccessToken;
+  }
 
-    public Login(String username, String oAuthAccessToken, String oAuthMode) {
-        this.username = username;
-        this.oAuthAccessToken = oAuthAccessToken;
-        this.oAuthMode = oAuthMode;
-        setLoginMode(LoginMode.FACEBOOK_OAUTH);
-    }
+  public String getoAuthMode() {
+    return oAuthMode;
+  }
 
-    public Login(String username, String oAuthAccessToken, String oAuthMode, String oAuthUsername) {
-        this.username = username;
-        this.oAuthAccessToken = oAuthAccessToken;
-        this.oAuthMode = oAuthMode;
-        this.oAuthUsername = oAuthUsername;
-        setLoginMode(LoginMode.GOOGLE_OAUTH);
-    }
+  public String getoAuthUsername() {
+    return oAuthUsername;
+  }
 
-    public Login() {
-        this("","", false);
-    }
+  public boolean isFromSignUp() {
+    return fromSignUp;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public void setFromSignUp(boolean fromSignup) {
+    this.fromSignUp = fromSignup;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setFromUpdate(boolean fromUpdate) {
+    this.fromUpdate = fromUpdate;
+  }
 
-    public String getPasswordSha1() {
+  public boolean isUpdate() {
+    return fromUpdate;
+  }
 
-        if(fromUpdate){
-            return password;
-        }
+  public String getPrivateRepoUsername() {
+    return privateRepoUsername;
+  }
 
-        try {
-            return Algorithms.computeSHA1sum(getPassword());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+  public void setPrivateRepoUsername(String privateRepoUsername) {
+    this.privateRepoUsername = privateRepoUsername;
+  }
 
-    public void setRepo(String repo, boolean privateRepo) {
-        this.repo = repo;
-        this.isPrivateRepo = privateRepo;
-    }
+  public String getPrivateRepoPassword() {
+    return privateRepoPassword;
+  }
 
-    public void setRepo(String repo) {
-        this.repo = repo;
-    }
+  public void setPrivateRepoPassword(String privateRepoPassword) {
+    this.privateRepoPassword = privateRepoPassword;
+  }
 
-    public String getRepo() {
-        return repo;
-    }
-
-    public boolean isRepoPrivate() {
-        return isPrivateRepo;
-    }
-
-    public LoginMode getLoginMode() {
-        return loginMode;
-    }
-
-
-    public String getoAuthAccessToken() {
-        return oAuthAccessToken;
-    }
-
-    public String getoAuthMode() {
-        return oAuthMode;
-    }
-
-    public String getoAuthUsername() {
-        return oAuthUsername;
-    }
-
-    public void setLoginMode(LoginMode loginMode) {
-        this.loginMode = loginMode;
-    }
-
-    public boolean isFromSignUp() {
-        return fromSignUp;
-    }
-
-    public void setFromSignUp(boolean fromSignup) {
-        this.fromSignUp = fromSignup;
-    }
-
-
-    public void setFromUpdate(boolean fromUpdate) {
-        this.fromUpdate = fromUpdate;
-    }
-
-    public boolean isUpdate() {
-        return fromUpdate;
-    }
-
-    public String getPrivateRepoUsername() {
-        return privateRepoUsername;
-    }
-
-    public void setPrivateRepoUsername(String privateRepoUsername) {
-        this.privateRepoUsername = privateRepoUsername;
-    }
-
-    public String getPrivateRepoPassword() {
-        return privateRepoPassword;
-    }
-
-    public void setPrivateRepoPassword(String privateRepoPassword) {
-        this.privateRepoPassword = privateRepoPassword;
-    }
+  public enum LoginMode {
+    REGULAR, FACEBOOK_OAUTH, GOOGLE_OAUTH
+  }
 }

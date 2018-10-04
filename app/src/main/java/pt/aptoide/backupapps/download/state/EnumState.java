@@ -8,5 +8,5 @@ package pt.aptoide.backupapps.download.state;
  * To change this template use File | Settings | File Templates.
  */
 public enum EnumState {
-    ACTIVE, INACTIVE, COMPLETE, NOSTATE, PENDING , ERROR
+  ACTIVE, INACTIVE, COMPLETE, NOSTATE, PENDING, ERROR
 }

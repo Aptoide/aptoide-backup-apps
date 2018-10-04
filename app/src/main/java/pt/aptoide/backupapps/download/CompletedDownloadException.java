@@ -9,13 +9,13 @@ package pt.aptoide.backupapps.download;
  */
 public class CompletedDownloadException extends Throwable {
 
-    public CompletedDownloadException(long mSize) {
-        this.mSize = mSize;
-    }
+  private long mSize;
 
-    private long mSize;
+  public CompletedDownloadException(long mSize) {
+    this.mSize = mSize;
+  }
 
-    public long getSize() {
-        return mSize;
-    }
+  public long getSize() {
+    return mSize;
+  }
 }

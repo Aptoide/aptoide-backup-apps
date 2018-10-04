@@ -7,11 +7,11 @@ import java.util.ArrayList;
  */
 public class ArrayListNotNull<E> extends ArrayList<E> {
 
-	public ArrayListNotNull(ArrayList<E> arrayList) {
-		for (E e : arrayList) {
-			if (e != null) {
-				add(e);
-			}
-		}
-	}
+  public ArrayListNotNull(ArrayList<E> arrayList) {
+    for (E e : arrayList) {
+      if (e != null) {
+        add(e);
+      }
+    }
+  }
 }

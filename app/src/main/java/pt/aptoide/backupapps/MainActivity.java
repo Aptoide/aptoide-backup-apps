@@ -360,6 +360,31 @@ public class MainActivity extends BaseSherlockFragmentActivity
     });
   }
 
+  @Override public void onPause() {
+    super.onPause();
+    if (Build.VERSION.SDK_INT >= 8) {
+      uiLifecycleHelper.onPause();
+    }
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    if (Build.VERSION.SDK_INT >= 8) {
+      uiLifecycleHelper.onResume();
+    }
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    BusProvider.getInstance()
+        .unregister(this);
+
+    if (Build.VERSION.SDK_INT >= 8) {
+      uiLifecycleHelper.onDestroy();
+    }
+    unbindService(conn);
+  }
+
   @Override public void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     if (Build.VERSION.SDK_INT >= 8) {
@@ -398,31 +423,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
     }
 
     return super.onPrepareOptionsMenu(menu);
-  }
-
-  @Override public void onPause() {
-    super.onPause();
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onPause();
-    }
-  }
-
-  @Override public void onResume() {
-    super.onResume();
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onResume();
-    }
-  }
-
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    BusProvider.getInstance()
-        .unregister(this);
-
-    if (Build.VERSION.SDK_INT >= 8) {
-      uiLifecycleHelper.onDestroy();
-    }
-    unbindService(conn);
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {

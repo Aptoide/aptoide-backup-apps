@@ -9,7 +9,7 @@ package pt.aptoide.backupapps;
  */
 public class ParseServerEvent {
 
-    public ParseServerEvent(String who){
+  public ParseServerEvent(String who) {
 
-    }
+  }
 }

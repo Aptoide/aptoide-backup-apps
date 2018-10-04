@@ -2,6 +2,9 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/submit_app_button" android:id="@+id/submit" android:showAsAction="always|withText"/>
+  <item
+      android:id="@+id/submit"
+      android:showAsAction="always|withText"
+      android:title="@string/submit_app_button"/>
 
 </menu>

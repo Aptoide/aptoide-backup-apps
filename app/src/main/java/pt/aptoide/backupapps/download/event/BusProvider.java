@@ -11,38 +11,33 @@ import com.squareup.otto.Bus;
  * Time: 11:48
  * To change this template use File | Settings | File Templates.
  */
-public class BusProvider extends Bus{
+public class BusProvider extends Bus {
 
-    private static final BusProvider BUS = new BusProvider();
+  private static final BusProvider BUS = new BusProvider();
+  private final Handler mainThread = new Handler(Looper.getMainLooper());
 
-    public static BusProvider getInstance() {
-        return BUS;
-    }
+  private BusProvider() {
+    // No instances.
+  }
 
-    private BusProvider() {
-        // No instances.
-    }
+  public static BusProvider getInstance() {
+    return BUS;
+  }
 
-    private final Handler mainThread = new Handler(Looper.getMainLooper());
+  @Override public void post(final Object event) {
 
-    @Override
-    public void post(final Object event) {
-
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            super.post(event);
-        } else {
-            mainThread.post(new Runnable() {
-                @Override
-                public void run() {
-                    post(event);
-                }
-            });
+    if (Looper.myLooper() == Looper.getMainLooper()) {
+      super.post(event);
+    } else {
+      mainThread.post(new Runnable() {
+        @Override public void run() {
+          post(event);
         }
+      });
     }
+  }
 
-    public void nativePost(final Object event){
-        super.post(event);
-    }
-
-
+  public void nativePost(final Object event) {
+    super.post(event);
+  }
 }

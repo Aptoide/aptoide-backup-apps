@@ -9,6 +9,5 @@ package pt.aptoide.backupapps.download;
  */
 public interface ActivityCallback {
 
-    void update();
-
+  void update();
 }

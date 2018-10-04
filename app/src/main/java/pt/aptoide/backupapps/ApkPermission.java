@@ -8,19 +8,19 @@ package pt.aptoide.backupapps;
  * To change this template use File | Settings | File Templates.
  */
 public class ApkPermission {
-    private final String description;
-    private final String permission;
+  private final String description;
+  private final String permission;
 
-    public ApkPermission(String permission, String description) {
-        this.description = description;
-        this.permission = permission;
-    }
+  public ApkPermission(String permission, String description) {
+    this.description = description;
+    this.permission = permission;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getPermission() {
-        return permission;
-    }
+  public String getPermission() {
+    return permission;
+  }
 }

@@ -9,16 +9,14 @@ package pt.aptoide.backupapps;
  */
 public class BackedUpRefreshEvent {
 
+  private final EnumSortBy sort;
 
-    private final EnumSortBy sort;
+  public BackedUpRefreshEvent(EnumSortBy sort) {
 
-    public BackedUpRefreshEvent(EnumSortBy sort){
+    this.sort = sort;
+  }
 
-        this.sort = sort;
-
-    }
-
-    public EnumSortBy getSort() {
-        return sort;
-    }
+  public EnumSortBy getSort() {
+    return sort;
+  }
 }

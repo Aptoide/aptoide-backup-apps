@@ -17,80 +17,80 @@ apply plugin: 'io.fabric'
 
 
 android {
-    signingConfigs {
-        release {
-            storeFile = file(project.STORE_FILE_BACKUP_UPLOADER)
-            storePassword = project.STORE_PASSWORD_BACKUP_UPLOADER
-            keyAlias = project.KEY_ALIAS_BACKUP
-            keyPassword = project.KEY_PASSWORD_BACKUP
-//            v2SigningEnabled = false
-        }
+  signingConfigs {
+    release {
+      storeFile = file(project.STORE_FILE_BACKUP_UPLOADER)
+      storePassword = project.STORE_PASSWORD_BACKUP_UPLOADER
+      keyAlias = project.KEY_ALIAS_BACKUP
+      keyPassword = project.KEY_PASSWORD_BACKUP
+      //            v2SigningEnabled = false
+    }
+  }
+
+  compileSdkVersion 15
+  buildToolsVersion "23.0.3"
+
+  defaultConfig {
+    applicationId "pt.aptoide.backupapps"
+    minSdkVersion 9
+    targetSdkVersion 15
+    versionCode project.VERSION_CODE_BACKUP.toInteger()
+    versionName "2.3.0"
+
+    manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
+                            fabricApiKey      : project.FABRIC_API_KEY]
+
+    resValue "string", "facebook_app_id", "\"" + project.FACEBOOK_APP_ID_BACKUP + "\""
+
+    // OAuth server id for Google Plus Sign In
+    buildConfigField "String", "GOOGLE_OAUTH_SERVER_ID", "\"" + project.GMS_SERVER_ID + "\""
+  }
+
+  buildTypes {
+
+    debug {
+      applicationIdSuffix '.debug'
     }
 
-    compileSdkVersion 15
-    buildToolsVersion "23.0.3"
-
-    defaultConfig {
-        applicationId "pt.aptoide.backupapps"
-        minSdkVersion 9
-        targetSdkVersion 15
-        versionCode project.VERSION_CODE_BACKUP.toInteger()
-        versionName "2.3.0"
-
-        manifestPlaceholders = [LOCALYTICS_APP_KEY: project.LOCALYTICS_RELEASE_KEY_BACKUP,
-                                fabricApiKey      : project.FABRIC_API_KEY]
-
-        resValue "string", "facebook_app_id", "\"" + project.FACEBOOK_APP_ID_BACKUP + "\""
-
-        // OAuth server id for Google Plus Sign In
-        buildConfigField "String", "GOOGLE_OAUTH_SERVER_ID", "\"" + project.GMS_SERVER_ID + "\""
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+      signingConfig signingConfigs.release
     }
+  }
 
-    buildTypes {
+  lintOptions {
+    // Lots of issues with the project..
+    abortOnError false
+  }
 
-        debug {
-            applicationIdSuffix '.debug'
-        }
+  applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+      def project = "backup"
+      def SEP = "_"
+      def buildType = variant.variantData.variantConfiguration.buildType.name
+      def versionName = variant.versionName
+      def versionCode = variant.versionCode
 
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.release
-        }
+      def newApkName = project + SEP + buildType + SEP + versionName + SEP + versionCode + ".apk"
+
+      output.outputFile = new File(output.outputFile.parent, newApkName)
     }
-
-    lintOptions {
-        // Lots of issues with the project..
-        abortOnError false
-    }
-
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def project = "backup"
-            def SEP = "_"
-            def buildType = variant.variantData.variantConfiguration.buildType.name
-            def versionName = variant.versionName
-            def versionCode = variant.versionCode
-
-            def newApkName = project + SEP + buildType + SEP + versionName + SEP + versionCode + ".apk"
-
-            output.outputFile = new File(output.outputFile.parent, newApkName)
-        }
-    }
+  }
 }
 
 dependencies {
-    compile 'com.squareup:otto:1.3.8'
-//    compile 'com.facebook.android:facebook-android-sdk:4.5.+'
-    compile 'com.facebook.android:facebook-android-sdk:3.+'
-    compile 'com.google.android.gms:play-services:5.0.89'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.8.6'
-    compile project(':actionbarsherlock')
-    compile project(':MultiChoiceAdapter')
-    compile project(':ViewPagerIndicator')
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
-        transitive = true;
-    }
-    compile files('libs/localytics.jar')
+  compile 'com.squareup:otto:1.3.8'
+  //    compile 'com.facebook.android:facebook-android-sdk:4.5.+'
+  compile 'com.facebook.android:facebook-android-sdk:3.+'
+  compile 'com.google.android.gms:play-services:5.0.89'
+  compile 'com.nostra13.universalimageloader:universal-image-loader:1.8.6'
+  compile project(':actionbarsherlock')
+  compile project(':MultiChoiceAdapter')
+  compile project(':ViewPagerIndicator')
+  compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+    transitive = true;
+  }
+  compile files('libs/localytics.jar')
 }
 

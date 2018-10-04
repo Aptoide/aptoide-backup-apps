@@ -1,78 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
-    <EditText
-            android:id="@+id/repository"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:hint="@string/signup_title_store"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:textSize="18sp" />
+  <EditText
+      android:id="@+id/repository"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_margin="5dp"
+      android:layout_weight="1"
+      android:hint="@string/signup_title_store"
+      android:padding="5dp"
+      android:singleLine="true"
+      android:textSize="18sp"
+      />
 
-    <TextView
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="2dp"
+      android:layout_weight="1"
+      android:text="@string/signup_title_store_privacy"
+      android:textSize="15sp"
+      />
+
+  <RadioGroup
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_marginLeft="10dp"
+      android:layout_weight="1"
+      android:orientation="horizontal"
+      >
+
+    <RadioButton
+        android:id="@+id/public_store"
         android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:text="@string/signup_title_store_privacy"
-            android:textSize="15sp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:checked="true"
+        android:text="@string/store_creation_button_public_key"
+        />
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal" >
+    <RadioButton
+        android:id="@+id/private_store"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:checked="false"
+        android:text="@string/store_creation_button_private_key"
+        />
+  </RadioGroup>
 
-        <RadioButton
-                android:id="@+id/public_store"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:checked="true"
-                android:text="@string/store_creation_button_public_key"/>
+  <EditText
+      android:id="@+id/repo_username"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_margin="5dp"
+      android:layout_weight="1"
+      android:hint="@string/store_creation_short_store_username"
+      android:padding="5dp"
+      android:selectAllOnFocus="true"
+      android:singleLine="true"
+      android:textSize="18sp"
+      android:visibility="gone"
+      />
 
-        <RadioButton
-                android:id="@+id/private_store"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:checked="false"
-                android:text="@string/store_creation_button_private_key"/>
-    </RadioGroup>
-
-    <EditText
-            android:id="@+id/repo_username"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:hint="@string/store_creation_short_store_username"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:textSize="18sp"
-            android:selectAllOnFocus="true"
-            android:visibility="gone" />
-
-    <EditText
-            android:id="@+id/repo_password"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:hint="@string/store_creation_short_store_password"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:textSize="18sp"
-            android:visibility="gone" />
+  <EditText
+      android:id="@+id/repo_password"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_margin="5dp"
+      android:layout_weight="1"
+      android:hint="@string/store_creation_short_store_password"
+      android:padding="5dp"
+      android:singleLine="true"
+      android:textSize="18sp"
+      android:visibility="gone"
+      />
 
 </LinearLayout>

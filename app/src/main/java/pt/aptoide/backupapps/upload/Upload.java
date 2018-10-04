@@ -9,6 +9,4 @@ package pt.aptoide.backupapps.upload;
  */
 public class Upload {
 
-
-
 }

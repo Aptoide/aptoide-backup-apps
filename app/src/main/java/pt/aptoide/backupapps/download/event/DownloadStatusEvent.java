@@ -9,6 +9,4 @@ package pt.aptoide.backupapps.download.event;
  */
 public class DownloadStatusEvent {
 
-
-
 }

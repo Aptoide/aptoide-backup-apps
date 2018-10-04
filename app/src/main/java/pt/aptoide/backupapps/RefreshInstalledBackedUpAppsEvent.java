@@ -1,9 +1,7 @@
 package pt.aptoide.backupapps;
 
 import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,17 +11,16 @@ import java.util.Collection;
  * To change this template use File | Settings | File Templates.
  */
 public class RefreshInstalledBackedUpAppsEvent {
-    private ArrayList<Integer> installedBackedUpApps;
+  private ArrayList<Integer> installedBackedUpApps;
 
-    public RefreshInstalledBackedUpAppsEvent(ArrayList<Integer> installedBackedUpApps) {
-        this.installedBackedUpApps = installedBackedUpApps;
-    }
+  public RefreshInstalledBackedUpAppsEvent(ArrayList<Integer> installedBackedUpApps) {
+    this.installedBackedUpApps = installedBackedUpApps;
+  }
 
-    public ArrayList<Integer> getInstalledBackedUpApps() {
+  public ArrayList<Integer> getInstalledBackedUpApps() {
 
-        Log.d("TAG", installedBackedUpApps+"");
+    Log.d("TAG", installedBackedUpApps + "");
 
-        return installedBackedUpApps;
-    }
-
+    return installedBackedUpApps;
+  }
 }

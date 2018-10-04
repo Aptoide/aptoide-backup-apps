@@ -50,30 +50,6 @@ public class Manager extends BaseSherlockActivity {
   private TextView noDownloads;
   private FacebookAnalytics facebookAnalytics;
 
-  @Override public boolean onCreateOptionsMenu(Menu menu) {
-
-    getSupportMenuInflater().inflate(R.menu.manager, menu);
-
-    return super.onCreateOptionsMenu(
-        menu);    //To change body of overridden methods use File | Settings | File Templates.
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.clear_all:
-        DownloadManager.INSTANCE.mNotOngoingList.clear();
-        onDownloadEvent(null);
-        facebookAnalytics.sendManagerInteractEvent();
-        break;
-      case R.id.abs__home:
-      case android.R.id.home:
-        finish();
-        break;
-    }
-    return super.onOptionsItemSelected(
-        item);    //To change body of overridden methods use File | Settings | File Templates.
-  }
-
   @Subscribe public void onDownloadInfo(DownloadInfo info) {
 
     Log.d("TAG", DownloadManager.INSTANCE.mActiveList.size() + " active");
@@ -115,11 +91,6 @@ public class Manager extends BaseSherlockActivity {
     }
   }
 
-  @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    onDownloadEvent(null);
-  }
-
   @Subscribe public void onDownloadEvent(DownloadStatusEvent event) {
 
     inactiveList.clear();
@@ -148,6 +119,30 @@ public class Manager extends BaseSherlockActivity {
     super.onDestroy();
     BusProvider.getInstance()
         .unregister(this);
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+
+    getSupportMenuInflater().inflate(R.menu.manager, menu);
+
+    return super.onCreateOptionsMenu(
+        menu);    //To change body of overridden methods use File | Settings | File Templates.
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.clear_all:
+        DownloadManager.INSTANCE.mNotOngoingList.clear();
+        onDownloadEvent(null);
+        facebookAnalytics.sendManagerInteractEvent();
+        break;
+      case R.id.abs__home:
+      case android.R.id.home:
+        finish();
+        break;
+    }
+    return super.onOptionsItemSelected(
+        item);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -289,5 +284,10 @@ public class Manager extends BaseSherlockActivity {
     });
 
     onDownloadInfo(null);
+  }
+
+  @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    onDownloadEvent(null);
   }
 }

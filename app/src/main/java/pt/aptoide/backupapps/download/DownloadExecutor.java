@@ -1,6 +1,5 @@
 package pt.aptoide.backupapps.download;
 
-
 import pt.aptoide.backupapps.model.Apk;
 
 /**
@@ -12,6 +11,5 @@ import pt.aptoide.backupapps.model.Apk;
  */
 public interface DownloadExecutor {
 
-    public void execute(String path, Apk apk);
-
+  public void execute(String path, Apk apk);
 }

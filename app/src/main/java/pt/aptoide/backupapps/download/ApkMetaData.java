@@ -9,84 +9,82 @@ package pt.aptoide.backupapps.download;
  */
 public class ApkMetaData {
 
-    private String name;
-    private String packageName;
+  private String name;
+  private String packageName;
+  private String description;
+  private long category = -1;
+  private EnumRating rating = EnumRating.NONE;
+  private String apk_phone;
+  private String apk_website;
+  private String apk_email;
 
-    public String getName() {
-        return name;
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public long getCategory() {
+    return category;
+  }
+
+  public void setCategory(long category) {
+    this.category = category;
+  }
+
+  public String getRating() {
+
+    if (rating.equals(EnumRating.NONE)) {
+      return null;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    return rating.ordinal() + "";
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setRating(EnumRating rating) {
+    this.rating = rating;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getApk_phone() {
+    return apk_phone;
+  }
 
-    public long getCategory() {
-        return category;
-    }
+  public void setApk_phone(String apk_phone) {
+    this.apk_phone = apk_phone;
+  }
 
-    public void setCategory(long category) {
-        this.category = category;
-    }
+  public String getApk_website() {
+    return apk_website;
+  }
 
-    public String getRating() {
+  public void setApk_website(String apk_website) {
+    this.apk_website = apk_website;
+  }
 
-        if(rating.equals(EnumRating.NONE)){
-           return null;
-        }
+  public String getApk_email() {
+    return apk_email;
+  }
 
-        return rating.ordinal()+"";
-    }
+  public void setApk_email(String apk_email) {
+    this.apk_email = apk_email;
+  }
 
-    public void setRating(EnumRating rating) {
-        this.rating = rating;
-    }
+  public String getPackageName() {
+    return packageName;
+  }
 
-    public String getApk_phone() {
-        return apk_phone;
-    }
-
-    public void setApk_phone(String apk_phone) {
-        this.apk_phone = apk_phone;
-    }
-
-    public String getApk_website() {
-        return apk_website;
-    }
-
-    public void setApk_website(String apk_website) {
-        this.apk_website = apk_website;
-    }
-
-    public String getApk_email() {
-        return apk_email;
-    }
-
-    public void setApk_email(String apk_email) {
-        this.apk_email = apk_email;
-    }
-
-    private String description;
-    private long category = -1;
-    private EnumRating rating = EnumRating.NONE;
-    private String apk_phone;
-    private String apk_website;
-    private String apk_email;
-
-
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
-    }
-
-    public String getPackageName() {
-        return packageName;
-    }
+  public void setPackageName(String packageName) {
+    this.packageName = packageName;
+  }
 }
 

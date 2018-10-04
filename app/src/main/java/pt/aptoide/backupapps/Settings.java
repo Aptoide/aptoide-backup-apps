@@ -54,7 +54,8 @@ public class Settings extends BaseSherlockPreferenceActivity {
       Preference preference = new Preference(this);
       preference.setOrder(-1);
       preference.setSelectable(false);
-      preference.setTitle(getString(R.string.settings_title_logged_as, sharedPreferences.getString(Constants.LOGIN_USER_LOGIN, "")));
+      preference.setTitle(getString(R.string.settings_title_logged_as,
+          sharedPreferences.getString(Constants.LOGIN_USER_LOGIN, "")));
       ((PreferenceCategory) findPreference("login_cat")).addPreference(preference);
     } else {
       findPreference("set_server_login").setTitle(R.string.settings_login_text);
@@ -81,7 +82,8 @@ public class Settings extends BaseSherlockPreferenceActivity {
                 String.valueOf(getBackupOnWimax()));
             return false;
           }
-        }); findPreference("set_server_login").setOnPreferenceClickListener(
+        });
+    findPreference("set_server_login").setOnPreferenceClickListener(
         new Preference.OnPreferenceClickListener() {
           @Override public boolean onPreferenceClick(Preference preference) {
             String prefTitle = findPreference("set_server_login").getTitle()
@@ -96,6 +98,23 @@ public class Settings extends BaseSherlockPreferenceActivity {
             return false;
           }
         });
+  }
+
+  @Override
+  public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+
+    if (preference.getKey()
+        .equals("set_server_login")) {
+      if (sharedPreferences.contains(Constants.LOGIN_USER_LOGIN)) {
+        new Logout(Settings.this).execute();
+      } else {
+        BusProvider.getInstance()
+            .post(new LoginMoveEvent());
+        finish();
+      }
+    }
+
+    return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
 
   @Override public boolean onMenuItemSelected(int featureId, MenuItem item) {
@@ -131,22 +150,5 @@ public class Settings extends BaseSherlockPreferenceActivity {
 
   private boolean getBackupOnWimax() {
     return ((CheckBoxPreference) findPreference("prefer_wimax")).isChecked();
-  }
-
-  @Override
-  public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-    if(preference.getKey().equals("set_server_login")){
-      if (sharedPreferences.contains(Constants.LOGIN_USER_LOGIN)) {
-        new Logout(Settings.this).execute();
-      }
-      else{
-        BusProvider.getInstance()
-            .post(new LoginMoveEvent());
-        finish();
-      }
-    }
-
-    return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
 }

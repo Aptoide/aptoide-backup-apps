@@ -15,67 +15,72 @@ import android.util.Log;
  * To change this template use File | Settings | File Templates.
  */
 public class UploadPermissions {
-    private static SharedPreferences sPref;
+  private static SharedPreferences sPref;
 
+  static public boolean isUploadPermited(Context context) {
+    sPref = PreferenceManager.getDefaultSharedPreferences(context);
 
+    ConnectivityManager connectivityState =
+        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    static public boolean isUploadPermited(Context context) {
-        sPref = PreferenceManager.getDefaultSharedPreferences(context);
+    boolean connectionAvailable = false;
 
-        ConnectivityManager connectivityState = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    if (isWiFi()) {
+      try {
 
-        boolean connectionAvailable = false;
-
-        if (isWiFi()) {
-            try {
-
-                connectionAvailable = connectivityState.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED;
-                Log.d("ManagerDownloads", "isPermittedConnectionAvailable wifi: " + connectionAvailable);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (isWiMax()) {
-            try {
-                connectionAvailable = connectionAvailable || connectivityState.getNetworkInfo(6).getState() == NetworkInfo.State.CONNECTED;
-                Log.d("ManagerDownloads", "isPermittedConnectionAvailable wimax: " + connectionAvailable);
-            } catch (Exception e) {
-            }
-        }
-        if (isMobile()) {
-            try {
-                connectionAvailable = connectionAvailable || connectivityState.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED;
-                Log.d("ManagerDownloads", "isPermittedConnectionAvailable mobile: " + connectionAvailable);
-            } catch (Exception e) {
-            }
-        }
-        if (isEthernet()) {
-            try {
-                connectionAvailable = connectionAvailable || connectivityState.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET).getState() == NetworkInfo.State.CONNECTED;
-                Log.d("ManagerDownloads", "isPermittedConnectionAvailable ethernet: " + connectionAvailable);
-            } catch (Exception e) {
-            }
-        }
-
-        Log.d("ManagerDownloads", "isPermittedConnectionAvailable: " + connectionAvailable);
-        return connectionAvailable;
-
-
+        connectionAvailable = connectivityState.getNetworkInfo(1)
+            .getState() == NetworkInfo.State.CONNECTED;
+        Log.d("ManagerDownloads", "isPermittedConnectionAvailable wifi: " + connectionAvailable);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    if (isWiMax()) {
+      try {
+        connectionAvailable = connectionAvailable
+            || connectivityState.getNetworkInfo(6)
+            .getState() == NetworkInfo.State.CONNECTED;
+        Log.d("ManagerDownloads", "isPermittedConnectionAvailable wimax: " + connectionAvailable);
+      } catch (Exception e) {
+      }
+    }
+    if (isMobile()) {
+      try {
+        connectionAvailable = connectionAvailable
+            || connectivityState.getNetworkInfo(0)
+            .getState() == NetworkInfo.State.CONNECTED;
+        Log.d("ManagerDownloads", "isPermittedConnectionAvailable mobile: " + connectionAvailable);
+      } catch (Exception e) {
+      }
+    }
+    if (isEthernet()) {
+      try {
+        connectionAvailable = connectionAvailable
+            || connectivityState.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET)
+            .getState() == NetworkInfo.State.CONNECTED;
+        Log.d("ManagerDownloads",
+            "isPermittedConnectionAvailable ethernet: " + connectionAvailable);
+      } catch (Exception e) {
+      }
     }
 
-    public static boolean isWiFi() {
-        return sPref.getBoolean("prefer_wifi", true);
-    }
+    Log.d("ManagerDownloads", "isPermittedConnectionAvailable: " + connectionAvailable);
+    return connectionAvailable;
+  }
 
-    public static boolean isEthernet() {
-        return sPref.getBoolean("prefer_ethernet", true);
-    }
+  public static boolean isWiFi() {
+    return sPref.getBoolean("prefer_wifi", true);
+  }
 
-    public static boolean isMobile() {
-        return sPref.getBoolean("prefer_mobile_data", true);
-    }
+  public static boolean isEthernet() {
+    return sPref.getBoolean("prefer_ethernet", true);
+  }
 
-    public static boolean isWiMax() {
-        return sPref.getBoolean("prefer_wimax", true);
-    }
+  public static boolean isMobile() {
+    return sPref.getBoolean("prefer_mobile_data", true);
+  }
+
+  public static boolean isWiMax() {
+    return sPref.getBoolean("prefer_wimax", true);
+  }
 }

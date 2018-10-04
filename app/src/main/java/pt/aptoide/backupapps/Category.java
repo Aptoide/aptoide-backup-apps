@@ -5,20 +5,19 @@ package pt.aptoide.backupapps;
  */
 public class Category {
 
-    private long id;
-    private String name;
+  private long id;
+  private String name;
 
-    public Category(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+  public Category(long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
-    public long getId() {
-        return id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+  @Override public String toString() {
+    return name;
+  }
 }

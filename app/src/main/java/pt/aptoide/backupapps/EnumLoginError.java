@@ -8,5 +8,5 @@ package pt.aptoide.backupapps;
  * To change this template use File | Settings | File Templates.
  */
 public enum EnumLoginError {
-    INVALID_RESPONSE, NONE, INVALID_CREDENTIALS, INTERNET_ERROR
+  INVALID_RESPONSE, NONE, INVALID_CREDENTIALS, INTERNET_ERROR
 }

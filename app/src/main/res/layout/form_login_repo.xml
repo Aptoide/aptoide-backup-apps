@@ -1,55 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1" />
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="2dp"
+      android:layout_weight="1"
+      />
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:text="@string/store_login_username"
-            android:textSize="15sp" />
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="2dp"
+      android:layout_weight="1"
+      android:text="@string/store_login_username"
+      android:textSize="15sp"
+      />
 
-    <EditText
-            android:id="@+id/repo_username"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:textSize="18sp" />
+  <EditText
+      android:id="@+id/repo_username"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_margin="5dp"
+      android:layout_weight="1"
+      android:padding="5dp"
+      android:singleLine="true"
+      android:textSize="18sp"
+      />
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:text="@string/store_login_password"
-            android:textSize="15sp" />
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="2dp"
+      android:layout_weight="1"
+      android:text="@string/store_login_password"
+      android:textSize="15sp"
+      />
 
-    <EditText
-            android:id="@+id/repo_password"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textSize="18sp" />
+  <EditText
+      android:id="@+id/repo_password"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_margin="5dp"
+      android:layout_weight="1"
+      android:inputType="textPassword"
+      android:padding="5dp"
+      android:singleLine="true"
+      android:textSize="18sp"
+      />
 
 
 </LinearLayout>

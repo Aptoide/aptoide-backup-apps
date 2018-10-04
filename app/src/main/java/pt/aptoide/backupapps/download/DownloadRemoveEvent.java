@@ -8,13 +8,13 @@ package pt.aptoide.backupapps.download;
  * To change this template use File | Settings | File Templates.
  */
 public class DownloadRemoveEvent {
-    private final int id;
+  private final int id;
 
-    public DownloadRemoveEvent(int id) {
-        this.id=id;
-    }
+  public DownloadRemoveEvent(int id) {
+    this.id = id;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 }

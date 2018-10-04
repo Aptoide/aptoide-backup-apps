@@ -7,5 +7,5 @@ package pt.aptoide.backupapps.download;
  * Time: 15:41
  * To change this template use File | Settings | File Templates.
  */
-public class Md5FailedException extends Exception{
+public class Md5FailedException extends Exception {
 }

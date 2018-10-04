@@ -35,8 +35,14 @@ import java.util.Arrays;
  */
 public class FragmentLogin extends SherlockFragment {
 
+  SharedPreferences sPref;
   private MainActivity main_activity;
   private SharedPreferences previousSPref;
+  private EditText username;
+  private EditText password;
+
+  private LoginButton fbAuthButton;
+  private SignInButton gSignInButton;
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -46,14 +52,6 @@ public class FragmentLogin extends SherlockFragment {
 
     return inflater.inflate(R.layout.login_screen, null);
   }
-
-  private EditText username;
-  private EditText password;
-
-  private LoginButton fbAuthButton;
-  private SignInButton gSignInButton;
-
-  SharedPreferences sPref;
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -163,11 +161,6 @@ public class FragmentLogin extends SherlockFragment {
     main_activity = (MainActivity) activity;
   }
 
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setHasOptionsMenu(true);
-  }
-
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     MenuItem populateItem = menu.add(Menu.NONE, 1, 0, "Populate");
@@ -176,5 +169,10 @@ public class FragmentLogin extends SherlockFragment {
     clearItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
     super.onCreateOptionsMenu(menu, inflater);
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
   }
 }

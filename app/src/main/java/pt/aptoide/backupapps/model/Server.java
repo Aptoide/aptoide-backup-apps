@@ -11,67 +11,67 @@ import pt.aptoide.backupapps.Login;
  */
 public class Server {
 
-    private String url;
-    private String apkPath;
-    private String iconsPath;
-    private String hash;
-    private int appsCount;
-    private long id;
-    private Login login;
+  private String url;
+  private String apkPath;
+  private String iconsPath;
+  private String hash;
+  private int appsCount;
+  private long id;
+  private Login login;
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public String getApkPath() {
-        return apkPath;
-    }
+  public String getApkPath() {
+    return apkPath;
+  }
 
-    public void setApkPath(String apkPath) {
-        this.apkPath = apkPath;
-    }
+  public void setApkPath(String apkPath) {
+    this.apkPath = apkPath;
+  }
 
-    public String getIconsPath() {
-        return iconsPath;
-    }
+  public String getIconsPath() {
+    return iconsPath;
+  }
 
-    public void setIconsPath(String iconsPath) {
-        this.iconsPath = iconsPath;
-    }
+  public void setIconsPath(String iconsPath) {
+    this.iconsPath = iconsPath;
+  }
 
-    public String getHash() {
-        return hash;
-    }
+  public String getHash() {
+    return hash;
+  }
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
 
-    public int getAppsCount() {
-        return appsCount;
-    }
+  public int getAppsCount() {
+    return appsCount;
+  }
 
-    public void setAppsCount(int appsCount) {
-        this.appsCount = appsCount;
-    }
+  public void setAppsCount(int appsCount) {
+    this.appsCount = appsCount;
+  }
 
-    public long getId() {
-        return id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public Login getLogin() {
-        return login;
-    }
+  public Login getLogin() {
+    return login;
+  }
 
-    public void setLogin(Login login) {
-        this.login = login;
-    }
+  public void setLogin(Login login) {
+    this.login = login;
+  }
 }

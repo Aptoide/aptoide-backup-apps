@@ -9,14 +9,9 @@ package pt.aptoide.backupapps.download.event;
  */
 public class DownloadEvent {
 
+  private final String name;
 
-
-    private final String name;
-
-    public DownloadEvent(String name){
-        this.name= name;
-    }
-
-
-
+  public DownloadEvent(String name) {
+    this.name = name;
+  }
 }

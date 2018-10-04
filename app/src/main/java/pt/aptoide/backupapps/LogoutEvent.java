@@ -9,14 +9,14 @@ package pt.aptoide.backupapps;
  */
 public class LogoutEvent {
 
-    private boolean fromAccountManager;
+  private boolean fromAccountManager;
 
-    public boolean isFromAccountManager() {
-        return fromAccountManager;
-    }
+  public boolean isFromAccountManager() {
+    return fromAccountManager;
+  }
 
-    public LogoutEvent setFromAccountManager(boolean fromAccountManager) {
-        this.fromAccountManager = fromAccountManager;
-        return this;
-    }
+  public LogoutEvent setFromAccountManager(boolean fromAccountManager) {
+    this.fromAccountManager = fromAccountManager;
+    return this;
+  }
 }

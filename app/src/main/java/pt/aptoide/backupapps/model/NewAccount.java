@@ -9,32 +9,31 @@ package pt.aptoide.backupapps.model;
  */
 public class NewAccount {
 
-    private String email;
-    private String password;
+  private String email;
+  private String password;
+  private String storeName;
+  private boolean isPrivate;
 
-    public String getPassword() {
-        return password;
-    }
+  public NewAccount(String email, String password, String storeName, boolean aPrivate) {
+    this.email = email;
+    this.password = password;
+    this.storeName = storeName;
+    isPrivate = aPrivate;
+  }
 
-    public String getStoreName() {
-        return storeName;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public boolean isPrivate() {
-        return isPrivate;
-    }
+  public String getStoreName() {
+    return storeName;
+  }
 
-    private String storeName;
-    private boolean isPrivate;
+  public boolean isPrivate() {
+    return isPrivate;
+  }
 
-    public NewAccount(String email, String password, String storeName, boolean aPrivate) {
-        this.email = email;
-        this.password = password;
-        this.storeName = storeName;
-        isPrivate = aPrivate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 }

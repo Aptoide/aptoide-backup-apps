@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Settings" parent="@style/Theme.Sherlock.Light">
-        <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-        <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-    </style>
+
+  <style name="Settings" parent="@style/Theme.Sherlock.Light">
+    <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+    <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+  </style>
 
 </resources>

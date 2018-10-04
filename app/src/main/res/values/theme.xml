@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.Light.NoActionBar.Intro" parent="Theme.Sherlock.Light.NoActionBar">
-        <item name="android:windowBackground">@color/blueBackground</item>
-        <item name="introLogoLayoutTopPadding">20dp</item>
-        <item name="introLogoBottomMargin">0dp</item>
-        <item name="introTabletFragAWeight">1.6</item>
-        <item name="introTabletFragBWeight">1.0</item>
-    </style>
+  <style name="Theme.Light.NoActionBar.Intro" parent="Theme.Sherlock.Light.NoActionBar">
+    <item name="android:windowBackground">@color/blueBackground</item>
+    <item name="introLogoLayoutTopPadding">20dp</item>
+    <item name="introLogoBottomMargin">0dp</item>
+    <item name="introTabletFragAWeight">1.6</item>
+    <item name="introTabletFragBWeight">1.0</item>
+  </style>
 
-    <style name="StyledIndicators" parent="@style/Theme.Sherlock.Light.DarkActionBar">
-        <item name="android:windowBackground">@color/grayBackground</item>
-        <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-        <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-        <!--<item name="android:actionMenuTextColor">@color/custom_color</item>-->
-        <!--<item name="actionMenuTextColor">@color/custom_color</item>-->
-        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
-        <item name="labelBackground">@style/label_style_light</item>
-        <item name="custom_color">@color/custom_color</item>
-    </style>
+  <style name="StyledIndicators" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+    <item name="android:windowBackground">@color/grayBackground</item>
+    <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+    <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+    <!--<item name="android:actionMenuTextColor">@color/custom_color</item>-->
+    <!--<item name="actionMenuTextColor">@color/custom_color</item>-->
+    <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+    <item name="labelBackground">@style/label_style_light</item>
+    <item name="custom_color">@color/custom_color</item>
+  </style>
 
-    <style name="Aptoide.BackupApps.Theme" parent="@style/Theme.Sherlock.Light">
-        <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-        <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
-    </style>
+  <style name="Aptoide.BackupApps.Theme" parent="@style/Theme.Sherlock.Light">
+    <item name="actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+    <item name="android:actionBarStyle">@style/Aptoide.BackupApps.Styled.ActionBar</item>
+  </style>
 
-    <style name="Aptoide.BackupApps.Styled.ActionBar" parent="Widget.Sherlock.ActionBar">
-        <item name="background">@drawable/actionbar_background</item>
-        <item name="android:background">@drawable/actionbar_background</item>
-        <item name="android:titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
-        <item name="titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
-    </style>
+  <style name="Aptoide.BackupApps.Styled.ActionBar" parent="Widget.Sherlock.ActionBar">
+    <item name="background">@drawable/actionbar_background</item>
+    <item name="android:background">@drawable/actionbar_background</item>
+    <item name="android:titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
+    <item name="titleTextStyle">@style/Aptoide.BackupApps.ActionBar.TitleTextStyle</item>
+  </style>
 
-    <style name="Aptoide.BackupApps.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
-        <item name="android:textColor">@android:color/white</item>
+  <style name="Aptoide.BackupApps.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+    <item name="android:textColor">@android:color/white</item>
 
-    </style>
+  </style>
 
 
 </resources>

@@ -25,76 +25,95 @@ import pt.aptoide.backupapps.util.Constants;
 
 public class RepoLoginDialog extends DialogFragment {
 
-    private EditText repoUsername;
-    private EditText repoPassword;
+  private EditText repoUsername;
+  private EditText repoPassword;
 
-    private String repoName;
-    private boolean logoutOnDismiss = true;
+  private String repoName;
+  private boolean logoutOnDismiss = true;
 
-    public RepoLoginDialog(String repoName) {
-        this.repoName = repoName;
-    }
+  public RepoLoginDialog(String repoName) {
+    this.repoName = repoName;
+  }
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+  @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.RepoDialog);
+    ContextThemeWrapper contextThemeWrapper =
+        new ContextThemeWrapper(getActivity(), R.style.RepoDialog);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(contextThemeWrapper);
+    AlertDialog.Builder builder = new AlertDialog.Builder(contextThemeWrapper);
 
-        LayoutInflater inflater = LayoutInflater.from(contextThemeWrapper);
-        View view = inflater.inflate(R.layout.form_login_repo, null);
+    LayoutInflater inflater = LayoutInflater.from(contextThemeWrapper);
+    View view = inflater.inflate(R.layout.form_login_repo, null);
 
-        repoUsername = (EditText) view.findViewById(R.id.repo_username);
-        repoPassword = (EditText) view.findViewById(R.id.repo_password);
+    repoUsername = (EditText) view.findViewById(R.id.repo_username);
+    repoPassword = (EditText) view.findViewById(R.id.repo_password);
 
-        builder.setTitle("Private store: " + repoName)
-                .setView(view)
-                .setPositiveButton(R.string.store_login_dialog_button, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+    builder.setTitle("Private store: " + repoName)
+        .setView(view)
+        .setPositiveButton(R.string.store_login_dialog_button,
+            new DialogInterface.OnClickListener() {
+              @Override public void onClick(DialogInterface dialog, int which) {
 
-                        Database.getInstance().setLoggedIn(true);
+                Database.getInstance()
+                    .setLoggedIn(true);
 
+                if (repoUsername.getText()
+                    .toString() == null
+                    || repoUsername.getText()
+                    .toString()
+                    .length() == 0) {
+                  Toast.makeText(getActivity(), R.string.store_login_short_empty_store_username,
+                      Toast.LENGTH_SHORT)
+                      .show();
+                  BusProvider.getInstance()
+                      .post(new AskRepoLoginDataEvent(false));
+                } else if (repoPassword.getText()
+                    .toString() == null
+                    || repoPassword.getText()
+                    .toString()
+                    .length() == 0) {
+                  Toast.makeText(getActivity(), R.string.store_login_short_empty_store_password,
+                      Toast.LENGTH_SHORT)
+                      .show();
+                  BusProvider.getInstance()
+                      .post(new AskRepoLoginDataEvent(false));
+                } else {
 
-                        if (repoUsername.getText().toString() == null || repoUsername.getText().toString().length() == 0) {
-                            Toast.makeText(getActivity(), R.string.store_login_short_empty_store_username, Toast.LENGTH_SHORT).show();
-                            BusProvider.getInstance().post(new AskRepoLoginDataEvent(false));
-                        } else if (repoPassword.getText().toString() == null || repoPassword.getText().toString().length() == 0) {
-                            Toast.makeText(getActivity(), R.string.store_login_short_empty_store_password, Toast.LENGTH_SHORT).show();
-                            BusProvider.getInstance().post(new AskRepoLoginDataEvent(false));
-                        } else {
+                  Database.getInstance()
+                      .updateServerPassword("http://" + repoName + Constants.DOMAIN_APTOIDE_STORE,
+                          repoUsername.getText()
+                              .toString()
+                              .trim(), repoPassword.getText()
+                              .toString()
+                              .trim());
 
-                            Database.getInstance().updateServerPassword("http://" + repoName + Constants.DOMAIN_APTOIDE_STORE,
-                                    repoUsername.getText().toString().trim(),
-                                    repoPassword.getText().toString().trim());
+                  BusProvider.getInstance()
+                      .post(new BackedUpRefreshEvent(MainActivity.currentSort));
+                  BusProvider.getInstance()
+                      .post(new ParseServerEvent("login"));
 
-                            BusProvider.getInstance().post(new BackedUpRefreshEvent(MainActivity.currentSort));
-                            BusProvider.getInstance().post(new ParseServerEvent("login"));
-
-                            logoutOnDismiss = false;
-                        }
-                    }
+                  logoutOnDismiss = false;
                 }
-                )
-                .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        RepoLoginDialog.this.getDialog().cancel();
-                        BusProvider.getInstance().post(new LogoutEvent());
+              }
+            })
+        .setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+          @Override public void onClick(DialogInterface dialog, int which) {
+            RepoLoginDialog.this.getDialog()
+                .cancel();
+            BusProvider.getInstance()
+                .post(new LogoutEvent());
+          }
+        });
 
-                    }
-                });
+    return builder.create();
+  }
 
-        return builder.create();
+  @Override public void onDismiss(DialogInterface dialog) {
+    super.onDismiss(dialog);
+    if (logoutOnDismiss) {
+      BusProvider.getInstance()
+          .post(new LogoutEvent());
     }
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if(logoutOnDismiss) {
-            BusProvider.getInstance().post(new LogoutEvent());
-        }
-    }
+  }
 }
 

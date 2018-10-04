@@ -26,7 +26,6 @@ import android.os.Environment;
  *
  * @author dsilveira
  * @since 3.0
- *
  */
 public class Constants {
 

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 package pt.aptoide.backupapps;
 
@@ -30,40 +30,32 @@ import android.content.Context;
  *
  */
 public enum EnumServerLoginStatus {
-	SUCCESS,
-	PREVIOUS_LOGIN_STILL_FINISHING_UP,
-	REPO_SERVICE_UNAVAILABLE,
-	LOGIN_SERVICE_UNAVAILABLE,
-	BAD_LOGIN,
-	REPO_NOT_FROM_DEVELOPPER,
-	BAD_REPO_PRIVACY_LOGIN,
-    NO_DEFAULT_REPO,
-    REPO_NAME_ALREADY_EXISTS;
+  SUCCESS, PREVIOUS_LOGIN_STILL_FINISHING_UP, REPO_SERVICE_UNAVAILABLE, LOGIN_SERVICE_UNAVAILABLE, BAD_LOGIN, REPO_NOT_FROM_DEVELOPPER, BAD_REPO_PRIVACY_LOGIN, NO_DEFAULT_REPO, REPO_NAME_ALREADY_EXISTS;
 
-	public static EnumServerLoginStatus reverseOrdinal(int ordinal){
-		return values()[ordinal];
-	}
+  public static EnumServerLoginStatus reverseOrdinal(int ordinal) {
+    return values()[ordinal];
+  }
 
-	public String toString(Context context){
-		switch (this) {
-			case BAD_LOGIN:
-				return context.getString(R.string.login_message_check_login);
-			case REPO_NOT_FROM_DEVELOPPER:
-				return context.getString(R.string.repo_message_not_associated_with_user);
-			case REPO_SERVICE_UNAVAILABLE:
-				return  context.getString(R.string.repo_message_service_unavailable);
-			case BAD_REPO_PRIVACY_LOGIN:
-				return context.getString(R.string.login_message_check_repo_login);
-			case LOGIN_SERVICE_UNAVAILABLE:
-				return  context.getString(R.string.login_message_service_unavailable);
-			case PREVIOUS_LOGIN_STILL_FINISHING_UP:
-				return context.getString(R.string.login_status_short_updating_repo_please_wait);
-            case NO_DEFAULT_REPO:
-                return context.getString(R.string.upload_short_no_default_repo);
-            case REPO_NAME_ALREADY_EXISTS:
-                return context.getString(R.string.store_creation_message_already_existent_store_name);
-			default:
-				return context.getString(R.string.server_connection_short_server_error);
-		}
-	}
+  public String toString(Context context) {
+    switch (this) {
+      case BAD_LOGIN:
+        return context.getString(R.string.login_message_check_login);
+      case REPO_NOT_FROM_DEVELOPPER:
+        return context.getString(R.string.repo_message_not_associated_with_user);
+      case REPO_SERVICE_UNAVAILABLE:
+        return context.getString(R.string.repo_message_service_unavailable);
+      case BAD_REPO_PRIVACY_LOGIN:
+        return context.getString(R.string.login_message_check_repo_login);
+      case LOGIN_SERVICE_UNAVAILABLE:
+        return context.getString(R.string.login_message_service_unavailable);
+      case PREVIOUS_LOGIN_STILL_FINISHING_UP:
+        return context.getString(R.string.login_status_short_updating_repo_please_wait);
+      case NO_DEFAULT_REPO:
+        return context.getString(R.string.upload_short_no_default_repo);
+      case REPO_NAME_ALREADY_EXISTS:
+        return context.getString(R.string.store_creation_message_already_existent_store_name);
+      default:
+        return context.getString(R.string.server_connection_short_server_error);
+    }
+  }
 }

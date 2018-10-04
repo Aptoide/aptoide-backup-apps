@@ -26,6 +26,7 @@ public class FragmentInstalled extends SherlockListFragment {
   private ArrayList<InstalledApk> installedApks = new ArrayList<InstalledApk>(50);
   private ArrayList<Integer> backedUpApps = new ArrayList<Integer>();
   private FacebookAnalytics facebookAnalytics;
+  private InstalledAdapter installedAdapter;
 
   @Override public void onCreate(Bundle savedInstance) {
     super.onCreate(savedInstance);
@@ -40,8 +41,6 @@ public class FragmentInstalled extends SherlockListFragment {
     BusProvider.getInstance()
         .unregister(this);
   }
-
-  private InstalledAdapter installedAdapter;
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);

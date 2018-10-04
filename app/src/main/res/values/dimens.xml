@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="abs__config_prefDialogWidth">320.0dip</dimen>
-    <dimen name="abs__action_bar_default_height">48.0dip</dimen>
-    <dimen name="abs__action_bar_icon_vertical_padding">8.0dip</dimen>
-    <dimen name="abs__action_bar_title_text_size">18.0dip</dimen>
-    <dimen name="abs__action_bar_subtitle_text_size">14.0dip</dimen>
-    <dimen name="abs__action_bar_subtitle_top_margin">-3.0dip</dimen>
-    <dimen name="abs__action_bar_subtitle_bottom_margin">5.0dip</dimen>
-    <dimen name="abs__action_button_min_width">56.0dip</dimen>
-    <dimen name="abs__dropdownitem_text_padding_left">8.0dip</dimen>
-    <dimen name="abs__dropdownitem_text_padding_right">8.0dip</dimen>
-    <dimen name="abs__dropdownitem_icon_width">32.0dip</dimen>
-    <dimen name="abs__search_view_text_min_width">160.0dip</dimen>
-    <dimen name="abs__search_view_preferred_width">320.0dip</dimen>
+  <dimen name="abs__config_prefDialogWidth">320.0dip</dimen>
+  <dimen name="abs__action_bar_default_height">48.0dip</dimen>
+  <dimen name="abs__action_bar_icon_vertical_padding">8.0dip</dimen>
+  <dimen name="abs__action_bar_title_text_size">18.0dip</dimen>
+  <dimen name="abs__action_bar_subtitle_text_size">14.0dip</dimen>
+  <dimen name="abs__action_bar_subtitle_top_margin">-3.0dip</dimen>
+  <dimen name="abs__action_bar_subtitle_bottom_margin">5.0dip</dimen>
+  <dimen name="abs__action_button_min_width">56.0dip</dimen>
+  <dimen name="abs__dropdownitem_text_padding_left">8.0dip</dimen>
+  <dimen name="abs__dropdownitem_text_padding_right">8.0dip</dimen>
+  <dimen name="abs__dropdownitem_icon_width">32.0dip</dimen>
+  <dimen name="abs__search_view_text_min_width">160.0dip</dimen>
+  <dimen name="abs__search_view_preferred_width">320.0dip</dimen>
   <dimen name="loginTextBottom">8.0dip</dimen>
-    <dimen name="loginTextBottomClose">0.0dip</dimen>
+  <dimen name="loginTextBottomClose">0.0dip</dimen>
   <dimen name="loginTextTop">8.0dip</dimen>
   <dimen name="loginTextLeft">10.0dip</dimen>
-    <dimen name="loginTextEntryLeft">20.0dip</dimen>
+  <dimen name="loginTextEntryLeft">20.0dip</dimen>
   <dimen name="loginTextRight">20.0dip</dimen>
   <dimen name="loginFormMinWidth">450.0dip</dimen>
   <dimen name="linkButtonTextSize">16.0sp</dimen>
-    <dimen name="linkButtonButtomMarginTop">12.0dip</dimen>
+  <dimen name="linkButtonButtomMarginTop">12.0dip</dimen>
 </resources>

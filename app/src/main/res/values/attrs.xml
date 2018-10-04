@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="introLogoLayoutTopPadding" format="dimension"></attr>
-    <attr name="labelBackground" format="reference"></attr>
-    <attr name="custom_color" format="color"></attr>
+  <attr format="dimension" name="introLogoLayoutTopPadding"></attr>
+  <attr format="reference" name="labelBackground"></attr>
+  <attr format="color" name="custom_color"></attr>
 
-    <attr name="introLogoBottomMargin" format="dimension">>0.0dip </attr>
-    <attr name="introTabletFragAWeight" format="float">>1.6 </attr>
-    <attr name="introTabletFragBWeight" format="float">>1.0 </attr>
+  <attr format="dimension" name="introLogoBottomMargin">>0.0dip</attr>
+  <attr format="float" name="introTabletFragAWeight">>1.6</attr>
+  <attr format="float" name="introTabletFragBWeight">>1.0</attr>
 </resources>

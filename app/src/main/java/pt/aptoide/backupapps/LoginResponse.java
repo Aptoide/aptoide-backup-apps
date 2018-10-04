@@ -9,58 +9,58 @@ package pt.aptoide.backupapps;
  */
 public class LoginResponse {
 
-    EnumServerLoginStatus error = EnumServerLoginStatus.SUCCESS;
-    private String token;
-    private String storeAvatar;
-    private String defaultStore;
-    private String errorString;
-    private boolean fromSignup;
+  EnumServerLoginStatus error = EnumServerLoginStatus.SUCCESS;
+  private String token;
+  private String storeAvatar;
+  private String defaultStore;
+  private String errorString;
+  private boolean fromSignup;
 
-    public void setError(EnumServerLoginStatus error) {
-        this.error = error;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+  public void setToken(String token) {
+    this.token = token;
+  }
 
-    public String getToken() {
-        return token;
-    }
+  public String getStoreAvatar() {
+    return storeAvatar;
+  }
 
-    public void setStoreAvatar(String storeAvatar) {
-        this.storeAvatar = storeAvatar;
-    }
+  public void setStoreAvatar(String storeAvatar) {
+    this.storeAvatar = storeAvatar;
+  }
 
-    public String getStoreAvatar() {
-        return storeAvatar;
-    }
+  public String getDefaultStore() {
+    return defaultStore;
+  }
 
-    public void setDefaultStore(String defaultStore) {
-        this.defaultStore = defaultStore;
-    }
+  public void setDefaultStore(String defaultStore) {
+    this.defaultStore = defaultStore;
+  }
 
-    public String getDefaultStore() {
-        return defaultStore;
-    }
+  public EnumServerLoginStatus getError() {
+    return error;
+  }
 
-    public EnumServerLoginStatus getError() {
-        return error;
-    }
+  public void setError(EnumServerLoginStatus error) {
+    this.error = error;
+  }
 
-    public void setErrorString(String errorString) {
-        this.errorString = errorString;
-    }
+  public String getErrorString() {
+    return errorString;
+  }
 
-    public String getErrorString() {
-        return errorString;
-    }
+  public void setErrorString(String errorString) {
+    this.errorString = errorString;
+  }
 
-    public void setFromSignup(boolean fromSignup) {
-        this.fromSignup = fromSignup;
-    }
+  public boolean isFromSignup() {
+    return fromSignup;
+  }
 
-    public boolean isFromSignup() {
-        return fromSignup;
-    }
+  public void setFromSignup(boolean fromSignup) {
+    this.fromSignup = fromSignup;
+  }
 }

@@ -9,5 +9,5 @@ package pt.aptoide.backupapps;
  */
 public enum EnumSortBy {
 
-    NAME, DATE, SIZE, STATE
+  NAME, DATE, SIZE, STATE
 }

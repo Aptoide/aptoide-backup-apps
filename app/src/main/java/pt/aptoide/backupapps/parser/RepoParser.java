@@ -1,16 +1,14 @@
 package pt.aptoide.backupapps.parser;
 
-import org.xml.sax.SAXException;
-import pt.aptoide.backupapps.database.Database;
-import pt.aptoide.backupapps.model.RepoApk;
-import pt.aptoide.backupapps.model.Server;
-import pt.aptoide.backupapps.util.Md5Handler;
-
+import java.io.File;
+import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-import java.io.IOException;
+import org.xml.sax.SAXException;
+import pt.aptoide.backupapps.database.Database;
+import pt.aptoide.backupapps.model.Server;
+import pt.aptoide.backupapps.util.Md5Handler;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,34 +19,28 @@ import java.io.IOException;
  */
 public class RepoParser {
 
-    private RepoParser(){ }
+  private RepoParser() {
+  }
 
+  public static RepoParser getInstance() {
+    return SingletonHolder.INSTANCE;
+  }
 
-
-    private static class SingletonHolder {
-
-        public static final RepoParser INSTANCE = new RepoParser();
-
+  public void parse(File f, Server server)
+      throws ParserConfigurationException, SAXException, IOException {
+    ParserHandler handler = new ParserHandler(server);
+    SAXParser parser = SAXParserFactory.newInstance()
+        .newSAXParser();
+    parser.parse(f, handler);
+    if (!handler.isDelta()) {
+      server.setHash(Md5Handler.md5Calc(f));
+      Database.getInstance()
+          .setServerHash(server);
     }
+  }
 
-    public static RepoParser getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
+  private static class SingletonHolder {
 
-    public void parse(File f, Server server) throws ParserConfigurationException, SAXException, IOException {
-        ParserHandler handler = new ParserHandler(server);
-        SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-        parser.parse(f, handler);
-        if(!handler.isDelta()){
-            server.setHash(Md5Handler.md5Calc(f));
-            Database.getInstance().setServerHash(server);
-        }
-
-    }
-
-
-
-
-
-
+    public static final RepoParser INSTANCE = new RepoParser();
+  }
 }
