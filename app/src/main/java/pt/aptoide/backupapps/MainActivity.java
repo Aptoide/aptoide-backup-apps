@@ -205,40 +205,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
    */
 
   private ViewPager viewPager;
-  //private Session.StatusCallback callback = new Session.StatusCallback() {
-  //  @Override public void call(final Session session, SessionState state, Exception exception) {
-  //    if (state.isOpened()) {
-  //      Log.d("Facebook token", session.getAccessToken());
-  //      Request meRequest = Request.newMeRequest(session, new Request.GraphUserCallback() {
-  //        @Override public void onCompleted(GraphUser user, Response response) {
-  //
-  //          String username = user.getProperty("email") == null ? "" : user.getProperty("email")
-  //              .toString();
-  //
-  //          if (TextUtils.isEmpty(username)) {
-  //
-  //            session.close();
-  //
-  //            MainActivity.this.runOnUiThread(new Runnable() {
-  //              public void run() {
-  //                Toast.makeText(MainActivity.this, R.string.facebook_error, Toast.LENGTH_LONG)
-  //                    .show();
-  //              }
-  //            });
-  //          } else {
-  //            Login login = new Login(username, session.getAccessToken(), "facebook_backupapps");
-  //            new CheckUserCredentials(MainActivity.this).execute(login);
-  //          }
-  //          session.closeAndClearTokenInformation();
-  //        }
-  //      });
-  //      Bundle parameters = new Bundle();
-  //      parameters.putString("fields", "id,name,email");
-  //      meRequest.setParameters(parameters);
-  //      meRequest.executeAsync();
-  //    }
-  //  }
-  //};
 
   @Subscribe public void onUploadStatusEvent(UploadStatusEvent event) {
     Log.d("TAG", "receiving Upload event");
@@ -646,17 +612,6 @@ public class MainActivity extends BaseSherlockFragmentActivity
           }
         };
     }
-
-    //        ArrayList<Integer> backedUpHashs = database.setBackedUpApks();
-    //
-    //        for(InstalledApk apk: installedApks){
-    //
-    //            if(backedUpHashs.contains((apk.getPackageName() + apk.getVersionCode()).hashCode())){
-    //                apk.setBackedUp(true);
-    //            }else{
-    //                apk.setBackedUp(false);
-    //            }
-    //        }
 
     Collections.sort(installedApks, comparator);
 
