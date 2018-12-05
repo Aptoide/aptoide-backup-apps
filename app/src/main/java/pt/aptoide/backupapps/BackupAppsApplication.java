@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -58,10 +57,6 @@ public class BackupAppsApplication extends Application {
     boolean isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 
     DEBUG_MODE = DEBUG_MODE | debugMode | isDebuggable;
-    if (DEBUG_MODE) {
-      Toast.makeText(this, "Debug mode is: " + DEBUG_MODE, Toast.LENGTH_LONG)
-          .show();
-    }
   }
 
   @Override public void onCreate() {
