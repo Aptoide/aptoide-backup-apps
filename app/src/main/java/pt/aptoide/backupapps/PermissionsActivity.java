@@ -10,19 +10,33 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.Button;
 
 public class PermissionsActivity extends Activity {
   private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
+  private Button button;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_permissions);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      requestRuntimePermissions();
-    } else {
-      launchMainActivity();
-    }
+    button = (Button) findViewById(R.id.start);
+
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+          requestRuntimePermissions();
+        } else {
+          launchMainActivity();
+        }
+      }
+    });
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    button = null;
   }
 
   @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN) @Override
@@ -32,8 +46,6 @@ public class PermissionsActivity extends Activity {
       case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           launchMainActivity();
-        } else {
-          requestRuntimePermissions();
         }
       }
     }
