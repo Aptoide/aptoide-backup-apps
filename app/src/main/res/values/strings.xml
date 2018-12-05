@@ -13,6 +13,9 @@
   <string name="download_failed_short_apk_not_found">Apk not found</string>
   <string name="notification_message_installing">%s is installing...</string>
   <string name="download_failed_short_timeou">network connection timeout</string>
+  <string name="welcome_title">Welcome to Aptoide Backup Apps</string>
+  <string name="welcome_message">You can safely and privately backup your apps and recover them whenever you want.</string>
+  <string name="welcome_button_getstarted">Get started</string>
 
 
   <string name="aptoide_login_title">Aptoide login</string>
