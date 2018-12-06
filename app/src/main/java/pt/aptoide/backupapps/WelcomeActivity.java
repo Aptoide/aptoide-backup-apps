@@ -19,7 +19,7 @@ public class WelcomeActivity extends Activity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_permissions);
+    setContentView(R.layout.activity_welcome);
 
     button = (Button) findViewById(R.id.start);
 
