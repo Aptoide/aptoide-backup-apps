@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -58,12 +57,6 @@ public class BackupAppsApplication extends Application {
     boolean isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 
     DEBUG_MODE = DEBUG_MODE | debugMode | isDebuggable;
-    if (DEBUG_MODE) {
-      Toast.makeText(this, "Debug mode is: " + DEBUG_MODE, Toast.LENGTH_LONG)
-          .show();
-    }
-
-    Logger.d("dasss", "dasss");
   }
 
   @Override public void onCreate() {
@@ -75,20 +68,6 @@ public class BackupAppsApplication extends Application {
     callbackManager = CallbackManager.Factory.create();
 
     Analytics.Lifecycle.Application.onCreate(this);
-
-    //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-    //                .detectDiskReads()
-    //                .detectDiskWrites()
-    //                .detectNetwork()   // or .detectAll() for all detectable problems
-    //                .penaltyLog()
-    //                .detectAll()
-    //                .build());
-    //        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-    //                .detectAll()
-    //                .detectLeakedSqlLiteObjects()
-    //                .detectLeakedClosableObjects()
-    //                .penaltyLog()
-    //                .build());
 
     createShortcutOnFirstRun();
     context = getApplicationContext();
@@ -127,12 +106,8 @@ public class BackupAppsApplication extends Application {
   }
 
   public void deleteLauncherShortcut(Context context) {
-    //            removePreviousShortcuts(context, true);
-    //            removePreviousShortcuts(context, false);
-
     Intent shortcutIntent = context.getPackageManager()
         .getLaunchIntentForPackage(context.getPackageName());
-    //          shortcutIntent.putExtra(context.getPackageName(), context.getString(R.string.description));
     final Intent intent = new Intent();
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
     intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Aptoide Backup Apps");
@@ -145,14 +120,12 @@ public class BackupAppsApplication extends Application {
   }
 
   public void createLauncherShortcut(Context context) {
-    //            removePreviousShortcuts(context, true);
     removePreviousShortcuts(context);
 
     deleteLauncherShortcut(context);
 
     Intent shortcutIntent = context.getPackageManager()
         .getLaunchIntentForPackage(context.getPackageName());
-    //          shortcutIntent.putExtra(context.getPackageName(), context.getString(R.string.description));
     final Intent intent = new Intent();
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
     intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Aptoide Backup Apps");
