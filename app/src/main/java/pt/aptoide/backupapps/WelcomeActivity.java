@@ -3,6 +3,7 @@ package pt.aptoide.backupapps;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ public class WelcomeActivity extends Activity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_welcome);
-
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     button = (Button) findViewById(R.id.start);
 
     button.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +65,7 @@ public class WelcomeActivity extends Activity {
 
   private void launchMainActivity() {
     startActivity(new Intent(this, MainActivity.class));
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     finish();
   }
 }
