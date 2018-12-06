@@ -23,7 +23,7 @@
       android:label="@string/app_name"
       android:theme="@style/Aptoide.BackupApps.Theme">
     <activity
-        android:name=".PermissionsActivity"
+        android:name=".WelcomeActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:label="@string/app_name"
         android:launchMode="singleTask"

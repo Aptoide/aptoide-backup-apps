@@ -13,7 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 
-public class PermissionsActivity extends Activity {
+public class WelcomeActivity extends Activity {
   private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
   private Button button;
 
