@@ -17,8 +17,6 @@ public class Login {
   private String username;
   private String password;
   private String repo;
-
-  ;
   private boolean isPrivateRepo;
   private String privateRepoUsername;
   private String privateRepoPassword;
@@ -35,12 +33,14 @@ public class Login {
     this.fromSignUp = fromSignUp;
     setLoginMode(LoginMode.REGULAR);
   }
+
   public Login(String username, String oAuthAccessToken, String oAuthMode) {
     this.username = username;
     this.oAuthAccessToken = oAuthAccessToken;
     this.oAuthMode = oAuthMode;
     setLoginMode(LoginMode.FACEBOOK_OAUTH);
   }
+
   public Login(String username, String oAuthAccessToken, String oAuthMode, String oAuthUsername) {
     this.username = username;
     this.oAuthAccessToken = oAuthAccessToken;
