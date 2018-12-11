@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -493,18 +492,15 @@ public class MainActivity extends BaseSherlockFragmentActivity
 
     bindService(new Intent(this, MainService.class), conn, BIND_AUTO_CREATE);
 
-    if (Build.VERSION.SDK_INT >= 8) {
-
-      final Plus.PlusOptions options =
-          new Plus.PlusOptions.Builder().addActivityTypes("http://schemas.google.com/AddActivity",
-              "http://schemas.google.com/BuyActivity")
-              .build();
-      googleApiClient = new GoogleApiClient.Builder(this, this, this).addApi(Plus.API, options)
-          .addScope(Plus.SCOPE_PLUS_LOGIN)
-          .build();
-      mConnectionProgressDialog = new ProgressDialog(this);
-      mConnectionProgressDialog.setMessage("Signing in...");
-    }
+    final Plus.PlusOptions options =
+        new Plus.PlusOptions.Builder().addActivityTypes("http://schemas.google.com/AddActivity",
+            "http://schemas.google.com/BuyActivity")
+            .build();
+    googleApiClient = new GoogleApiClient.Builder(this, this, this).addApi(Plus.API, options)
+        .addScope(Plus.SCOPE_PLUS_LOGIN)
+        .build();
+    mConnectionProgressDialog = new ProgressDialog(this);
+    mConnectionProgressDialog.setMessage("Signing in...");
   }
 
   @Override protected void onDestroy() {
