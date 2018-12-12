@@ -13,9 +13,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WelcomeActivity extends Activity {
-  private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
+  private static final int MULTIPLE_PERMISSIONS_REQUEST = 12;
   private Button button;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +48,58 @@ public class WelcomeActivity extends Activity {
   public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
       @NonNull int[] grantResults) {
     switch (requestCode) {
-      case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+      case MULTIPLE_PERMISSIONS_REQUEST: {
+        Map<String, Integer> perms = new HashMap<>();
+        perms.put(Manifest.permission.GET_ACCOUNTS, PackageManager.PERMISSION_GRANTED);
+        perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+        for (int i = 0; i < permissions.length; i++)
+          perms.put(permissions[i], grantResults[i]);
+        if (perms.get(Manifest.permission.GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED
+            && perms.get(Manifest.permission.READ_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED) {
+          // All Permissions Granted
           launchMainActivity();
+        } else {
+          // Permission Denied
+          Logger.d(this.getClass()
+              .getName(), "Some Permission is Denied");
         }
       }
+      break;
+      default:
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
   }
 
   @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN) private void requestRuntimePermissions() {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED) {
-      ActivityCompat.requestPermissions(this,
-          new String[] { Manifest.permission.READ_EXTERNAL_STORAGE },
-          MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+    List<String> permissionsNeeded = new ArrayList<>();
+
+    final List<String> permissionsList = new ArrayList<>();
+
+    if (addPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      permissionsNeeded.add("STORAGE");
+    }
+
+    if (addPermission(permissionsList, Manifest.permission.GET_ACCOUNTS)) {
+      permissionsNeeded.add("ACCOUNT");
+    }
+
+    if (permissionsList.size() > 0) {
+      if (permissionsNeeded.size() > 0) {
+        ActivityCompat.requestPermissions(this, permissionsList.toArray(new String[0]),
+            MULTIPLE_PERMISSIONS_REQUEST);
+      }
     } else {
       launchMainActivity();
     }
+  }
+
+  private boolean addPermission(List<String> permissionsList, String permission) {
+    if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+      permissionsList.add(permission);
+      return true;
+    }
+    return false;
   }
 
   private void launchMainActivity() {
