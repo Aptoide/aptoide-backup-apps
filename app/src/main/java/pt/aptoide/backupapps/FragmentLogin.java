@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -234,12 +233,6 @@ public class FragmentLogin extends Fragment {
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
-    MenuItem populateItem = menu.add(Menu.NONE, 1, 0, "Populate");
-    populateItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-    MenuItem clearItem = menu.add(Menu.NONE, 2, 0, "Clear");
-    clearItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
     super.onCreateOptionsMenu(menu, inflater);
   }
 }
