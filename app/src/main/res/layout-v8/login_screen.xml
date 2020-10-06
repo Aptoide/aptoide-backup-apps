@@ -15,37 +15,6 @@
       android:paddingTop="30dp"
       >
 
-    <EditText
-        android:id="@+id/box_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/loginTextEntryLeft"
-        android:background="@drawable/edittext_shadow"
-        android:hint="@string/login_short_email_prompt"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:padding="5dp"
-        style="@style/loginButton"
-        />
-
-    <EditText
-        android:id="@+id/box_password"
-        android:background="@drawable/edittext_shadow"
-        android:hint="@string/login_short_password_prompt"
-        android:imeOptions="actionDone|flagNoExtractUi"
-        android:inputType="textPassword"
-        android:padding="5dp"
-        style="@style/loginButtonWithBottomSpace"
-        />
-
-    <Button
-        android:id="@+id/button_loggin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_screen_title_login"
-        style="@style/button_style"
-        />
-
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_loginButton"
         android:layout_width="match_parent"
@@ -60,36 +29,6 @@
         android:text="@string/common_signin_button_text_long"
         />
 
-    <Button
-        android:id="@+id/button_new_to_aptoide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/loginTextBottom"
-        android:layout_marginLeft="@dimen/loginTextLeft"
-        android:layout_marginRight="@dimen/loginTextRight"
-        android:layout_marginTop="@dimen/linkButtonButtomMarginTop"
-        android:background="@null"
-        android:text="@string/login_screen_button_new_to_aptoide"
-        android:textColor="@color/link_button"
-        android:textSize="@dimen/linkButtonTextSize"
-        android:textStyle="bold"
-        />
-
-    <Button
-        android:id="@+id/button_forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/loginTextBottom"
-        android:layout_marginLeft="@dimen/loginTextLeft"
-        android:layout_marginRight="@dimen/loginTextRight"
-        android:background="@null"
-        android:text="@string/login_short_forgot_password"
-        android:textColor="@color/link_button"
-        android:textSize="@dimen/linkButtonTextSize"
-        android:textStyle="bold"
-        />
   </LinearLayout>
 
 </ScrollView>
