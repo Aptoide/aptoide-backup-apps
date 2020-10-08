@@ -2,9 +2,4 @@
     package="com.manuelpeinado.multichoicelistadapter"
     android:versionCode="15"
     android:versionName="2.2.5">
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
-
 </manifest>

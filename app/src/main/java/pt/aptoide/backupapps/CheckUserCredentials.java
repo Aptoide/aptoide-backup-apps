@@ -41,17 +41,22 @@ import pt.aptoide.backupapps.util.NetworkUtils;
  */
 public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> {
 
+  AppCompatActivity activity;
   SharedPreferences previousSPref;
   SharedPreferences sPref;
   ProgressDialog pd;
   Login login;
 
-  AppCompatActivity activity;
-
   public CheckUserCredentials(AppCompatActivity activity) {
     this.activity = activity;
     sPref = PreferenceManager.getDefaultSharedPreferences(activity);
     previousSPref = activity.getSharedPreferences("aptoide_preferences", Context.MODE_PRIVATE);
+  }
+
+  public static void showRepoCreatorDialog(AppCompatActivity activity, Login login) {
+    RepoCreatorDialog repoCreatorDialog = new RepoCreatorDialog();
+    repoCreatorDialog.setup(activity, login);
+    repoCreatorDialog.show(activity.getSupportFragmentManager(), "RepoCreatorDialog");
   }
 
   @Override protected LoginResponse doInBackground(Login... params) {
@@ -228,20 +233,9 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
 
     Log.d("MYLOG", "Post data: " + requestData);
     return requestData;
-  }  @Override protected void onPreExecute() {
-    super.onPreExecute();
-    pd = new ProgressDialog(activity);
-    pd.setMessage("Please wait");
-    pd.setCancelable(false);
-    pd.show();
   }
 
-  public void showRepoCreatorDialog() {
-    DialogFragment dialog = new RepoCreatorDialog();
-    dialog.show(activity.getSupportFragmentManager(), "RepoCreatorDialog");
-  }
-
-  public class RepoCreatorDialog extends DialogFragment {
+  public static class RepoCreatorDialog extends DialogFragment {
 
     private EditText repository;
     private RadioButton privateButton;
@@ -250,6 +244,8 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
     private EditText repoPassword;
 
     private boolean logoutOnDismiss = true;
+    private AppCompatActivity activity;
+    private Login login;
 
     @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -298,7 +294,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                           getString(R.string.store_creation_message_username_undefined),
                           Toast.LENGTH_SHORT)
                           .show();
-                      showRepoCreatorDialog();
+                      showRepoCreatorDialog(activity, login);
                     } else if (login.getPrivateRepoPassword() == null
                         || login.getPrivateRepoPassword()
                         .length() == 0) {
@@ -306,7 +302,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                           getString(R.string.store_creation_message_store_password_undefined),
                           Toast.LENGTH_SHORT)
                           .show();
-                      showRepoCreatorDialog();
+                      showRepoCreatorDialog(activity, login);
                     } else {
                       new CheckUserCredentials(activity).execute(login);
                     }
@@ -317,7 +313,7 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
                   Toast.makeText(getActivity(), getString(R.string.store_creation_short_no_name),
                       Toast.LENGTH_SHORT)
                       .show();
-                  showRepoCreatorDialog();
+                  showRepoCreatorDialog(activity, login);
                 }
               }
 
@@ -381,6 +377,11 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
             .post(new LogoutEvent());
       }
     }
+
+    public void setup(AppCompatActivity activity, Login login) {
+      this.activity = activity;
+      this.login = login;
+    }
   }
 
   public class PostLogin extends AsyncTask<LoginResponse, Void, Void> {
@@ -419,6 +420,14 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
           .post(new LoginEvent());
       super.onPostExecute(aVoid);
     }
+  }
+
+  @Override protected void onPreExecute() {
+    super.onPreExecute();
+    pd = new ProgressDialog(activity);
+    pd.setMessage("Please wait");
+    pd.setCancelable(false);
+    pd.show();
   }
 
   @Override protected void onPostExecute(LoginResponse response) {
@@ -463,14 +472,14 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         break;
 
       case NO_DEFAULT_REPO:
-        showRepoCreatorDialog();
+        showRepoCreatorDialog(activity, login);
         break;
 
       case REPO_NAME_ALREADY_EXISTS:
         Toast.makeText(activity, response.getError()
             .toString(activity), Toast.LENGTH_SHORT)
             .show();
-        showRepoCreatorDialog();
+        showRepoCreatorDialog(activity, login);
         break;
 
       default:
@@ -480,6 +489,4 @@ public class CheckUserCredentials extends AsyncTask<Login, Void, LoginResponse> 
         break;
     }
   }
-
-
 }

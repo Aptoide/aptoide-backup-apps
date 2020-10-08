@@ -19,7 +19,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
-import io.fabric.sdk.android.Fabric;
 import java.io.File;
 import pt.aptoide.backupapps.analytics.Analytics;
 import pt.aptoide.backupapps.util.Constants;
@@ -61,7 +60,6 @@ public class BackupAppsApplication extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
-    Fabric.with(this, new Crashlytics());
     setDebugMode();
     FacebookSdk.sdkInitialize(this);
 

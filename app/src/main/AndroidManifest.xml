@@ -14,7 +14,9 @@
 
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
   <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
-  <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+  <uses-permission
+      android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+      android:maxSdkVersion="22"/>
 
   <uses-sdk/>
   <application
@@ -83,8 +85,5 @@
     <meta-data
         android:name="LOCALYTICS_APP_KEY"
         android:value="${LOCALYTICS_APP_KEY}"/>
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="${fabricApiKey}"/>
   </application>
 </manifest>
