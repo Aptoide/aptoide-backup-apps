@@ -28,6 +28,15 @@
         android:layout_height="wrap_content"
         android:text="@string/common_signin_button_text_long"
         />
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_red"
+        android:text="@string/logout_short"
+        android:textColor="@color/grayBackground"
+        android:visibility="gone"
+        />
 
   </LinearLayout>
 

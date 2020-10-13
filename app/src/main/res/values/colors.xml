@@ -13,4 +13,5 @@
   <color name="blueBackground">#ff1865a9</color>
   <color name="textHighlight">#ff1865a9</color>
   <color name="text">#ff000000</color>
+  <color name="dark_red">#8b0000</color>
 </resources>

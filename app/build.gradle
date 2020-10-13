@@ -68,9 +68,9 @@ dependencies {
 
   implementation 'com.android.support:appcompat-v7:26.1.0'
 
-  implementation 'com.google.android.gms:play-services-basement:9.8.0'
-  implementation 'com.google.android.gms:play-services-auth:9.8.0'
-  implementation 'com.google.android.gms:play-services-plus:9.8.0'
+  implementation 'com.google.android.gms:play-services-basement:16.0.0'
+  implementation 'com.google.android.gms:play-services-auth:16.0.0'
+  implementation 'com.google.android.gms:play-services-plus:16.0.0'
 
   implementation 'com.facebook.android:facebook-android-sdk:6.0.0'
 
